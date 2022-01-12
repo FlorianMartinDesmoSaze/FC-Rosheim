@@ -1,4 +1,4 @@
-CREATE TABLE Team(
+fc_rosheimCREATE TABLE Team(
    id INT,
    team_name VARCHAR(255) NOT NULL,
    season VARCHAR(50) NOT NULL,

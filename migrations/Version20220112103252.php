@@ -33,17 +33,7 @@ final class Version20220112103252 extends AbstractMigration
             license TINYINT(1) NOT NULL, 
             PRIMARY KEY(id),
             
-        ),
-        -- CREATE TABLE staff (
-        --         id INT AUTO_INCREMENT NOT NULL, 
-        --         last_name VARCHAR(255) NOT NULL, 
-        --         first_name VARCHAR(255) NOT NULL, 
-        --         position VARCHAR(255) NOT NULL, 
-        --         phone VARCHAR(12) DEFAULT NULL, 
-        --         email VARCHAR(255) DEFAULT NULL, 
-        --         PRIMARY KEY(id)
-        --     )
-                DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'
             );
     }
 
