@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,16 @@ class Event
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="events")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MultiPicture::class, mappedBy="event")
+     */
+    private $multiPictures;
+
+    public function __construct()
+    {
+        $this->multiPictures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,36 @@ class Event
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MultiPicture[]
+     */
+    public function getMultiPictures(): Collection
+    {
+        return $this->multiPictures;
+    }
+
+    public function addMultiPicture(MultiPicture $multiPicture): self
+    {
+        if (!$this->multiPictures->contains($multiPicture)) {
+            $this->multiPictures[] = $multiPicture;
+            $multiPicture->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMultiPicture(MultiPicture $multiPicture): self
+    {
+        if ($this->multiPictures->removeElement($multiPicture)) {
+            // set the owning side to null (unless already changed)
+            if ($multiPicture->getEvent() === $this) {
+                $multiPicture->setEvent(null);
+            }
+        }
 
         return $this;
     }

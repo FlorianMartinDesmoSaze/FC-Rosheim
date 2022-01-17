@@ -32,6 +32,16 @@ class MultiPicture
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="multiPictures")
+     */
+    private $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="multiPictures")
+     */
+    private $team;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class MultiPicture
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }

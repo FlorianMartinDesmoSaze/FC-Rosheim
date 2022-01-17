@@ -54,11 +54,17 @@ class Team
      */
     private $games;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MultiPicture::class, mappedBy="team")
+     */
+    private $multiPictures;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
         $this->trainings = new ArrayCollection();
         $this->games = new ArrayCollection();
+        $this->multiPictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -195,6 +201,36 @@ class Team
             // set the owning side to null (unless already changed)
             if ($game->getTeam() === $this) {
                 $game->setTeam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MultiPicture[]
+     */
+    public function getMultiPictures(): Collection
+    {
+        return $this->multiPictures;
+    }
+
+    public function addMultiPicture(MultiPicture $multiPicture): self
+    {
+        if (!$this->multiPictures->contains($multiPicture)) {
+            $this->multiPictures[] = $multiPicture;
+            $multiPicture->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMultiPicture(MultiPicture $multiPicture): self
+    {
+        if ($this->multiPictures->removeElement($multiPicture)) {
+            // set the owning side to null (unless already changed)
+            if ($multiPicture->getTeam() === $this) {
+                $multiPicture->setTeam(null);
             }
         }
 
