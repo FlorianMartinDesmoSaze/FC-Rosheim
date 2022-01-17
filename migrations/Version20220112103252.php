@@ -24,14 +24,15 @@ final class Version20220112103252 extends AbstractMigration
         (
             id INT AUTO_INCREMENT NOT NULL, 
             mail VARCHAR(255) NOT NULL, 
-            password VARCHAR(255) NOT NULL, role JSON DEFAULT NULL, 
+            password VARCHAR(255) NOT NULL, 
+            role VARCHAR(255) DEFAULT NULL, 
             nickname VARCHAR(255) DEFAULT NULL, 
             phone VARCHAR(12) DEFAULT NULL, 
             last_name VARCHAR(255) DEFAULT NULL, 
             first_name VARCHAR(255) DEFAULT NULL, 
             birthdate DATETIME DEFAULT NULL, 
             license TINYINT(1) NOT NULL, 
-            PRIMARY KEY(id),
+            PRIMARY KEY(id)
             
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'
             );

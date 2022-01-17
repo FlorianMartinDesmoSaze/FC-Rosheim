@@ -52,10 +52,10 @@ class Stats
      */
     private $redCards;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    /**
+     * @ORM\OneToOne(targetEntity=Player::class, inversedBy="stats", cascade={"persist", "remove"})
+     */
+    private $player;
 
     public function getGamePlayed(): ?int
     {
@@ -137,6 +137,18 @@ class Stats
     public function setRedCards(?int $redCards): self
     {
         $this->redCards = $redCards;
+
+        return $this;
+    }
+
+    public function getPlayer(): ?Player
+    {
+        return $this->player;
+    }
+
+    public function setPlayer(?Player $player): self
+    {
+        $this->player = $player;
 
         return $this;
     }
