@@ -42,6 +42,11 @@ class Game
      */
     private $home;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="games")
+     */
+    private $team;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Game
     public function setHome(bool $home): self
     {
         $this->home = $home;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }

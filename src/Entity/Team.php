@@ -49,10 +49,16 @@ class Team
      */
     private $trainings;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="team")
+     */
+    private $games;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
         $this->trainings = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +166,36 @@ class Team
     {
         if ($this->trainings->removeElement($training)) {
             $training->removeTeam($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Game[]
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getTeam() === $this) {
+                $game->setTeam(null);
+            }
         }
 
         return $this;
