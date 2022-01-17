@@ -55,11 +55,6 @@ class Event
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="events")
-     */
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity=MultiPicture::class, mappedBy="event")
      */
     private $multiPictures;
@@ -68,6 +63,11 @@ class Event
      * @ORM\OneToOne(targetEntity=News::class, mappedBy="team", cascade={"persist", "remove"})
      */
     private $news;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="event")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -163,18 +163,6 @@ class Event
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|MultiPicture[]
      */
@@ -223,6 +211,18 @@ class Event
         }
 
         $this->news = $news;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

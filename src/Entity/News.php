@@ -53,14 +53,14 @@ class News
     private $team;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="news")
-     */
-    private $user;
-
-    /**
      * @ORM\OneToOne(targetEntity=Event::class, inversedBy="news", cascade={"persist", "remove"})
      */
     private $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="news")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -151,18 +151,6 @@ class News
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getEvent(): ?Event
     {
         return $this->event;
@@ -171,6 +159,18 @@ class News
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

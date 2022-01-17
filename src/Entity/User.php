@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -69,6 +71,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="users")
      */
     private $team;
+
+    /**
+     * @ORM\OneToMany(targetEntity=News::class, mappedBy="user")
+     */
+    private $news;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="user")
+     */
+    private $event;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Staff::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $staff;
+
+    public function __construct()
+    {
+        $this->news = new ArrayCollection();
+        $this->event = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -239,6 +262,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|News[]
+     */
+    public function getNews(): Collection
+    {
+        return $this->news;
+    }
+
+    public function addNews(News $news): self
+    {
+        if (!$this->news->contains($news)) {
+            $this->news[] = $news;
+            $news->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNews(News $news): self
+    {
+        if ($this->news->removeElement($news)) {
+            // set the owning side to null (unless already changed)
+            if ($news->getUser() === $this) {
+                $news->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvent(): Collection
+    {
+        return $this->event;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->event->contains($event)) {
+            $this->event[] = $event;
+            $event->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->event->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getUser() === $this) {
+                $event->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStaff(): ?Staff
+    {
+        return $this->staff;
+    }
+
+    public function setStaff(?Staff $staff): self
+    {
+        $this->staff = $staff;
 
         return $this;
     }
