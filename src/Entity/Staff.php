@@ -42,6 +42,11 @@ class Staff
      */
     private $email;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="staff", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Staff
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

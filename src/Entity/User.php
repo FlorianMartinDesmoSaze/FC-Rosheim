@@ -75,6 +75,16 @@ class User
      */
     private $news;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Staff::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $staff;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="users")
+     */
+    private $team;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -250,6 +260,40 @@ class User
                 $news->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStaff(): ?Staff
+    {
+        return $this->staff;
+    }
+
+    public function setStaff(?Staff $staff): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($staff === null && $this->staff !== null) {
+            $this->staff->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($staff !== null && $staff->getUser() !== $this) {
+            $staff->setUser($this);
+        }
+
+        $this->staff = $staff;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }
