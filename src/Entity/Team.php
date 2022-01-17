@@ -35,7 +35,7 @@ class Team
     private $picture;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -64,6 +64,11 @@ class Team
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=News::class, mappedBy="team")
+     */
+    private $news;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -71,6 +76,7 @@ class Team
         $this->games = new ArrayCollection();
         $this->multiPictures = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->news = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -267,6 +273,36 @@ class Team
             // set the owning side to null (unless already changed)
             if ($user->getTeam() === $this) {
                 $user->setTeam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|News[]
+     */
+    public function getNews(): Collection
+    {
+        return $this->news;
+    }
+
+    public function addNews(News $news): self
+    {
+        if (!$this->news->contains($news)) {
+            $this->news[] = $news;
+            $news->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNews(News $news): self
+    {
+        if ($this->news->removeElement($news)) {
+            // set the owning side to null (unless already changed)
+            if ($news->getTeam() === $this) {
+                $news->setTeam(null);
             }
         }
 

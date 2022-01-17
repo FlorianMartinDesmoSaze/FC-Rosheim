@@ -33,7 +33,7 @@ class News
     private $picture;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -48,7 +48,12 @@ class News
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=Event::class, inversedBy="news", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="news")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="news")
      */
     private $team;
 
@@ -56,11 +61,6 @@ class News
      * @ORM\OneToOne(targetEntity=Event::class, inversedBy="news", cascade={"persist", "remove"})
      */
     private $event;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="news")
-     */
-    private $user;
 
     public function getId(): ?int
     {
@@ -139,12 +139,24 @@ class News
         return $this;
     }
 
-    public function getTeam(): ?Event
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
     {
         return $this->team;
     }
 
-    public function setTeam(?Event $team): self
+    public function setTeam(?Team $team): self
     {
         $this->team = $team;
 
@@ -159,18 +171,6 @@ class News
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

@@ -60,14 +60,9 @@ class Event
     private $multiPictures;
 
     /**
-     * @ORM\OneToOne(targetEntity=News::class, mappedBy="team", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=News::class, mappedBy="event", cascade={"persist", "remove"})
      */
     private $news;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="event")
-     */
-    private $user;
 
     public function __construct()
     {
@@ -163,6 +158,18 @@ class Event
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     /**
      * @return Collection|MultiPicture[]
      */
@@ -202,27 +209,15 @@ class Event
     {
         // unset the owning side of the relation if necessary
         if ($news === null && $this->news !== null) {
-            $this->news->setTeam(null);
+            $this->news->setEvent(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($news !== null && $news->getTeam() !== $this) {
-            $news->setTeam($this);
+        if ($news !== null && $news->getEvent() !== $this) {
+            $news->setEvent($this);
         }
 
         $this->news = $news;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

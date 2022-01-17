@@ -37,7 +37,7 @@ class Training
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $days;
+    private $day;
 
     /**
      * @ORM\Column(type="datetime")
@@ -100,14 +100,14 @@ class Training
         return $this;
     }
 
-    public function getDays(): ?string
+    public function getDay(): ?string
     {
-        return $this->days;
+        return $this->day;
     }
 
-    public function setDays(?string $days): self
+    public function setDay(?string $day): self
     {
-        $this->days = $days;
+        $this->day = $day;
 
         return $this;
     }
