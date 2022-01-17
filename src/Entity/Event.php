@@ -64,6 +64,11 @@ class Event
      */
     private $multiPictures;
 
+    /**
+     * @ORM\OneToOne(targetEntity=News::class, mappedBy="team", cascade={"persist", "remove"})
+     */
+    private $news;
+
     public function __construct()
     {
         $this->multiPictures = new ArrayCollection();
@@ -196,6 +201,28 @@ class Event
                 $multiPicture->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNews(): ?News
+    {
+        return $this->news;
+    }
+
+    public function setNews(?News $news): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($news === null && $this->news !== null) {
+            $this->news->setTeam(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($news !== null && $news->getTeam() !== $this) {
+            $news->setTeam($this);
+        }
+
+        $this->news = $news;
 
         return $this;
     }

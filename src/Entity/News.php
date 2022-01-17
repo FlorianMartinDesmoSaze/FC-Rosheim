@@ -47,6 +47,21 @@ class News
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Event::class, inversedBy="news", cascade={"persist", "remove"})
+     */
+    private $team;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="news")
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Event::class, inversedBy="news", cascade={"persist", "remove"})
+     */
+    private $event;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +135,42 @@ class News
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Event
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Event $team): self
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
 
         return $this;
     }
