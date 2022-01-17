@@ -83,7 +83,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $event;
 
     /**
-     * @ORM\OneToOne(targetEntity=Staff::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="user")
+     */
+    private $events;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Staff::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $staff;
 
@@ -91,6 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->news = new ArrayCollection();
         $this->event = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -326,6 +332,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
     public function getStaff(): ?Staff
     {
         return $this->staff;
@@ -333,6 +347,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setStaff(?Staff $staff): self
     {
+        // unset the owning side of the relation if necessary
+        if ($staff === null && $this->staff !== null) {
+            $this->staff->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($staff !== null && $staff->getUser() !== $this) {
+            $staff->setUser($this);
+        }
+
         $this->staff = $staff;
 
         return $this;

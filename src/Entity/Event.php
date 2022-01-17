@@ -50,7 +50,7 @@ class Event
     private $location;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -63,6 +63,11 @@ class Event
      * @ORM\OneToOne(targetEntity=News::class, mappedBy="event", cascade={"persist", "remove"})
      */
     private $news;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="events")
+     */
+    private $user;
 
     public function __construct()
     {

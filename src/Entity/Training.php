@@ -42,12 +42,12 @@ class Training
     /**
      * @ORM\Column(type="datetime")
      */
-    private $startDate;
+    private $startTime;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $endDate;
+    private $endTime;
 
     /**
      * @ORM\ManyToMany(targetEntity=Team::class, inversedBy="trainings")
@@ -112,26 +112,26 @@ class Training
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getStartTime(): ?\DateTimeInterface
     {
-        return $this->startDate;
+        return $this->startTime;
     }
 
-    public function setStartDate(\DateTimeInterface $startDate): self
+    public function setStartTime(\DateTimeInterface $startTime): self
     {
-        $this->startDate = $startDate;
+        $this->startTime = $startTime;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEndTime(): ?\DateTimeInterface
     {
-        return $this->endDate;
+        return $this->endTime;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function setEndTime(\DateTimeInterface $endTime): self
     {
-        $this->endDate = $endDate;
+        $this->endTime = $endTime;
 
         return $this;
     }

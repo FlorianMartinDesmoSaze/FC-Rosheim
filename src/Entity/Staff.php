@@ -43,9 +43,14 @@ class Staff
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="staff", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="staff", cascade={"persist", "remove"})
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
 
     public function getId(): ?int
     {
@@ -119,17 +124,19 @@ class Staff
 
     public function setUser(?User $user): self
     {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setStaff(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getStaff() !== $this) {
-            $user->setStaff($this);
-        }
-
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
