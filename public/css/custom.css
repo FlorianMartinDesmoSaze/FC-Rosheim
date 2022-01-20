@@ -1,0 +1,26 @@
+body {
+    background-color: #101010;
+    background-image: url("../../img/background_css.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    background-size: 42%;
+}
+
+a.nav-link {
+    border-left: 1px solid #f12f37;
+    color: #fff;
+}
+
+
+a.nav-link:hover {
+    color: #f12f37;
+}
+
+span.leftbar {
+    color:#fff;
+    border-left: 1px solid #f12f37;
+    padding-left: 5px;
+    display: inline-block;
+    height: 0.6rem;
+}
