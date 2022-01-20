@@ -2,8 +2,8 @@ body {
     background-color: #101010;
     background-image: url("../../img/background_css.jpg");
     background-repeat: no-repeat;
-    background-position: center;
     background-attachment: fixed;
+    background-position: 50% 0%;
     background-size: 42%;
 }
 
