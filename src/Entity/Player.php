@@ -50,7 +50,7 @@ class Player
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="players")
      */
-    private $relation;
+    private $team;
 
     /**
      * @ORM\ManyToOne(targetEntity=Position::class, inversedBy="players")
@@ -139,14 +139,14 @@ class Player
         return $this;
     }
 
-    public function getRelation(): ?Team
+    public function getTeam(): ?Team
     {
-        return $this->relation;
+        return $this->team;
     }
 
-    public function setRelation(?Team $relation): self
+    public function setTeam(?Team $team): self
     {
-        $this->relation = $relation;
+        $this->team = $team;
 
         return $this;
     }
@@ -170,12 +170,12 @@ class Player
 
     public function setStats(?Stats $stats): self
     {
-        // unset the owning side of the relation if necessary
+        // unset the owning side of the team if necessary
         if ($stats === null && $this->stats !== null) {
             $this->stats->setPlayer(null);
         }
 
-        // set the owning side of the relation if necessary
+        // set the owning side of the team if necessary
         if ($stats !== null && $stats->getPlayer() !== $this) {
             $stats->setPlayer($this);
         }
