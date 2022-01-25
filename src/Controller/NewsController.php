@@ -39,7 +39,7 @@ class NewsController extends AbstractController
             $entityManager->persist($news);
             $entityManager->flush();
 
-            // renvoi un code 303 pour confirmer la création de la news et laredirection vers l'index
+            // return 303 code to confirm news creation and index redirection
             return $this->redirectToRoute('news_index', [], Response::HTTP_SEE_OTHER);
         }
 
