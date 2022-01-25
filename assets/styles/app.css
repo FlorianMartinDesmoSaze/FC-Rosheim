@@ -1,0 +1,24 @@
+/* Custom background image */
+body {
+    background-color: #000;
+    background-image: url("/public/img/background_css.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    background-size: 742px;
+}
+
+/* Red pipe before header nav items */
+span.leftbar {
+    color:#fff;
+    border-left: 1px solid #f12f37;
+    padding-left: 5px;
+    display: inline-block;
+    height: 0.7rem;
+}
+
+
+/* More spacing for the login/user logo in relation to the rest of the nav */
+#log-logo {
+    margin-left: 1rem;
+}
