@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EventController extends AbstractController
 {
+    
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
