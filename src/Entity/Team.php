@@ -40,7 +40,7 @@ class Team
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity=Player::class, mappedBy="relation")
+     * @ORM\OneToMany(targetEntity=Player::class, mappedBy="team")
      */
     private $players;
 
@@ -144,7 +144,7 @@ class Team
     {
         if (!$this->players->contains($player)) {
             $this->players[] = $player;
-            $player->setRelation($this);
+            $player->setTeam($this);
         }
 
         return $this;
@@ -154,8 +154,8 @@ class Team
     {
         if ($this->players->removeElement($player)) {
             // set the owning side to null (unless already changed)
-            if ($player->getRelation() === $this) {
-                $player->setRelation(null);
+            if ($player->getTeam() === $this) {
+                $player->setTeam(null);
             }
         }
 
