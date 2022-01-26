@@ -12,7 +12,7 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add('title', 'string')
             ->add('content')
             ->add('picture')
             ->add('slug')

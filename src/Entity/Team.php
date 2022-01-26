@@ -311,6 +311,6 @@ class Team
     
     public function __toString()
     {
-        return $this->team;
+        return $this->getTeamName();
     }
 }
