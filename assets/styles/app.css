@@ -21,4 +21,5 @@ span.leftbar {
 /* More spacing for the login/user logo in relation to the rest of the nav */
 #log-logo {
     margin-left: 1rem;
+    padding-right: 0.7rem;
 }
