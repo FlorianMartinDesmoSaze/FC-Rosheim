@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
  * @ORM\HasLifecycleCallbacks()
