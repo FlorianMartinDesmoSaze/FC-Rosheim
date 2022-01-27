@@ -65,7 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $birthdate;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":"0"})
      */
     private $license;
 
@@ -98,6 +98,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->news = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->license = false;
     }
 
     public function getId(): ?int
