@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
  * @ORM\HasLifecycleCallbacks()
@@ -245,5 +244,10 @@ class Event
         $this->news = $news;
 
         return $this;
+    }
+
+    public function __toString() 
+    {
+        return $this->getTitle();
     }
 }

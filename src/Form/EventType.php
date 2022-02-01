@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Event;
+use App\Entity\News;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

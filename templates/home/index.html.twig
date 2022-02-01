@@ -1,1 +1,10 @@
-{% extends 'base.html.twig' %}
+{% include 'base.html.twig' %}
+{% block content %}
+<ul>
+    {% for new in news %}
+        <li>
+            {{ new.title }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

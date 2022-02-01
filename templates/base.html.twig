@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}FC Rosheim{% endblock %}</title>
         {% block stylesheets %}
             <link rel="shortcut icon" href="img/logo.ico" type="image">
             {{ encore_entry_link_tags('app') }}
@@ -14,5 +14,6 @@
     </head>
     <body>
         {{ include ("include/header.html.twig") }}
+        {% block content %}{% endblock %}
     </body>
 </html>
