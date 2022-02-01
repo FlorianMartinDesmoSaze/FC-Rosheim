@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+// use App\Entity\Team;
 
 /**
  * @Route("/news")
@@ -39,6 +40,7 @@ class NewsController extends AbstractController
             $entityManager->persist($news);
             $entityManager->flush();
 
+            // return 303 code to confirm news creation and index redirection
             return $this->redirectToRoute('news_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -63,6 +65,13 @@ class NewsController extends AbstractController
      */
     public function edit(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
+        // $team = $news->getTeam();
+
+        // if ($news->getTeam() !== $team) {
+        //     $this->addFlash('warning', "Higher rights required");
+        //     throw $this->createAccessDeniedException;
+        // }
+
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 

@@ -174,4 +174,14 @@ class News
 
         return $this;
     }
+    
+    public function __newsNameToString()/*: string*/
+    {
+        return $this->getTeam()->getTeamName();
+    }
+
+    public function __testToString()
+    {
+        return $this->getUser()->getLastName();
+    }
 }
