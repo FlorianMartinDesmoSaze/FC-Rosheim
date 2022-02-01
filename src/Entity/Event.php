@@ -6,12 +6,31 @@ use App\Repository\EventRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\String\Slugger\AsciiSlugger;
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event
 {
+    public const EVT_SPORT = 'sportif';
+    public const EVT_ASSO = 'associatif';
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -225,5 +244,10 @@ class Event
         $this->news = $news;
 
         return $this;
+    }
+
+    public function __toString() 
+    {
+        return $this->getTitle();
     }
 }
