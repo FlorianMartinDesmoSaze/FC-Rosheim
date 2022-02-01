@@ -6,11 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -63,7 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $birthdate;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":"0"})
      */
     private $license;
 
@@ -80,11 +82,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Event::class, mappedBy="user")
      */
-    private $event;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="user")
-     */
     private $events;
 
     /**
@@ -92,11 +89,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $staff;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
     public function __construct()
     {
         $this->news = new ArrayCollection();
-        $this->event = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->license = false;
     }
 
     public function getId(): ?int
@@ -305,36 +307,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection|Event[]
      */
-    public function getEvent(): Collection
-    {
-        return $this->event;
-    }
-
-    public function addEvent(Event $event): self
-    {
-        if (!$this->event->contains($event)) {
-            $this->event[] = $event;
-            $event->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Event $event): self
-    {
-        if ($this->event->removeElement($event)) {
-            // set the owning side to null (unless already changed)
-            if ($event->getUser() === $this) {
-                $event->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Event[]
-     */
     public function getEvents(): Collection
     {
         return $this->events;
@@ -362,7 +334,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __toString() {
-        return $this->getEmail();
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
     }
 }
