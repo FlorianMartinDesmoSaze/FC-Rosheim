@@ -17,9 +17,48 @@ span.leftbar {
     height: 0.7rem;
 }
 
+/* Classe display flex afin d'éviter la redondance */
+.flex {
+    display: flex;
+}
 
 /* More spacing for the login/user logo in relation to the rest of the nav */
 #log-logo {
     margin-left: 1rem;
     padding-right: 0.7rem;
+}
+
+#log-logo, svg {
+    color: #fff;
+}
+
+/* Menu dropdown sur l'icone login */
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0.7rem;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
 }
