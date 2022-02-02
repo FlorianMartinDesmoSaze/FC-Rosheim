@@ -10,18 +10,33 @@ body {
 
 /* Red pipe before header nav items */
 span.leftbar {
-    color:#fff;
+    color:whitesmoke;
     border-left: 1px solid #f12f37;
     padding-left: 5px;
     display: inline-block;
     height: 0.7rem;
+}
+/* Ligne rouge horizontale */
+.redline{
+    width: 60%;
+    margin: 1.5em 0;
+    display: block;
+    border-bottom: 1px solid rgba(180,0,0,0.8);
+}
+.redline-center{
+    width: 96%;
+    margin: 1.5em auto;
+    display: block;
+    border-bottom: 1px solid rgba(180,0,0,0.8);
 }
 
 /* Classe display flex afin d'éviter la redondance */
 .flex {
     display: flex;
 }
-
+.full-height {
+    height: 70vh;
+}
 /* More spacing for the login/user logo in relation to the rest of the nav */
 #log-logo {
     margin-left: 1rem;
@@ -29,36 +44,71 @@ span.leftbar {
 }
 
 #log-logo, svg {
-    color: #fff;
+    color: whitesmoke;
 }
 
 /* Menu dropdown sur l'icone login */
-
-
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 35px;
-    right: 0.7rem;
+    top: 42px;
+    right: 2.2rem;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-
-.dropdown-content a:hover {background-color: #f1f1f1;}
-
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+/* Card style */
+.card {
+    padding: 2.5rem 1rem;
+    background-color: #101010cc;
+    border: solid rgba(180, 0, 0, 0.8) 1px;
+    border-radius: 0;
+}
+.card h1 {
+    color: whitesmoke;
+}
+.card label {
+    color: whitesmoke;
+    margin-bottom: 0.2em;
+}
+.card input {
+    margin-bottom: 1.5em;
+    border-radius: 0;
+}
+.card p {
+    color: whitesmoke;
+    margin-top: 1.5em;
+    margin-bottom: 0;
+}
+.card a {
+    color: rgba(255, 0, 0, 0.8);
+}
+.card a:hover {
+    color: rgba(200, 0, 0, 0.8);
+}
+.card button{
+    border-radius: 0;
+}
+.card h4{
+    color: whitesmoke;
+}
+.sidebar{
+    width: 25%;
 }

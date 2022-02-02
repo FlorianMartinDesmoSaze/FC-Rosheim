@@ -1,1 +1,29 @@
-<p>test {{ app.user.lastName}}</p>
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="full-height flex align-items-center">
+        <div class="col-md-3">
+            <div class="card"><p>test</p></div>
+        </div>
+        <div class="col-4 offset-md-1 d-flex justify-content-center">
+            <div class="card text-center">
+                {% if app.user %}
+                    {% if app.user.lastname and app.user.firstname != null %}
+                        <h4> Bonjour {{app.user.firstname}} {{app.user.lastname}}</h4>
+                    {% else %}
+                        <h4> Vous êtes connecté sur  {{ app.user.username }}</h4>
+                    {% endif %}
+                {% else %}
+                    <div class="mb-3">
+                        <p>Vous êtes connecté en tant que {{ app.user.username }}, </p><a href="{{ path('app_logout') }}">Se déconnecter</a>
+                    </div>
+                {% endif %}
+                <span class="redline-center"></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
