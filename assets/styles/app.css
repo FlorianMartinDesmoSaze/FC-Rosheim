@@ -67,11 +67,21 @@ span.leftbar {
 .dropdown-content a:hover {
     background-color: #f1f1f1;
 }
+/* Affichage du menu dropdown avec animation */
 .dropdown:hover .dropdown-content {
     display: block;
+    animation: dropdown 1s ease 0s 1 normal forwards;
 }
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+@keyframes dropdown {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Card style */
@@ -109,6 +119,29 @@ span.leftbar {
 .card h4{
     color: whitesmoke;
 }
-.sidebar{
-    width: 25%;
+
+/* Sidebar style */
+.sidebar li {
+    padding: 10px;
+    list-style-type: none;
+    margin: 0;
+}
+.sidebar li:hover{
+    border-right: 2px solid rgba(180, 0, 0, 0.8);
+    animation: border-width 0.2s linear;
+}
+.sidebar ul {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+}
+.sidebar a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+#logout{
+    background-color: rgba(180, 0, 0, 0.8);
+}
+#logout:hover {
+    background-color: rgba(200, 0, 0, 0.8);
 }
