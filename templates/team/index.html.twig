@@ -1,41 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Team index{% endblock %}
+{% block title %}Liste des équipes - FC Rosheim{% endblock %}
 
 {% block content %}
-    <h1>Team index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>TeamName</th>
-                <th>Season</th>
-                <th>Picture</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for team in teams %}
-            <tr>
-                <td>{{ team.id }}</td>
-                <td>{{ team.teamName }}</td>
-                <td>{{ team.season }}</td>
-                <td>{{ team.picture }}</td>
-                <td>{{ team.slug }}</td>
-                <td>
-                    <a href="{{ path('team_show', {'id': team.id}) }}">show</a>
-                    <a href="{{ path('team_edit', {'id': team.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('team_new') }}">Create new</a>
+    <div class="container-fluid">
+        <div class="flex flex-column align-items-center">
+            {% for team in teams %}
+                <div class="row col-md-12 flex justify-content-md-center">
+                    <div class="col-md-4 text-center card-team">
+                        <a id="teamName" href="{{ path('team_show', {'id': team.id}) }}">{{ team.teamName }} {{ team.season }}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{{ path('team_edit', {'id': team.id}) }}" class="btn btn-primary btn-team" title="Modifier l'équipe">Modifier</a>
+                    </div>
+                </div>
+            {% else %}
+                <h3>Le club n'a actuellement aucune équipe.</h3>
+            {% endfor %}
+            <a href="{{ path('team_new') }}" class="btn btn-primary btn-team" title="Nouvelle équipe">Créer une nouvelle équipe</a>
+        </div>
+    </div>  
+    
 {% endblock %}

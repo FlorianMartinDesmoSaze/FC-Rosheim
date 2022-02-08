@@ -7,7 +7,6 @@ body {
     background-position: 50% 0%;
     background-size: 742px;
 }
-
 /* Red pipe before header nav items */
 span.leftbar {
     color:whitesmoke;
@@ -34,9 +33,11 @@ span.leftbar {
 .flex {
     display: flex;
 }
+/* Taille de la hauteur de la page (pas 100vh car header) */
 .full-height {
     height: 70vh;
 }
+
 /* More spacing for the login/user logo in relation to the rest of the nav */
 #log-logo {
     margin-left: 1rem;
@@ -91,8 +92,9 @@ span.leftbar {
     border: solid rgba(180, 0, 0, 0.8) 1px;
     border-radius: 0;
 }
-.card h1 {
+.card h1, .card h2, .card h3, .card h4 {
     color: whitesmoke;
+    font-size: 1rem;
 }
 .card label {
     color: whitesmoke;
@@ -116,8 +118,21 @@ span.leftbar {
 .card button{
     border-radius: 0;
 }
-.card h4{
+/* Team */
+.card-team {
+    margin-top: 2rem;
+    padding: 0.2rem 2.5rem ;
+    background-color: #101010cc;
+    border: solid rgba(180, 0, 0, 0.8) 1px;
+    border-radius: 0;
+}
+.card-team  #teamName{
     color: whitesmoke;
+    font-size : 1rem;
+    text-decoration: none;
+}
+.btn-team{
+    margin-top: 2rem;
 }
 
 /* Sidebar style */
