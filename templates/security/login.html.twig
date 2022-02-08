@@ -15,7 +15,7 @@
                         <p>Vous êtes connecté en tant que {{ app.user.username }}, </p><a href="{{ path('app_logout') }}">Se déconnecter</a>
                     </div>
                 {% else %}
-                <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+                <h1>Se connecter</h1>
                 <span class="redline"></span>
                 <label for="inputEmail">Email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>

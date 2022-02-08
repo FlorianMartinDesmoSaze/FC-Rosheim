@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     {
 
         $news = $newsRepository->findtLastThreeNews();
-        dump($news);
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'news' => $news,
