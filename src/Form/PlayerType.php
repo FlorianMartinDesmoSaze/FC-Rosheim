@@ -29,7 +29,7 @@ class PlayerType extends AbstractType
             ])
             ->add('picture')
             ->add('slug')
-            ->add('relation')
+            ->add('team')
             ->add('position')
             ->add('stats');
     }
