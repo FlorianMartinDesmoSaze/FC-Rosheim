@@ -15,7 +15,9 @@
                     </div>
                 </div>
             {% else %}
-                <h3>Le club n'a actuellement aucune équipe.</h3>
+            <div class="col-md-6 text-center card-team">
+                <h4>Le club n'a actuellement aucune équipe.</h4>
+            </div>
             {% endfor %}
             <a href="{{ path('team_new') }}" class="btn btn-primary btn-team" title="Nouvelle équipe">Créer une nouvelle équipe</a>
         </div>
