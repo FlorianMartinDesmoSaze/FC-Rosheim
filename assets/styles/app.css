@@ -119,6 +119,7 @@ span.leftbar {
 }
 /* Team */
 .card-team {
+    height: 38px;
     margin-top: 2rem;
     padding: 0.2rem 2.5rem ;
     background-color: #101010cc;
@@ -135,6 +136,7 @@ span.leftbar {
 }
 .btn-team{
     margin-top: 2rem;
+    border-radius: 0;
 }
 
 /* Sidebar style */
