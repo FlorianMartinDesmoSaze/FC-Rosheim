@@ -145,3 +145,7 @@ span.leftbar {
 #logout:hover {
     background-color: rgba(200, 0, 0, 0.8);
 }
+/* Form check input */
+.form-check-input {
+    margin-left: 0.5em ;
+}
