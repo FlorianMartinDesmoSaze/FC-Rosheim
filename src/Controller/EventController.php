@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/event")
@@ -29,6 +30,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/new", name="event_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -61,6 +63,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="event_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
@@ -81,6 +84,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="event_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {

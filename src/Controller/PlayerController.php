@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/player")
@@ -18,6 +19,7 @@ class PlayerController extends AbstractController
 {
     /**
      * @Route("/", name="player_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(PlayerRepository $playerRepository): Response
     {
@@ -28,6 +30,7 @@ class PlayerController extends AbstractController
 
     /**
      * @Route("/new", name="player_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -60,6 +63,7 @@ class PlayerController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="player_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Player $player, EntityManagerInterface $entityManager): Response
     {
@@ -80,6 +84,7 @@ class PlayerController extends AbstractController
 
     /**
      * @Route("/{id}", name="player_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Player $player, EntityManagerInterface $entityManager): Response
     {
