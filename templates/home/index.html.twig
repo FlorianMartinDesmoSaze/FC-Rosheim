@@ -1,10 +1,18 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+{% block title %}Page d'accueil - FC Rosheim{% endblock %}
+{% block meta_description %}Bienvenue sur l'application web du Football Club de Rosheim situé dans la commune du même nom dans le Bas-Rhin{% endblock %}
 {% block content %}
-<ul>
-    {% for new in news %}
-        <li>
-            {{ new.title }}
-        </li>
-    {% endfor %}
-</ul>
+    <div class="container-fluid ">
+        <div class="flex flex-column align-items-center justify-content-md-center full-height">
+                {% for new in news|sort((a, b) => a.createdAt < b.createdAt) %}
+            <div class="col-md-4 justify-content-md-center flex align-items-center card">
+
+                        <h1>{{ new.title }}</h1>
+
+            </div>
+                {% endfor %}
+        {{ include ("include/_down_arrow.html.twig") }}
+        </div>
+    </div>
+                
 {% endblock %}
