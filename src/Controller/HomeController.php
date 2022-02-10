@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     public function index(NewsRepository $newsRepository): Response
     {
 
-        $news = $newsRepository->findtLastThreeNews();
+        $news = $newsRepository->findLastThreeNews();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

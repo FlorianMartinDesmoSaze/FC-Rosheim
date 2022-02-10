@@ -4,11 +4,9 @@
 {% block content %}
     <div class="container-fluid ">
         <div class="flex flex-column align-items-center justify-content-md-center full-height">
-                {% for new in news|sort((a, b) => a.createdAt < b.createdAt) %}
+                {% for new in news %}
             <div class="col-md-4 justify-content-md-center flex align-items-center card">
-
-                        <h1>{{ new.title }}</h1>
-
+                <h1>{{ new.title }}</h1>
             </div>
                 {% endfor %}
         {{ include ("include/_down_arrow.html.twig") }}
