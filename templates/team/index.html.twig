@@ -8,7 +8,7 @@
         <div class="flex flex-column align-items-center">
             {% for team in teams %}
                 <div class="row col-md-12 flex justify-content-md-center">
-                    <div class="col-md-4 text-center card-team">
+                    <div class="col-md-4 justify-content-md-center flex align-items-center card-team">
                         <a id="teamName" href="{{ path('team_show', {'id': team.id}) }}">{{ team.teamName }} {{ team.season }}</a>
                     </div>
                     <div class="col-md-1">

@@ -49,7 +49,7 @@ class NewsRepository extends ServiceEntityRepository
     }
     */
 
-    public function findtLastThreeNews()
+    public function findLastThreeNews()
     {
         return $this->createQueryBuilder('n')
             ->orderBy('n.createdAt', 'DESC')

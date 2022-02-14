@@ -1,17 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Team{% endblock %}
+{% block title %}{{ team.teamName }} {{ team.season }} - FC Rosheim{% endblock %}
 
 {% block content %}
-    <h1>Team</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ team.id }}</td>
-            </tr>
-            <tr>
                 <th>TeamName</th>
                 <td>{{ team.teamName }}</td>
             </tr>

@@ -180,7 +180,7 @@ class News
         return $this->getTeam()->getTeamName();
     }
 
-    public function __testToString()
+    public function __toString()
     {
         return $this->getUser()->getLastName();
     }

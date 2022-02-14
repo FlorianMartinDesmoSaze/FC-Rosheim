@@ -1,17 +1,19 @@
 /* Custom background image */
 body {
     background-color: #000;
-    background-image: url("/public_html/img/background_css.png");
+    background-image: url("/public_html/img/background_css.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: 50% 0%;
     background-size: 742px;
 }
-h1, h2, h3, h4, h5 {
+/* Style des balises Hn */
+h1, h2, h3, h4, h5, h6 {
     color: whitesmoke;
 }
-h1 {
-    margin-bottom: 4rem;
+/* style du bouton principal */
+.btn-primary{
+    border-radius: 0;
 }
 
 /* Red pipe before header nav items */
@@ -40,7 +42,8 @@ span.leftbar {
 .flex {
     display: flex;
 }
-/* Page height (accounting for header) */
+
+/* Page height (not 100vh to account for header) */
 .full-height {
     height: 70vh;
 }
@@ -126,6 +129,7 @@ span.leftbar {
 }
 /* Team */
 .card-team {
+    height: 38px;
     margin-top: 2rem;
     padding: 0.2rem 2.5rem ;
     background-color: #101010cc;
@@ -142,6 +146,7 @@ span.leftbar {
 }
 .btn-team{
     margin-top: 2rem;
+    border-radius: 0;
 }
 
 /* Sidebar style */
@@ -178,4 +183,10 @@ span.leftbar {
 /* Form check input */
 .form-check-input {
     margin-left: 0.5em ;
+}
+.card-news{
+    display: none;
+}
+.card-news:first-child{
+    display: block;
 }
