@@ -21,8 +21,13 @@ class NewsController extends AbstractController
     /**
      * @Route("/", name="news_index", methods={"GET"})
      */
-    public function index(NewsRepository $newsRepository): Response
+    public function index(NewsRepository $newsRepository, int $id): Response
     {
+        $news = $newsRepository->find($id);
+
+        if (! $news) {
+            throw $this->createNotFoundException('The news '. $id . ' does not exist');
+        }
         return $this->render('news/index.html.twig', [
             'news' => $newsRepository->findAll(),
         ]);

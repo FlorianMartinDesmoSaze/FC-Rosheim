@@ -54,8 +54,13 @@ class PlayerController extends AbstractController
     /**
      * @Route("/{id}", name="player_show", methods={"GET"})
      */
-    public function show(Player $player): Response
+    public function show(PlayerRepository $playerRepository, int $id): Response
     {
+        $player = $playerRepository->find($id);
+
+        if (! $player) {
+            throw $this->createNotFoundException('The player '. $id . ' does not exist');
+        }
         return $this->render('player/show.html.twig', [
             'player' => $player,
         ]);

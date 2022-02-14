@@ -53,8 +53,13 @@ class TrainingController extends AbstractController
     /**
      * @Route("/{id}", name="training_show", methods={"GET"})
      */
-    public function show(Training $training): Response
+    public function show(TrainingRepository $trainingRepository, int $id): Response
     {
+        $training = $trainingRepository->find($id);
+
+        if (! $training) {
+            throw $this->createNotFoundException('The training '. $id . ' does not exist');
+        }
         return $this->render('training/show.html.twig', [
             'training' => $training,
         ]);

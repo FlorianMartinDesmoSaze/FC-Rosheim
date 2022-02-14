@@ -53,8 +53,12 @@ class TeamController extends AbstractController
     /**
      * @Route("/{id}", name="team_show", methods={"GET"})
      */
-    public function show(Team $team): Response
+    public function show(TeamRepository $teamRepository, int $id): Response
     {
+        $team = $teamRepository->find($id);
+        if (! $team) {
+            throw $this->createNotFoundException('The team '. $id . ' does not exist');
+        }
         return $this->render('team/show.html.twig', [
             'team' => $team,
         ]);
