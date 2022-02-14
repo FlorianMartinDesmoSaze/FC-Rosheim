@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,10 +28,19 @@ class AdminController extends AbstractController
     /**
      * @Route("/users", name="admin_users")
      */
-    public function users(): Response
+    public function users(UserRepository $userRepository): Response
     {
         return $this->render('admin/users.html.twig', [
-            'controller_name' => 'AdminController',
+            'userRepository' => $userRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/users/{id}", name="admin_users_edit")
+     */
+    public function edit_users(User $user): Response
+    {
+        return $this->render('admin/usersedit.html.twig', [
+            'user' => $user,
         ]);
     }
     /**

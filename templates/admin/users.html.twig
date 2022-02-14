@@ -14,7 +14,7 @@
                     <a href="{{ path('admin_news') }}"><li id='select_news'>News</li></a>
                     <a href="{{ path('admin_teams') }}"><li id='select_teams'>Équipes</li></a>
                     <a href="{{ path('admin_results') }}"><li id='select_results'>Résultats</li></a>
-                    <a href="{{ path('admin_events') }}"><li id='select_events'>Évenements</li></a>
+                    <a href="{{ path('admin_users') }}"><li id='select_users'>Évenements</li></a>
                 </ul>
             </div>
         </aside>
@@ -22,9 +22,65 @@
             <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>
                 <div class="card">
                 <h1 class="display-2">Gestion des Utilisateurs</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum labore itaque numquam consequatur laudantium nam alias, eveniet sint rem consectetur error. Eos cum magnam dolore explicabo tempore et assumenda odio.
-                </p>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope=>Id</th>
+                            <th>E-mail</th>
+                            <th>Surnom</th>
+                            <th>Prenom</th>
+                            <th>Nom</th>
+                            <th>License</th>
+                            <th>Equipe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in userRepository %}
+                        <tr class='clickable' onclick="window.location='{{ path('admin_users_edit', {'id': user.id}) }}'">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                            {% if user.nickname|default %}
+                                {{ user.nickname }}
+                            {% else %}
+                                Non renseigne
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if user.firstName|default %}
+                                {{ user.firstName }}
+                            {% else %}
+                                Non renseigne
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  user.lastName|default %}
+                                {{ user.lastName }}
+                            {% else %}
+                                Non renseigne
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if user.license|default %}
+                                {{ user.license }}
+                            {% else %}
+                                Non renseigne
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if user.team|default %}
+                                {{ user.team }}
+                            {% else %}
+                                Non renseigne
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </table>
                 </div>
         </main>
     </div>

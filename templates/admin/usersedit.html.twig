@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Mon profil - FC Rosheim{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <div class="full-height flex align-items-center">
+        <aside class="col-md-3">
+            <div class="sidebar">
+                <ul>  
+                    <a href="{{ path('admin_users') }}"><li id='select_users'>Gestion utilisateur</li></a>
+                    <a href="{{ path('admin_news') }}"><li id='select_news'>News</li></a>
+                    <a href="{{ path('admin_teams') }}"><li id='select_teams'>Équipes</li></a>
+                    <a href="{{ path('admin_results') }}"><li id='select_results'>Résultats</li></a>
+                    <a href="{{ path('admin_users') }}"><li id='select_users'>Évenements</li></a>
+                </ul>
+            </div>
+        </aside>
+        <main class="col-md-8 full-height">
+            <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>
+                <div class="card">
+                <h1 class="display-2">Gestion des Utilisateurs</h1>
+                    <table class="table table-striped table-dark">
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <td>{{ user.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>E-mail</th>
+                                <td id="user_email">{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Pseudonyme</th>
+                                <td id="user_nickname">{{ user.nickname }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenom</th>
+                                <td id="user_firstName">{{user.firstName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Nom de famille</th>
+                                <td id="user_lastName">{{user.lastName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Telephone</th>
+                                <td id="user_phone">{{user.phone}}</td>
+                            </tr>
+                            <tr>
+                                <th>Date de naissance</th>
+                                <td id="user_birthDate">{{user.birthdate}}</td>
+                            </tr>
+                            <tr>
+                                <th>License</th>
+                                <td id="user_license">{{user.license}}</td>
+                            </tr>
+                            <tr>
+                                <th>Equipe</th>
+                                <td id="user_team">{{user.team}}</td>
+                            </tr>
+                            <tr>
+                                <th>Staff</th>
+                                <td id="user_staff">{{user.staff}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <button class='btn btn-primary' id='admin_save_button'>Save</button>
+                </div>
+        </main>
+    </div>
+</div>
+{% endblock content %}
