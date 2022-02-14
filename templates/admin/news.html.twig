@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Mon profil - FC Rosheim{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <div class="full-height flex align-items-center">
+        <aside class="col-md-3">
+            <div class="sidebar">
+                <ul>  
+                    <a href="{{ path('admin_users') }}"><li id='select_users'>Gestion utilisateur</li></a>
+                    <a href="{{ path('admin_news') }}"><li id='select_news'>News</li></a>
+                    <a href="{{ path('admin_teams') }}"><li id='select_teams'>Équipes</li></a>
+                    <a href="{{ path('admin_results') }}"><li id='select_results'>Résultats</li></a>
+                    <a href="{{ path('admin_events') }}"><li id='select_events'>Évenements</li></a>
+                </ul>
+            </div>
+        </aside>
+        <main class="col-md-8 full-height">
+            <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>          
+                <div class="card">
+                <h1 class="display-2">Gestion des News</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum labore itaque numquam consequatur laudantium nam alias, eveniet sint rem consectetur error. Eos cum magnam dolore explicabo tempore et assumenda odio.
+                </p>
+                </div>
+        </main>
+    </div>
+</div>
+{% endblock content %}
