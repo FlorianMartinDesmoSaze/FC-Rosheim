@@ -7,9 +7,13 @@ body {
     background-position: 50% 0%;
     background-size: 742px;
 }
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     color: whitesmoke;
 }
+h1 {
+    margin-bottom: 4rem;
+}
+
 /* Red pipe before header nav items */
 span.leftbar {
     color:whitesmoke;
@@ -18,7 +22,7 @@ span.leftbar {
     display: inline-block;
     height: 0.7rem;
 }
-/* Ligne rouge horizontale */
+/* Horizontal red line */
 .redline{
     width: 60%;
     margin: 1.5em 0;
@@ -32,11 +36,11 @@ span.leftbar {
     border-bottom: 1px solid rgba(180,0,0,0.8);
 }
 
-/* Classe display flex afin d'éviter la redondance */
+/* Class display flex to avoid redundancy */
 .flex {
     display: flex;
 }
-/* Taille de la hauteur de la page (pas 100vh car header) */
+/* Page height (accounting for header) */
 .full-height {
     height: 70vh;
 }
@@ -51,7 +55,7 @@ span.leftbar {
     color: whitesmoke;
 }
 
-/* Menu dropdown sur l'icone login */
+/* Dropdown menu on connexion icon */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -90,10 +94,13 @@ span.leftbar {
 
 /* Card style */
 .card {
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 2.5rem;
     background-color: #101010cc;
     border: solid rgba(180, 0, 0, 0.8) 1px;
     border-radius: 0;
+}
+.card li {
+    color: whitesmoke;
 }
 .card label {
     color: whitesmoke;
@@ -138,14 +145,19 @@ span.leftbar {
 }
 
 /* Sidebar style */
+.sidebar {
+    position: fixed;
+    overflow-x: hidden;
+}
 .sidebar li {
     padding: 10px;
     list-style-type: none;
     margin: 0;
+    border-right: 0px solid rgba(180, 0, 0, 0);
+    transition: 0.2s;
 }
 .sidebar li:hover{
-    border-right: 2px solid rgba(180, 0, 0, 0.8);
-    animation: border-width 0.2s linear;
+    border-right: 3px solid rgba(180, 0, 0, 0.8);
 }
 .sidebar ul {
     width: 250px;
@@ -158,9 +170,10 @@ span.leftbar {
 }
 #logout{
     background-color: rgba(180, 0, 0, 0.8);
+    transition: 0.5s;
 }
 #logout:hover {
-    background-color: rgba(200, 0, 0, 0.8);
+    background-color: rgba(255, 0, 0, 1);
 }
 /* Form check input */
 .form-check-input {
