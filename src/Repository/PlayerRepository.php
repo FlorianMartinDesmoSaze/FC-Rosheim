@@ -35,16 +35,14 @@ class PlayerRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    /*
-    public function findOneBySomeField($value): ?Player
+    //request to find players by team in BDD
+    public function findPlayersByTeam($id)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.team = :id')
+            ->setParameter('id', $id)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
 }
