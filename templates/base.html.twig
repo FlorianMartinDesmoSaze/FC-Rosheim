@@ -9,13 +9,12 @@
             <link rel="shortcut icon" href="/img/logo.ico" type="image">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
     <body>
         {{ include ("include/_header.html.twig") }}
         {% block content %}{% endblock %}
     </body>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
 </html>

@@ -1,7 +1,7 @@
 /* Custom background image */
 body {
     background-color: #000;
-    background-image: url("/public_html/img/background_css.png");
+    background-image: url("/public_html/img/background_css.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: 50% 0%;
@@ -172,4 +172,10 @@ span.leftbar {
 /* Form check input */
 .form-check-input {
     margin-left: 0.5em ;
+}
+.card-news{
+    display: none;
+}
+.card-news:first-child{
+    display: block;
 }
