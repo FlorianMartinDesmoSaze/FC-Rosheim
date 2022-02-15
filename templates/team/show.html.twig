@@ -1,29 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ team.teamName }} {{ team.season }} - FC Rosheim{% endblock %}
+{% block meta_description %}Liste des joueurs de l'équipe {{ team.teamName }} {{ team.season }} du FC Rosheim{% endblock %}
 
 {% block content %}
-                <th>TeamName</th>
-                <td>{{ team.teamName }}</td>
-            </tr>
-            <tr>
-                <th>Season</th>
-                <td>{{ team.season }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ team.picture }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ team.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('team_index') }}">back to list</a>
-
-    <a href="{{ path('team_edit', {'id': team.id}) }}">edit</a>
-
-    {{ include('team/_delete_form.html.twig') }}
+<div class="container-fluid">
+    <div class="full-height flex align-items-center">
+        <main class="col-md-12">
+            <div class="card flex flex-column">
+                {# Goalkeepers list #}
+                <h2>Gardien</h2>
+                <div class="flex flex-row">
+                    {% for goalKeeper in goalKeepers %}
+                        <h6>{{ goalKeeper.firstName }}</h6>
+                    {% endfor %}
+                </div>
+                {# Defenders list #}
+                <h2>Défenseur</h2>
+                <div class="flex flex-row">
+                    {% for defender in defenders %}
+                        <h6>{{ defender.firstName }}</h6>
+                    {% endfor %}
+                </div>
+                {# Midfielders list #}
+                <h2>Milieu</h2>
+                <div class="flex flex-row">
+                    {% for midfielder in midfielders %}
+                        <h6>{{ midfielder.firstName }}</h6>
+                    {% endfor %}
+                </div>
+                {# Strickers list #}
+                <h2>Attaquant</h2>
+                <div class="flex flex-row">
+                    {% for stricker in strickers %}
+                        <h6>{{ stricker.firstName }}</h6>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
 {% endblock %}

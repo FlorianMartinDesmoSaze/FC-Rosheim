@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamType;
+use App\Repository\PlayerRepository;
 use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/team")
@@ -53,10 +54,29 @@ class TeamController extends AbstractController
     /**
      * @Route("/{id}", name="team_show", methods={"GET"})
      */
-    public function show(Team $team): Response
+    public function playersByTeam(Team $team, PlayerRepository $playerRepository, int $id): Response
     {
+        //use custom request from playerRepo
+        $players = $playerRepository->findPlayersByTeam($id);
+        $goalKeepers = $playerRepository->findPlayersByPosition($id, 1); //find goalkeepers = 1
+        $defenders = $playerRepository->findPlayersByPosition($id, 2); //find defenders = 2
+        $midfielders = $playerRepository->findPlayersByPosition($id, 3); //find midfielders = 3
+        $strickers = $playerRepository->findPlayersByPosition($id, 4); //find strickers = 4
+
+        //if there's no player in team display an error 404
+        if (!$players) {
+            throw $this->createNotFoundException(
+                'Il n\'y a pas de joueurs dans cette équipe'
+            );
+        }
+
         return $this->render('team/show.html.twig', [
-            'team' => $team,
+            'goalKeepers' => $goalKeepers,
+            'defenders' => $defenders,
+            'midfielders' => $midfielders,
+            'strickers' => $strickers,
+            'players' => $players,
+            'team' => $team
         ]);
     }
 
@@ -94,4 +114,5 @@ class TeamController extends AbstractController
 
         return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }
