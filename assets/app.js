@@ -14,5 +14,5 @@ import './bootstrap';
 
 import 'bootstrap';
 
-import './js/adminPanelUsers';
 import './js/news';
+import './js/adminPanelUsers';
