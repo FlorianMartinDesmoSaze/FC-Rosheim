@@ -52,12 +52,16 @@ class TeamController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/players", name="team_show", methods={"GET"})
+     * @Route("/{id}", name="team_show", methods={"GET"})
      */
     public function playersByTeam(Team $team, PlayerRepository $playerRepository, int $id): Response
     {
         //use custom request from playerRepo
         $players = $playerRepository->findPlayersByTeam($id);
+        $goalKeeper = $playerRepository->findGKByPosition($id); //find goalkeepers
+        $defenders = $playerRepository->findDefendersByPosition($id); //find defenders
+        $midfielders = $playerRepository->findMidfieldersByPosition($id); //find midfielders
+        $strickers = $playerRepository->findStrickersByPosition($id); //find strickers
 
         //if there's no player in team display an error 404
         if (!$players) {
@@ -67,6 +71,10 @@ class TeamController extends AbstractController
         }
 
         return $this->render('team/show.html.twig', [
+            'goalKeeper' => $goalKeeper,
+            'defenders' => $defenders,
+            'midfielders' => $midfielders,
+            'strickers' => $strickers,
             'players' => $players,
             'team' => $team
         ]);
