@@ -58,10 +58,10 @@ class TeamController extends AbstractController
     {
         //use custom request from playerRepo
         $players = $playerRepository->findPlayersByTeam($id);
-        $goalKeeper = $playerRepository->findGKByPosition($id); //find goalkeepers
-        $defenders = $playerRepository->findDefendersByPosition($id); //find defenders
-        $midfielders = $playerRepository->findMidfieldersByPosition($id); //find midfielders
-        $strickers = $playerRepository->findStrickersByPosition($id); //find strickers
+        $goalKeepers = $playerRepository->findPlayersByPosition($id, 1); //find goalkeepers = 1
+        $defenders = $playerRepository->findPlayersByPosition($id, 2); //find defenders = 2
+        $midfielders = $playerRepository->findPlayersByPosition($id, 3); //find midfielders = 3
+        $strickers = $playerRepository->findPlayersByPosition($id, 4); //find strickers = 4
 
         //if there's no player in team display an error 404
         if (!$players) {
@@ -71,7 +71,7 @@ class TeamController extends AbstractController
         }
 
         return $this->render('team/show.html.twig', [
-            'goalKeeper' => $goalKeeper,
+            'goalKeepers' => $goalKeepers,
             'defenders' => $defenders,
             'midfielders' => $midfielders,
             'strickers' => $strickers,

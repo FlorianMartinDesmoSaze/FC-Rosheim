@@ -1,34 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ team.teamName }} {{ team.season }} - FC Rosheim{% endblock %}
+{% block meta_description %}Liste des joueurs de l'équipe {{ team.teamName }} {{ team.season }} du FC Rosheim{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="full-height flex align-items-center">
-        <aside class="col-md-3">
-            <div class="sidebar">
-                <ul>
-                    <a href="{{ path('profile', {'id': app.user.id}) }}"><li>Mes Informations</li></a>
-                    <a href="#"><li>Mon équipe favorite</li></a>
-                    <a href="#"><li>Modifier mes informations</li></a>
-                    <a href="{{path('app_logout')}}"><li id="logout">Se déconnecter</li></a>
-                </ul>
-            </div>
-        </aside>
-        <main class="col-md-4 offset-md-1">
-            <div class="card text-center">
-                {% if app.user %}
-                    {% if app.user.lastname and app.user.firstname != null %}
-                        <h4> Bonjour {{app.user.firstname}} {{app.user.lastname}}</h4>
-                    {% else %}
-                        <h4> Vous êtes connecté sur  {{ app.user.username }}</h4>
-                    {% endif %}
-                {% else %}
-                    <div class="mb-3">
-                        <p>Vous êtes connecté en tant que {{ app.user.username }}, </p><a href="{{ path('app_logout') }}">Se déconnecter</a>
-                    </div>
-                {% endif %}
-                <span class="redline-center"></span>
+        <main class="col-md-12">
+            <div class="card flex flex-column">
+                {# Goalkeepers list #}
+                <h2>Gardien</h2>
+                <div class="flex flex-row">
+                    {% for goalKeeper in goalKeepers %}
+                        <h6>{{ goalKeeper.firstName }}</h6>
+                    {% endfor %}
+                </div>
+                {# Defenders list #}
+                <h2>Défenseur</h2>
+                <div class="flex flex-row">
+                    {% for defender in defenders %}
+                        <h6>{{ defender.firstName }}</h6>
+                    {% endfor %}
+                </div>
+                {# Midfielders list #}
+                <h2>Milieu</h2>
+                <div class="flex flex-row">
+                    {% for midfielder in midfielders %}
+                        <h6>{{ midfielder.firstName }}</h6>
+                    {% endfor %}
+                </div>
+                {# Strickers list #}
+                <h2>Attaquant</h2>
+                <div class="flex flex-row">
+                    {% for stricker in strickers %}
+                        <h6>{{ stricker.firstName }}</h6>
+                    {% endfor %}
+                </div>
             </div>
         </main>
     </div>

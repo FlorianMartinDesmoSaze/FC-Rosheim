@@ -30,47 +30,13 @@ class PlayerRepository extends ServiceEntityRepository
         ;
     }
     //request to find Goal keepers by position and team
-    public function findGKByPosition($id)
+    public function findPlayersByPosition($id, $idPosition)
     {
         return $this->createQueryBuilder('p')
             ->where('p.team = :id')
             ->setParameter('id', $id)
-            ->andWhere('p.position = 1') //1 = Goalkeeper in bdd
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    //request to find defenders by position and team
-    public function findDefendersByPosition($id)
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.team = :id')
-            ->setParameter('id', $id)
-            ->andWhere('p.position = 2') //2 = Defender in bdd
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    //request to find midfielders by position and team
-    public function findMidfieldersByPosition($id)
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.team = :id')
-            ->setParameter('id', $id)
-            ->andWhere('p.midfielder = 3') //3 = Midfielder in bdd
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    //request to find strickers by position and team
-    public function findStrickersByPosition($id)
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.team = :id')
-            ->setParameter('id', $id)
-            ->andWhere('p.midfielder = 4') //4 = Stricker in bdd
+            ->andWhere('p.position = :idPosition') 
+            ->setParameter('idPosition', $idPosition)
             ->getQuery()
             ->getResult()
         ;
