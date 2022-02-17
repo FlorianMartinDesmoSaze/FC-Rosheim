@@ -127,6 +127,10 @@ span.leftbar {
 .card button{
     border-radius: 0;
 }
+.card input {
+    margin-bottom: 0px;
+}
+
 /* Team */
 .card-team {
     height: 38px;
