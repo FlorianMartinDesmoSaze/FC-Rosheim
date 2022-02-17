@@ -21,13 +21,9 @@ class NewsController extends AbstractController
     /**
      * @Route("/", name="news_index", methods={"GET"})
      */
-    public function index(NewsRepository $newsRepository, int $id): Response
+    public function index(NewsRepository $newsRepository): Response
     {
-        $news = $newsRepository->find($id);
 
-        if (! $news) {
-            throw $this->createNotFoundException('The news '. $id . ' does not exist');
-        }
         return $this->render('news/index.html.twig', [
             'news' => $newsRepository->findAll(),
         ]);
@@ -60,8 +56,14 @@ class NewsController extends AbstractController
     /**
      * @Route("/{id}", name="news_show", methods={"GET"})
      */
-    public function show(News $news): Response
+    public function show(NewsRepository $newsRepository, int $id): Response
     {
+        $news = $newsRepository->find($id);
+
+        if (! $news) {
+            throw $this->createNotFoundException('The news '. $id . ' does not exist');
+        }
+
         return $this->render('news/show.html.twig', [
             'news' => $news,
         ]);
