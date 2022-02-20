@@ -1,11 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page 404{% endblock %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row justify-content-md-center full-height flex align-items-center">
+			<div class="col-md-4 justify-content-md-center card">
 
-{% block body %}
-    <h1>Access denied</h1>
+				<div class="container-fluid ">
+					<div class="flex flex-column align-items-center justify-content-md-center full-height">
+						<h1 class="text-center">Tire manqué, c'est passé à
+							<span>404</span>
+							cm de la lucarne</h1>
 
-    <p>
-        You do not have the rights to access this content <a href="{{ path('home') }}">return to the homepage</a>.
-    </p>
+						<p class="text-center">
+							You do not have the rights to access this content
+							<a href="{{ path('home') }}">return to the homepage</a>.
+						</p>
+						<p>Error code :
+							{{ status_code }}</p>
+						<p>Error message :
+							{{ status_text }}</p>
+						<p>Custom message :
+							{{ exception.message }}</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
