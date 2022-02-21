@@ -27,13 +27,21 @@ console.log('Script adminPanelUsers initialized');
 //     OneTimeListener(element, 'click')
 // }
 
-function emaill(){
-    var editEmail = document.createElement("input")
-    editEmail.className = "form-control"
-    adminPanelEmailSelector.innerHTML = ""
-    adminPanelEmailSelector.appendChild(editEmail)
-    adminPanelEmailSelector.removeEventListener('click', emaill)
-    adminPanelEmailSelector.style.cursor = "";
+let editElements = []
+
+document.querySelectorAll('[data-edit]').forEach(element => {
+    element.addEventListener('click', e => edittd(element))
+})
+
+function edittd(element){
+    const input = element.querySelector('.input')
+    input.classList.remove('invisible')
+    //var editEmail = document.createElement("input")
+    //editEmail.className = "form-control"
+    //element.innerHTML = ""
+    //element.appendChild(editEmail)
+    //element.removeEventListener('click', emaill)
+    //element.style.cursor = "";
 }
 
 

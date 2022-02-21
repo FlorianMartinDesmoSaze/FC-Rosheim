@@ -30,11 +30,14 @@
                             </tr>
                             <tr>
                                 <th>E-mail</th>
-                                <td id="user_email">{{ user.email }}</td>
+                                <td id="user_email" data-edit="email">
+                                    <span class="value">{{ user.email }}</span>
+                                    <span class="input">{{ form_widget(form.email, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Pseudonyme</th>
-                                <td id="user_nickname">{{ user.nickname }}</td>
+                                <td id="user_nickname" data-edit="nickname">{{ user.nickname }}</td>
                             </tr>
                             <tr>
                                 <th>Prenom</th>
