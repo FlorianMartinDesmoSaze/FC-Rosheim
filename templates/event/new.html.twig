@@ -7,5 +7,9 @@
 
     {{ include('event/_form.html.twig') }}
 
+    <a href="{{ path('event_new') }}">Create new event</a>
+
+    <div id="calendar-holder"></div>
+
     <a href="{{ path('event_index') }}">back to list</a>
 {% endblock %}
