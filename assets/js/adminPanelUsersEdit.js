@@ -9,6 +9,7 @@ const adminPanelTeamSelector = document.querySelector('#user_team');
 const adminPanelStaffSelector = document.querySelector('#user_staff');
 const adminPanelSaveButtonSelector = document.querySelector('#admin_save_button');
 const adminPanelH1Selector = document.querySelector('h1');
+const adminFormUserSubmitSelector = document.querySelector('.form-user-submit');
 
 
 console.log('Script adminPanelUsers initialized');
@@ -70,6 +71,7 @@ adminPanelStaffSelector.addEventListener('click', (e) => {
     console.log('clicked staff')
 })
 
+
 adminPanelSaveButtonSelector.addEventListener('click', (e) => {
     if (confirm("Etes-vous sur·e ? Ces changements sont irreversibles") == true) {
         console.log("form submit")
@@ -77,8 +79,7 @@ adminPanelSaveButtonSelector.addEventListener('click', (e) => {
         alert.classList.add("alert alert-success")
         adminPanelH1Selector.after(alert)
     } else {
-        const alert = document.createElement("div");
-        alert.classList.add("alert alert-warning")
-        adminPanelH1Selector.appendChild(alert)
+        e.preventDefault()
+        console.log("aborted")
     }
 })
