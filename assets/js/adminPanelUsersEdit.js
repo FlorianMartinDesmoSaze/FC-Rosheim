@@ -8,45 +8,27 @@ const adminPanelLicenseSelector = document.querySelector('#user_license');
 const adminPanelTeamSelector = document.querySelector('#user_team');
 const adminPanelStaffSelector = document.querySelector('#user_staff');
 const adminPanelSaveButtonSelector = document.querySelector('#admin_save_button');
-const adminPanelWarningButtonSelector = document.querySelector('#admin_save_button');
+const adminPanelH1Selector = document.querySelector('h1');
 
 
 console.log('Script adminPanelUsers initialized');
 
-// function OneTimeListener(element, event) {
-// 		element.removeEventListener(event, arguments.callee);
-// }
-
-// function replaceWithInput(element) {
-//     var edit = document.createElement("input")
-//     edit.className = "form-control"
-//     element.innerHTML = ""
-//     element.appendChild(edit)
-//     element.removeEventListener('click', emaill)
-//     element.style.cursor = "";
-//     OneTimeListener(element, 'click')
-// }
-
 let editElements = []
 
 document.querySelectorAll('[data-edit]').forEach(element => {
-    element.addEventListener('click', e => edittd(element))
+    element.addEventListener('click', e => editTd(element))
 })
 
-function edittd(element){
+function editTd(element){
     const input = element.querySelector('.input')
     input.classList.remove('invisible')
-    //var editEmail = document.createElement("input")
-    //editEmail.className = "form-control"
-    //element.innerHTML = ""
-    //element.appendChild(editEmail)
-    //element.removeEventListener('click', emaill)
-    //element.style.cursor = "";
 }
 
 
 adminPanelEmailSelector.style.cursor = "pointer";
-adminPanelEmailSelector.addEventListener('click', emaill)
+adminPanelEmailSelector.addEventListener('click', (e) => {
+    console.log('clicked nickname')
+})
 
 adminPanelNicknameSelector.style.cursor = "pointer";
 adminPanelNicknameSelector.addEventListener('click', (e) => {
@@ -89,10 +71,14 @@ adminPanelStaffSelector.addEventListener('click', (e) => {
 })
 
 adminPanelSaveButtonSelector.addEventListener('click', (e) => {
-    adminPanelSaveButtonSelector.classList.add('btn-warning')
-    adminPanelSaveButtonSelector.innerHTML='Attention, ces changements sont definitifs. Êtes-vous sûr·e  ?'
-    adminPanelSaveButtonSelector.id = 'admin_final_save_button'
-})
-adminPanelWarningButtonSelector.addEventListener('click', (e) => {
-    console.log('saved')
+    if (confirm("Etes-vous sur·e ? Ces changements sont irreversibles") == true) {
+        console.log("form submit")
+        const alert = document.createElement("div");
+        alert.classList.add("alert alert-success")
+        adminPanelH1Selector.after(alert)
+    } else {
+        const alert = document.createElement("div");
+        alert.classList.add("alert alert-warning")
+        adminPanelH1Selector.appendChild(alert)
+    }
 })

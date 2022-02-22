@@ -37,41 +37,79 @@
                             </tr>
                             <tr>
                                 <th>Pseudonyme</th>
-                                <td id="user_nickname" data-edit="nickname">{{ user.nickname }}</td>
+                                <td id="user_nickname" data-edit="nickname">
+                                    <span class="value">{{ user.nickname }}</span>
+                                    <span class="input">{{ form_widget(form.nickname, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Prenom</th>
-                                <td id="user_firstName">{{user.firstName}}</td>
+                                <td id="user_firstName">
+                                    <span class="value">{{ user.firstName }}</span>
+                                    <span class="input">{{ form_widget(form.first_name, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Nom de famille</th>
-                                <td id="user_lastName">{{user.lastName}}</td>
+                                <td id="user_lastName">
+                                    <span class="value">{{ user.lastName }}</span>
+                                    <span class="input">{{ form_widget(form.lastName, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Telephone</th>
-                                <td id="user_phone">{{user.phone}}</td>
+                                <td id="user_phone">
+                                    <span class="value">{{ user.phone }}</span>
+                                    <span class="input">{{ form_widget(form.phone, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Date de naissance</th>
-                                <td id="user_birthDate">{{user.birthdate}}</td>
+                                <td id="user_birthDate">
+                                    <span class="value">{{ user.birthdate }}</span>
+                                    <span class="input">{{ form_widget(form.birthdate) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>License</th>
-                                <td id="user_license">{{user.license}}</td>
+                                <td id="user_license">
+                                    <span class="value">{{ user.license }}</span>
+                                    <span class="input">{{ form_widget(form.license, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Equipe</th>
-                                <td id="user_team">{{user.team}}</td>
+                                <td id="user_team">
+                                    <span class="value">{{ user.team }}</span>
+                                    <span class="input">{{ form_widget(form.team, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Staff</th>
-                                <td id="user_staff">{{user.staff}}</td>
+                                <td id="user_staff">
+                                    <span class="value">{{ user.staff }}</span>
+                                    <span class="input">{{ form_widget(form.staff, {attr: {class: 'form-control'}}) }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Roles</th>
+                                <td id="user_staff">
+                                    <span class="value">{{ user.staff }}</span>
+                                    <span class="input">{{ form_widget(form.roles, {attr: {class: 'form-check'}}) }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Est verifie</th>
+                                <td id="user_isVerified">
+                                    <span class="value">{{ user.isVerified }}</span>
+                                    <span class="input">{{ form_widget(form.isVerified, {attr: {class: 'form-check'}}) }}</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 <button class='btn btn-primary' id='admin_save_button'>Save</button>
                 </div>
-                <div hidden>
+                <div>
                     {{ include('admin/_form.html.twig') }}
                 </div>
         </main>
