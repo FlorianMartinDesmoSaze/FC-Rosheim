@@ -37,6 +37,7 @@ class EventController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/new", name="event_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")

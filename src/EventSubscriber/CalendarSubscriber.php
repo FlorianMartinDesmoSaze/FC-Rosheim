@@ -7,7 +7,6 @@ use App\Repository\EventRepository;
 use CalendarBundle\Event\CalendarEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use App\Repository\BookingRepository;
 use CalendarBundle\Entity\Event;
 
 class CalendarSubscriber implements EventSubscriberInterface
@@ -39,7 +38,7 @@ class CalendarSubscriber implements EventSubscriberInterface
         // Modify the query to fit to your entity and needs
         // Change booking.beginAt by your start date property
         $events = $this->eventRepository
-            ->createQueryBuilder('booking')
+            ->createQueryBuilder('event')
             ->where('event.startDate BETWEEN :start and :end OR event.endDate BETWEEN :start and :end')
             ->setParameter('start', $start->format('Y-m-d H:i:s'))
             ->setParameter('end', $end->format('Y-m-d H:i:s'))
@@ -51,8 +50,8 @@ class CalendarSubscriber implements EventSubscriberInterface
             // this create the events with your data (here booking data) to fill calendar
             $eventEvent = new Event(
                 $event->getTitle(),
-                $event->getBeginAt(),
-                $event->getEndAt() // If the end date is null or not defined, a all day event is created.
+                $event->getStartDate(),
+                $event->getEndDate() // If the end date is null or not defined, a all day event is created.
             );
 
             /*
@@ -68,7 +67,7 @@ class CalendarSubscriber implements EventSubscriberInterface
             ]);
             $eventEvent->addOption(
                 'url',
-                $this->router->generate('booking_show', [
+                $this->router->generate('event_show', [
                     'id' => $event->getId(),
                 ])
             );

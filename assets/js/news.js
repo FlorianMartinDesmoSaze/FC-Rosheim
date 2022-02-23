@@ -1,6 +1,6 @@
 const arrow = document.querySelector('#down_arrow')
 // add click event on arrow
-arrow.addEventListener('click', () => {
+if (arrow){arrow.addEventListener('click', () => {
     let news = document.querySelectorAll(".card-news");
     //if first news is display block
     if (news[0].style.display === "block") {
@@ -17,4 +17,4 @@ arrow.addEventListener('click', () => {
         news[1].style.display = "none";
         news[2].style.display = "none"
     }
-})
+})}
