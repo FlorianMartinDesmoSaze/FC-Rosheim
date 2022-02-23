@@ -2,10 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\AdminUsersType;
+use App\Repository\EventRepository;
+use App\Repository\NewsRepository;
+use App\Repository\UserRepository;
+use App\Repository\TeamRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/admin")
@@ -26,28 +34,47 @@ class AdminController extends AbstractController
     /**
      * @Route("/users", name="admin_users")
      */
-    public function users(): Response
+    public function users(UserRepository $userRepository): Response
     {
         return $this->render('admin/users.html.twig', [
-            'controller_name' => 'AdminController',
+            'userRepository' => $userRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/users/{id}", name="admin_users_edit")
+     */
+    public function edit_users(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(AdminUsersType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_users', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/usersedit.html.twig', [
+            'user' => $user,
+            'form' => $form,
         ]);
     }
     /**
      * @Route("/news", name="admin_news")
      */
-    public function news(): Response
+    public function news(NewsRepository $newsRepository): Response
     {
         return $this->render('admin/news.html.twig', [
-            'controller_name' => 'AdminController',
+            'newsRepository' => $newsRepository->findAll(),
         ]);
     }
     /**
      * @Route("/teams", name="admin_teams")
      */
-    public function teams(): Response
+    public function teams(TeamRepository $teamRepository): Response
     {
         return $this->render('admin/teams.html.twig', [
-            'controller_name' => 'AdminController',
+            'teamRepository' => $teamRepository->findAll(),
         ]);
     }
     /**
@@ -62,10 +89,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/events", name="admin_events")
      */
-    public function events(): Response
+    public function events(EventRepository $eventRepository): Response
     {
         return $this->render('admin/events.html.twig', [
-            'controller_name' => 'AdminController',
+            'eventRepository' => $eventRepository->findAll(),
         ]);
     }
 }

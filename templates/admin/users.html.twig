@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Mon profil - FC Rosheim{% endblock %}
 
 {% block content %}
@@ -14,7 +13,7 @@
                     <a href="{{ path('admin_news') }}"><li id='select_news'>News</li></a>
                     <a href="{{ path('admin_teams') }}"><li id='select_teams'>Équipes</li></a>
                     <a href="{{ path('admin_results') }}"><li id='select_results'>Résultats</li></a>
-                    <a href="{{ path('admin_events') }}"><li id='select_events'>Évenements</li></a>
+                    <a href="{{ path('admin_users') }}"><li id='select_users'>Évenements</li></a>
                 </ul>
             </div>
         </aside>
@@ -22,11 +21,64 @@
             <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>
                 <div class="card">
                 <h1 class="display-2">Gestion des Utilisateurs</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum labore itaque numquam consequatur laudantium nam alias, eveniet sint rem consectetur error. Eos cum magnam dolore explicabo tempore et assumenda odio.
-                </p>
+                <table class="table table-striped table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope=>Id</th>
+                            <th>E-mail</th>
+                            <th>Role(s)</th>
+                            <th>Prénom</th>
+                            <th>License</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                    {% for user in userRepository %}
+                        <tr class='clickable' onclick="window.location='{{ path('admin_users_edit', {'id': user.id}) }}'">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                            {% set nb_roles = 0 %}
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_ADMIN" %}
+                                    Administrateur
+                                    {% set nb_roles = nb_roles + 1 %}
+                                {% endif %}
+                                {% if role == "ROLE_USER" %}
+                                    {% if nb_roles >= 1 %}
+                                        / utilisateur
+                                        {% else %} 
+                                        Utilisateur
+                                    {% endif %}
+                                    {% set nb_roles = nb_roles + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            </td>
+                            <td>
+                            {% if  user.firstName|default %}
+                                {{ user.firstName }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>{% if user.license == 0 %}
+                                Non licencié
+                                {% else %}
+                                Licencié
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">Pas d'utilisateur trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </table>
                 </div>
         </main>
     </div>
 </div>
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('adminUsers') }}
+{% endblock %}
 {% endblock content %}

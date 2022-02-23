@@ -23,6 +23,9 @@
                     {# Dropdown sur l'icône avec la possibilité de consulter son profil ou de se déconnecter #}
                             <div class="dropdown-content">
                                 <a href="{{ path('profile', {'id': app.user.id}) }}" class="">Profil</a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('admin_index') }}" class="">Panneau admin</a>
+                                {% endif %}
                                 <a href="{{ path('app_logout', {'id': app.user.id}) }}" class="">Se déconnecter</a>
                             </div>
                         </li>
