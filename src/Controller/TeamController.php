@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamType;
+use App\Repository\PlayerRepository;
 use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/team")
@@ -53,10 +54,19 @@ class TeamController extends AbstractController
     /**
      * @Route("/{id}", name="team_show", methods={"GET"})
      */
-    public function show(Team $team): Response
+    public function show(TeamRepository $teamRepository, int $id): Response
     {
+        $team = $teamRepository->find($id);
+        if (! $team) {
+            throw $this->createNotFoundException('The team '. $id . ' does not exist');
+        }
         return $this->render('team/show.html.twig', [
-            'team' => $team,
+            'goalKeepers' => $goalKeepers,
+            'defenders' => $defenders,
+            'midfielders' => $midfielders,
+            'strickers' => $strickers,
+            'players' => $players,
+            'team' => $team
         ]);
     }
 
@@ -94,4 +104,5 @@ class TeamController extends AbstractController
 
         return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }
