@@ -1,14 +1,14 @@
 const adminPanelSaveButtonSelector = document.querySelector('#admin_save_button');
 
 
-console.log('Script adminPanelUsers initialized');
+// console.log('Script adminPanelUsers initialized');
 
-let editElements = []
+// let editElements = []
 
-document.querySelectorAll('[data-edit]').forEach(element => {
-    element.style.cursor = "pointer";
-    // element.addEventListener('click', e => editTd(element))
-})
+// document.querySelectorAll('[data-edit]').forEach(element => {
+//     element.style.cursor = "pointer";
+//     element.addEventListener('click', e => editTd(element))
+// })
 
 function editTd(element){
     const input = element.querySelector('.input')
@@ -18,7 +18,7 @@ function editTd(element){
 }
 
 adminPanelSaveButtonSelector.addEventListener('click', (e) => {
-    if (confirm("Etes-vous sur·e ? Ces changements sont irreversibles") == true) {
+    if (confirm("Êtes-vous sûr·e ? Ces changements sont irréversibles.") == true) {
         console.log("form submitted")
     } else {
         e.preventDefault()

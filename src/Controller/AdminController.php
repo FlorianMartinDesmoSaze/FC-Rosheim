@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\AdminUsersType;
+use App\Repository\EventRepository;
+use App\Repository\NewsRepository;
 use App\Repository\UserRepository;
+use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,19 +62,19 @@ class AdminController extends AbstractController
     /**
      * @Route("/news", name="admin_news")
      */
-    public function news(): Response
+    public function news(NewsRepository $newsRepository): Response
     {
         return $this->render('admin/news.html.twig', [
-            'controller_name' => 'AdminController',
+            'newsRepository' => $newsRepository->findAll(),
         ]);
     }
     /**
      * @Route("/teams", name="admin_teams")
      */
-    public function teams(): Response
+    public function teams(TeamRepository $teamRepository): Response
     {
         return $this->render('admin/teams.html.twig', [
-            'controller_name' => 'AdminController',
+            'teamRepository' => $teamRepository->findAll(),
         ]);
     }
     /**
@@ -86,10 +89,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/events", name="admin_events")
      */
-    public function events(): Response
+    public function events(EventRepository $eventRepository): Response
     {
         return $this->render('admin/events.html.twig', [
-            'controller_name' => 'AdminController',
+            'eventRepository' => $eventRepository->findAll(),
         ]);
     }
 }

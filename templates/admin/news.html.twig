@@ -19,12 +19,89 @@
             </div>
         </aside>
         <main class="col-md-8 full-height">
-            <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>          
+            <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>
                 <div class="card">
                 <h1 class="display-2">Gestion des News</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum labore itaque numquam consequatur laudantium nam alias, eveniet sint rem consectetur error. Eos cum magnam dolore explicabo tempore et assumenda odio.
-                </p>
+                <table class="table table-striped table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Créateur</th>
+                            <th>Équipe</th>
+                            <th>Titre</th>
+                            <th>Contenu</th>
+                            <th>Image</th>
+                            <th>Créé le</th>
+                            <th>Mis à jour le</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                    {% for news in newsRepository %}
+                        <tr class='clickable' onclick="window.location='{{ path('admin_news', {'id': news.id}) }}'">
+                            <td>{{ news.id }}</td>
+                            <td>
+                            {% if news.user_id|default %}
+                                {{ news.user_id }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if news.team_id|default %}
+                                {{ news.team_id }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if news.event_id|default %}
+                                {{ news.event_id }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  news.title|default %}
+                                {{ news.title }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  news.content|default %}
+                                {{ news.content }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  news.picture|default %}
+                                {{ news.picture }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  news.created_at|default %}
+                                {{ news.created_at }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  news.updated_at|default %}
+                                {{ news.updated_at }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">Pas de news trouvées.</td>
+                        </tr>
+                    {% endfor %}
+                </table>
                 </div>
         </main>
     </div>

@@ -27,7 +27,15 @@ class AdminUsersType extends AbstractType
             ->add('phone')
             ->add('lastName')
             ->add('first_name')
-            ->add('birthdate')
+            ->add('birthdate', null, [
+                'widget' => 'choice',
+                'years' => range(date('Y'), date('Y') - 100),
+                'placeholder' => [
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                ],
+                // 'months' => range(date('m'), 12),
+                // 'days' => range(date('d'), 31),
+            ])
             ->add('license')
             ->add('isVerified')
             ->add('team')

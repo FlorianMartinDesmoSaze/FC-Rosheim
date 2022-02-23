@@ -26,11 +26,9 @@
                         <tr>
                             <th scope=>Id</th>
                             <th>E-mail</th>
-                            <th>Surnom</th>
-                            <th>Prenom</th>
-                            <th>Nom</th>
+                            <th>Role(s)</th>
+                            <th>Prénom</th>
                             <th>License</th>
-                            <th>Equipe</th>
                         </tr>
                     </thead>
                     <tbody id="table_body">
@@ -39,44 +37,39 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.email }}</td>
                             <td>
-                            {% if user.nickname|default %}
-                                {{ user.nickname }}
-                            {% else %}
-                                Non renseigne
-                            {% endif %}
+                            {% set nb_roles = 0 %}
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_ADMIN" %}
+                                    Administrateur
+                                    {% set nb_roles = nb_roles + 1 %}
+                                {% endif %}
+                                {% if role == "ROLE_USER" %}
+                                    {% if nb_roles >= 1 %}
+                                        / utilisateur
+                                        {% else %} 
+                                        Utilisateur
+                                    {% endif %}
+                                    {% set nb_roles = nb_roles + 1 %}
+                                {% endif %}
+                            {% endfor %}
                             </td>
                             <td>
-                            {% if user.firstName|default %}
+                            {% if  user.firstName|default %}
                                 {{ user.firstName }}
                             {% else %}
-                                Non renseigne
+                                Non renseigné
                             {% endif %}
                             </td>
-                            <td>
-                            {% if  user.lastName|default %}
-                                {{ user.lastName }}
-                            {% else %}
-                                Non renseigne
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if user.license|default %}
-                                {{ user.license }}
-                            {% else %}
-                                Non renseigne
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if user.team|default %}
-                                {{ user.team }}
-                            {% else %}
-                                Non renseigne
-                            {% endif %}
+                            <td>{% if user.license == 0 %}
+                                Non licencié
+                                {% else %}
+                                Licencié
+                                {% endif %}
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="9">no records found</td>
+                            <td colspan="9">Pas d'utilisateur trouvé</td>
                         </tr>
                     {% endfor %}
                 </table>
