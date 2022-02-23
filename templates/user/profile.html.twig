@@ -10,7 +10,7 @@
                 <ul>
                     <a href="{{ path('profile', {'id': app.user.id}) }}"><li>Mes Informations</li></a>
                     <a href="#"><li>Mon équipe favorite</li></a>
-                    <a href="#"><li>Modifier mes informations</li></a>
+                    <a href="{{path('user_edit', {'id': app.user.id})}}"><li>Modifier mes informations</li></a>
                     <a href="{{path('app_logout')}}"><li id="logout">Se déconnecter</li></a>
                 </ul>
             </div>
@@ -29,6 +29,9 @@
                     </div>
                 {% endif %}
                 <span class="redline-center"></span>
+            </div>
+            <div>
+            <p>Infos utilisateur à venir</p>
             </div>
         </main>
     </div>
