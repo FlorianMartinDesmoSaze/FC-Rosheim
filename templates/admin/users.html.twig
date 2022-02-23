@@ -40,7 +40,11 @@
                             {% set nb_roles = 0 %}
                             {% for role in user.roles %}
                                 {% if role == "ROLE_ADMIN" %}
-                                    Administrateur
+                                    {% if nb_roles >= 1 %}
+                                        / administrateur
+                                        {% else %} 
+                                        Administrateur
+                                    {% endif %}
                                     {% set nb_roles = nb_roles + 1 %}
                                 {% endif %}
                                 {% if role == "ROLE_USER" %}
