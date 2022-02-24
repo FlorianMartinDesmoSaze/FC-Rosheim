@@ -16,45 +16,54 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nom</th>
-                            <th>Saison</th>
-                            <th>Image</th>
+                            <th>Prénom</th>
+                            <th>Rôle</th>
+                            <th>Téléphone</th>
+                            <th>E-mail</th>
                         </tr>
                     </thead>
                     <tbody id="table_body">
-                    {% for team in teamRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_teams', {'id': team.id}) }}'">
-                            <td>{{ team.id }}</td>
+                    {% for staff in staffRepository %}
+                        <tr class='clickable' onclick="window.location='{{ path('admin_staff', {'id': staff.id}) }}'">
+                            <td>{{ staff.id }}</td>
                             <td>
-                            {% if team.name|default %}
-                                {{ team.name }}
+                            {% if staff.firstName|default %}
+                                {{ staff.firstName }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if team.season|default %}
-                                {{ team.season }}
+                            {% if staff.position|default %}
+                                {{ staff.position }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if  team.picture|default %}
-                                {{ team.picture }}
+                            {% if  staff.phone|default %}
+                                {{ staff.phone }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
+                            </td>
+                            <td>
+                                {% if  staff.email|default %}
+                                    {{ staff.email }}
+                                {% else %}
+                                    Non renseigné
+                                {% endif %}
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="9">Aucune équipe trouvée.
+                            <td colspan="9">Aucun membre du staff trouvé.
                                 Cliquez sur le bouton ci-dessous pour commencer à en renseigner !</td>
                         </tr>
                     {% endfor %}
                 </table>
-                <button class='btn btn-primary clickable' onclick="window.location='#'">Créer une nouvelle Équipe</button>
+                <button class='btn btn-primary clickable'
+                        onclick="window.location='#'">Créer une nouvelle entrée</button>
                 </div>
         </main>
     </div>
