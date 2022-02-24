@@ -29,5 +29,6 @@ class PositionFixtures extends Fixture
                 ;
             $manager->persist($position);
         }
+        $manager->flush();
     }
 }

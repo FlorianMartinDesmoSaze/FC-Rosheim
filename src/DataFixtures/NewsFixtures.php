@@ -30,7 +30,6 @@ class NewsFixtures extends Fixture
 
         $manager->persist($news);
         }
-
         $manager->flush();
     }
 }

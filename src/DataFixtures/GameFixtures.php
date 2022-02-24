@@ -31,7 +31,6 @@ class GameFixtures extends Fixture
                 ;
             $manager->persist($game);
         }
-
         $manager->flush();
     }
 }

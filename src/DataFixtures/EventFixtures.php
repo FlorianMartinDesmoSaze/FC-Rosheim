@@ -26,7 +26,6 @@ class EventFixtures extends Fixture
                 ;
             $manager->persist($event);
         }
-
         $manager->flush();
     }
 }

@@ -16,14 +16,14 @@ class SponsorFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $sponsor = new Sponsor();
             $sponsor
-                ->setOpponent($faker->city())
-                ->setScoreTeam($faker->numberBetween(0, 10))
-                ->setScoreOpponent($faker->numberBetween(0, 10))
-                ->setGameDate($faker->dateTimeThisMonth("+ $randDay days"))
-                ->setHome($faker->boolean())
-                ->setTeam($teamId);
+                ->setName($faker->company())
+                ->setLink($faker->url())
+                ->setPicture('//via.placeholder.com/350x150')
+                ->setSlug($faker->slug(3, false))
+                ->setStatus($faker->boolean())
             ;
             $manager->persist($sponsor);
         }
+        $manager->flush();
     }
 }
