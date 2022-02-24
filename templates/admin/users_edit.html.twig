@@ -7,17 +7,7 @@
 <div class="container-fluid">
     
     <div class="full-height flex align-items-center">
-        <aside class="col-md-3">
-            <div class="sidebar">
-                <ul>  
-                    <a href="{{ path('admin_users') }}"><li id='select_users'>Gestion utilisateur</li></a>
-                    <a href="{{ path('admin_news') }}"><li id='select_news'>News</li></a>
-                    <a href="{{ path('admin_teams') }}"><li id='select_teams'>Équipes</li></a>
-                    <a href="{{ path('admin_results') }}"><li id='select_results'>Résultats</li></a>
-                    <a href="{{ path('admin_users') }}"><li id='select_users'>Évenements</li></a>
-                </ul>
-            </div>
-        </aside>
+        {{ include ("include/admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
             <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>
                 <div class="card">
