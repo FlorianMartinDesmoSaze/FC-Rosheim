@@ -1,0 +1,78 @@
+\hypertarget{class_app_1_1_controller_1_1_admin_controller}{}\doxysection{Admin\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_admin_controller}\index{AdminController@{AdminController}}
+Inheritance diagram for Admin\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_admin_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_a149eb92716c1084a935e04a8d95f7347}{index}} ()
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_ac563a0d957f8692e29fdd62ffff2546c}{users}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_user_repository}{User\+Repository}} \$user\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_aebba04d5d410c16fb3e45d263f32651d}{edit\+\_\+users}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_user}{User}} \$user, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_aea60596010701e3b517323ab6aaa3233}{news}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_news_repository}{News\+Repository}} \$news\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_a13d68516011cc6267707a8a012454b62}{teams}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_team_repository}{Team\+Repository}} \$team\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_a81532ad36ede4bfc6cd5e69a321f3df4}{results}} ()
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_admin_controller_ac9eb8f4bcf811531e06f55d8f5c91c48}{events}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_event_repository}{Event\+Repository}} \$event\+Repository)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/admin\char`\"{}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_aebba04d5d410c16fb3e45d263f32651d}\label{class_app_1_1_controller_1_1_admin_controller_aebba04d5d410c16fb3e45d263f32651d}} 
+\index{AdminController@{AdminController}!edit\_users@{edit\_users}}
+\index{edit\_users@{edit\_users}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{edit\_users()}{edit\_users()}}
+{\footnotesize\ttfamily edit\+\_\+users (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_user}{User}}}]{\$user,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/users/\{id\}\char`\"{}, name=\char`\"{}admin\+\_\+users\+\_\+edit\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_ac9eb8f4bcf811531e06f55d8f5c91c48}\label{class_app_1_1_controller_1_1_admin_controller_ac9eb8f4bcf811531e06f55d8f5c91c48}} 
+\index{AdminController@{AdminController}!events@{events}}
+\index{events@{events}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{events()}{events()}}
+{\footnotesize\ttfamily events (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_event_repository}{Event\+Repository}}}]{\$event\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/events\char`\"{}, name=\char`\"{}admin\+\_\+events\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_a149eb92716c1084a935e04a8d95f7347}\label{class_app_1_1_controller_1_1_admin_controller_a149eb92716c1084a935e04a8d95f7347}} 
+\index{AdminController@{AdminController}!index@{index}}
+\index{index@{index}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/index\char`\"{}, name=\char`\"{}admin\+\_\+index\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_aea60596010701e3b517323ab6aaa3233}\label{class_app_1_1_controller_1_1_admin_controller_aea60596010701e3b517323ab6aaa3233}} 
+\index{AdminController@{AdminController}!news@{news}}
+\index{news@{news}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{news()}{news()}}
+{\footnotesize\ttfamily news (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_news_repository}{News\+Repository}}}]{\$news\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/news\char`\"{}, name=\char`\"{}admin\+\_\+news\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_a81532ad36ede4bfc6cd5e69a321f3df4}\label{class_app_1_1_controller_1_1_admin_controller_a81532ad36ede4bfc6cd5e69a321f3df4}} 
+\index{AdminController@{AdminController}!results@{results}}
+\index{results@{results}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{results()}{results()}}
+{\footnotesize\ttfamily results (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/results\char`\"{}, name=\char`\"{}admin\+\_\+results\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_a13d68516011cc6267707a8a012454b62}\label{class_app_1_1_controller_1_1_admin_controller_a13d68516011cc6267707a8a012454b62}} 
+\index{AdminController@{AdminController}!teams@{teams}}
+\index{teams@{teams}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{teams()}{teams()}}
+{\footnotesize\ttfamily teams (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_team_repository}{Team\+Repository}}}]{\$team\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/teams\char`\"{}, name=\char`\"{}admin\+\_\+teams\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_admin_controller_ac563a0d957f8692e29fdd62ffff2546c}\label{class_app_1_1_controller_1_1_admin_controller_ac563a0d957f8692e29fdd62ffff2546c}} 
+\index{AdminController@{AdminController}!users@{users}}
+\index{users@{users}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{users()}{users()}}
+{\footnotesize\ttfamily users (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_user_repository}{User\+Repository}}}]{\$user\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/users\char`\"{}, name=\char`\"{}admin\+\_\+users\char`\"{}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/Admin\+Controller.\+php\end{DoxyCompactItemize}
