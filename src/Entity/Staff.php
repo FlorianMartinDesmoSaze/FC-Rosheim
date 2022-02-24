@@ -33,7 +33,7 @@ class Staff
     private $position;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $phone;
 
