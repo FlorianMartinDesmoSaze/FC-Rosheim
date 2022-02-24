@@ -1,27 +1,19 @@
 const adminPanelSaveButtonSelector = document.querySelector('#admin_save_button');
-
-
-// console.log('Script adminPanelUsers initialized');
-
-// let editElements = []
-
-// document.querySelectorAll('[data-edit]').forEach(element => {
-//     element.style.cursor = "pointer";
-//     element.addEventListener('click', e => editTd(element))
-// })
-
-function editTd(element){
-    const input = element.querySelector('.input')
-    input.style.display = none;
-    const value = element.querySelector('.value')
-    value.style.display = block;
-}
+const adminPanelDeleteButtonSelector = document.querySelector('#admin_delete_button');
 
 adminPanelSaveButtonSelector.addEventListener('click', (e) => {
-    if (confirm("Êtes-vous sûr·e ? Ces changements sont irréversibles.") == true) {
+    if (confirm("Êtes-vous sûr·e de vouloir modifier ces données ? Ces changements sont irréversibles.") == true) {
         console.log("form submitted")
     } else {
         e.preventDefault()
         console.log("form aborted")
+    }
+})
+adminPanelDeleteButtonSelector.addEventListener('click', (e) => {
+    if (confirm("Êtes-vous sûr·e de vouloir supprimer ces données ? Ces changements sont irréversibles.") == true) {
+        console.log("delete query submitted")
+    } else {
+        e.preventDefault()
+        console.log("delete query aborted")
     }
 })

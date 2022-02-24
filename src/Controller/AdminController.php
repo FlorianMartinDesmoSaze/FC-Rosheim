@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\EventRepository;
 use App\Repository\NewsRepository;
+use App\Repository\PlayerRepository;
+use App\Repository\StaffRepository;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,6 +43,17 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/users/delete/{id}", name="admin_users_delete")
+     */
+    public function delete(User $user, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->get('_token'))) {
+            $em->remove($user);
+            $em->flush();
+        }
+        return $this->redirectToRoute('admin_users');
+    }
+    /**
      * @Route("/users/{id}", name="admin_users_edit")
      */
     public function edit_users(Request $request, User $user, EntityManagerInterface $entityManager): Response
@@ -60,12 +73,30 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/staff", name="admin_staff")
+     */
+    public function staff(StaffRepository $staffRepository): Response
+    {
+        return $this->render('admin/staff.html.twig', [
+            'staffRepository' => $staffRepository->findAll(),
+        ]);
+    }
+    /**
      * @Route("/news", name="admin_news")
      */
     public function news(NewsRepository $newsRepository): Response
     {
         return $this->render('admin/news.html.twig', [
             'newsRepository' => $newsRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/players", name="admin_players")
+     */
+    public function players(PlayerRepository $playerRepository): Response
+    {
+        return $this->render('admin/players.html.twig', [
+            'playerRepository' => $playerRepository->findAll(),
         ]);
     }
     /**

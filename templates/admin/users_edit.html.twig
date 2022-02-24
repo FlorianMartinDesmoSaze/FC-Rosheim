@@ -5,7 +5,6 @@
 
 {% block content %}
 <div class="container-fluid">
-    
     <div class="full-height flex align-items-center">
         {{ include ("include/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
@@ -22,84 +21,81 @@
                             <tr>
                                 <th>E-mail</th>
                                 <td id="user_email" data-edit="email">
-                                    {# <span class="value">{{ user.email }}</span> #}
-                                    <span class="input">{{ form_widget(form.email, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.email, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Pseudonyme</th>
                                 <td id="user_nickname" data-edit="nickname">
-                                    {# <span class="value">{{ user.nickname }}</span> #}
-                                    <span class="input">{{ form_widget(form.nickname, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.nickname, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Prenom</th>
                                 <td id="user_firstName">
-                                    {# <span class="value">{{ user.firstName }}</span> #}
-                                    <span class="input">{{ form_widget(form.first_name, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.first_name, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Nom de famille</th>
                                 <td id="user_lastName">
-                                    {# <span class="value">{{ user.lastName }}</span> #}
-                                    <span class="input">{{ form_widget(form.lastName, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.lastName, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Telephone</th>
                                 <td id="user_phone">
-                                    {# <span class="value">{{ user.phone }}</span> #}
-                                    <span class="input">{{ form_widget(form.phone, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.phone, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Date de naissance</th>
                                 <td id="user_birthDate">
-                                    {# <span class="value">{{ user.birthdate }}</span> #}
-                                    <span class="input">{{ form_widget(form.birthdate) }}</span>
+                                    {{ form_widget(form.birthdate) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>License</th>
                                 <td id="user_license">
-                                    {# <span class="value">{{ user.license }}</span> #}
-                                    <span class="input">{{ form_widget(form.license, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.license, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Equipe</th>
                                 <td id="user_team">
-                                    {# <span class="value">{{ user.team }}</span> #}
-                                    <span class="input">{{ form_widget(form.team, {attr: {class: 'form-control'}}) }}</span>
+                                    {{ form_widget(form.team, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Staff</th>
                                 <td id="user_staff">
-                                    {# <span class="value">{{ user.staff }}</span> #}
-                                    <span class="input">{{ form_widget(form.staff, {attr: {class: 'form-control'}}) }}</span>
+                                    {# <span class="value">{{ user.staff }} #}
+                                    {{ form_widget(form.staff, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Roles</th>
                                 <td id="user_staff">
-                                    {# <span class="value">{{ user.staff }}</span> #}
-                                    <span class="input">{{ form_widget(form.roles, {attr: {class: 'form-check'}}) }}</span>
+                                    {# <span class="value">{{ user.staff }} #}
+                                    {{ form_widget(form.roles, {attr: {class: 'form-check'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>E-mail vérifié</th>
                                 <td id="user_isVerified">
-                                    {# <span class="value">{{ user.isVerified }}</span> #}
-                                    <span class="input">{{ form_widget(form.isVerified, {attr: {class: 'form-check'}}) }}</span>
+                                    {# <span class="value">{{ user.isVerified }} #}
+                                    {{ form_widget(form.isVerified, {attr: {class: 'form-check'}}) }}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class='btn btn-primary' id='admin_save_button' type="submit">Save</button>
+                        <button class='btn btn-primary' id='admin_save_button' type="submit">Sauvegarder</button>
+                        <button id="admin_delete_button" class="btn btn-outline-warning" form="delete_form">Supprimer</button>
                 {{ form_end(form) }}
+                    <form id="delete_form" method="post" action="{{ path('admin_users_delete', {id: user.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    </form>
                 </div>
         </main>
     </div>
