@@ -3,17 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\AdminUsersType;
+use App\Form\UserType;
 use App\Repository\EventRepository;
 use App\Repository\NewsRepository;
-use App\Repository\UserRepository;
 use App\Repository\TeamRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/admin")
@@ -45,7 +45,7 @@ class AdminController extends AbstractController
      */
     public function edit_users(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(AdminUsersType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,7 +54,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_users', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/usersedit.html.twig', [
+        return $this->renderForm('users_edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
