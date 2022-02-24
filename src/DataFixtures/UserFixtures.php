@@ -25,7 +25,7 @@ class UserFixtures extends Fixture
                 ->setFirstName($faker->firstName())
                 ->setBirthdate($faker->dateTimeBetween('-90 year', '-10 year'))
                 ->setLicense($faker->numberBetween(0, 1))
-                // ->setTeam(1)
+                ->setTeam(null)
                 ;
             $manager->persist($user);
         }
