@@ -2,16 +2,33 @@
 
 namespace App\Entity;
 
-use App\Repository\TeamRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TeamRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=TeamRepository::class)
  */
 class Team
 {
+        /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+    }
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

@@ -2,14 +2,32 @@
 
 namespace App\Entity;
 
-use App\Repository\SponsorRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SponsorRepository;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=SponsorRepository::class)
  */
 class Sponsor
 {
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
