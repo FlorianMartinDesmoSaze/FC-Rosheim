@@ -53,8 +53,13 @@ class GameController extends AbstractController
     /**
      * @Route("/{id}", name="game_show", methods={"GET"})
      */
-    public function show(Game $game): Response
+    public function show( GameRepository $gameRepository, int $id): Response
     {
+        $game = $gameRepository->find($id);
+
+        if (! $game) {
+            throw $this->createNotFoundException('The game '. $id . ' does not exist');
+        }
         return $this->render('game/show.html.twig', [
             'game' => $game,
         ]);

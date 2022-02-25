@@ -1,0 +1,62 @@
+\hypertarget{class_app_1_1_controller_1_1_training_controller}{}\doxysection{Training\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_training_controller}\index{TrainingController@{TrainingController}}
+Inheritance diagram for Training\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_training_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_training_controller_a2067a1a2d104ba077b89b02ba905cf1b}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_training_repository}{Training\+Repository}} \$training\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_training_controller_a84845d75eae95bf4eecc0f49f04c765a}{new}} (Request \$request, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_training_controller_a07df066a2e33c0d43fe41d8eccf0c309}{show}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_training_repository}{Training\+Repository}} \$training\+Repository, int \$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_training_controller_abe30ddb42f551c1e6da228abc4d10c92}{edit}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_training}{Training}} \$training, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_training_controller_aecf485c376b3dceb6de00397fdbb70d1}{delete}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_training}{Training}} \$training, Entity\+Manager\+Interface \$entity\+Manager)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/training\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_training_controller_aecf485c376b3dceb6de00397fdbb70d1}\label{class_app_1_1_controller_1_1_training_controller_aecf485c376b3dceb6de00397fdbb70d1}} 
+\index{TrainingController@{TrainingController}!delete@{delete}}
+\index{delete@{delete}!TrainingController@{TrainingController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_training}{Training}}}]{\$training,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}training\+\_\+delete\char`\"{}, methods=\{\char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_training_controller_abe30ddb42f551c1e6da228abc4d10c92}\label{class_app_1_1_controller_1_1_training_controller_abe30ddb42f551c1e6da228abc4d10c92}} 
+\index{TrainingController@{TrainingController}!edit@{edit}}
+\index{edit@{edit}!TrainingController@{TrainingController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_training}{Training}}}]{\$training,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}/edit\char`\"{}, name=\char`\"{}training\+\_\+edit\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_training_controller_a2067a1a2d104ba077b89b02ba905cf1b}\label{class_app_1_1_controller_1_1_training_controller_a2067a1a2d104ba077b89b02ba905cf1b}} 
+\index{TrainingController@{TrainingController}!index@{index}}
+\index{index@{index}!TrainingController@{TrainingController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_training_repository}{Training\+Repository}}}]{\$training\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\char`\"{}, name=\char`\"{}training\+\_\+index\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_training_controller_a84845d75eae95bf4eecc0f49f04c765a}\label{class_app_1_1_controller_1_1_training_controller_a84845d75eae95bf4eecc0f49f04c765a}} 
+\index{TrainingController@{TrainingController}!new@{new}}
+\index{new@{new}!TrainingController@{TrainingController}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily new (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/new\char`\"{}, name=\char`\"{}training\+\_\+new\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_training_controller_a07df066a2e33c0d43fe41d8eccf0c309}\label{class_app_1_1_controller_1_1_training_controller_a07df066a2e33c0d43fe41d8eccf0c309}} 
+\index{TrainingController@{TrainingController}!show@{show}}
+\index{show@{show}!TrainingController@{TrainingController}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_training_repository}{Training\+Repository}}}]{\$training\+Repository,  }\item[{int}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}training\+\_\+show\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/Training\+Controller.\+php\end{DoxyCompactItemize}

@@ -127,6 +127,10 @@ span.leftbar {
 .card button{
     border-radius: 0;
 }
+.card input {
+    margin-bottom: 0px;
+}
+
 /* Team */
 .card-team {
     height: 38px;
@@ -190,7 +194,16 @@ span.leftbar {
 .card-news:first-child{
     display: block;
 }
-
 #down_arrow:hover{
     cursor: pointer;
+}
+/* Admin style */
+.value{
+    display: none;
+}
+.calendar-padding {
+    padding: 2em;
+}
+.fc-view-container {
+    background: rgba(255, 255, 255, 0.25);
 }

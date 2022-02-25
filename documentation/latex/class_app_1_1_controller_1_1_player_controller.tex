@@ -1,0 +1,62 @@
+\hypertarget{class_app_1_1_controller_1_1_player_controller}{}\doxysection{Player\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_player_controller}\index{PlayerController@{PlayerController}}
+Inheritance diagram for Player\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_player_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_player_controller_a2fbf7f8e5754248624f117d89b18cc5a}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_player_repository}{Player\+Repository}} \$player\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_player_controller_a84845d75eae95bf4eecc0f49f04c765a}{new}} (Request \$request, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_player_controller_a2a2668b3b71b6742c4829e8a3037b020}{show}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_player_repository}{Player\+Repository}} \$player\+Repository, int \$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_player_controller_a619d9c562304d3ef895d43e6a99bcf06}{edit}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_player}{Player}} \$player, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_player_controller_a372e3734ea161ea6c673e7f6d6db9b0f}{delete}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_player}{Player}} \$player, Entity\+Manager\+Interface \$entity\+Manager)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/player\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_player_controller_a372e3734ea161ea6c673e7f6d6db9b0f}\label{class_app_1_1_controller_1_1_player_controller_a372e3734ea161ea6c673e7f6d6db9b0f}} 
+\index{PlayerController@{PlayerController}!delete@{delete}}
+\index{delete@{delete}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_player}{Player}}}]{\$player,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}player\+\_\+delete\char`\"{}, methods=\{\char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_player_controller_a619d9c562304d3ef895d43e6a99bcf06}\label{class_app_1_1_controller_1_1_player_controller_a619d9c562304d3ef895d43e6a99bcf06}} 
+\index{PlayerController@{PlayerController}!edit@{edit}}
+\index{edit@{edit}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_player}{Player}}}]{\$player,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}/edit\char`\"{}, name=\char`\"{}player\+\_\+edit\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_player_controller_a2fbf7f8e5754248624f117d89b18cc5a}\label{class_app_1_1_controller_1_1_player_controller_a2fbf7f8e5754248624f117d89b18cc5a}} 
+\index{PlayerController@{PlayerController}!index@{index}}
+\index{index@{index}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_player_repository}{Player\+Repository}}}]{\$player\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\char`\"{}, name=\char`\"{}player\+\_\+index\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_player_controller_a84845d75eae95bf4eecc0f49f04c765a}\label{class_app_1_1_controller_1_1_player_controller_a84845d75eae95bf4eecc0f49f04c765a}} 
+\index{PlayerController@{PlayerController}!new@{new}}
+\index{new@{new}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily new (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/new\char`\"{}, name=\char`\"{}player\+\_\+new\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_player_controller_a2a2668b3b71b6742c4829e8a3037b020}\label{class_app_1_1_controller_1_1_player_controller_a2a2668b3b71b6742c4829e8a3037b020}} 
+\index{PlayerController@{PlayerController}!show@{show}}
+\index{show@{show}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_player_repository}{Player\+Repository}}}]{\$player\+Repository,  }\item[{int}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}player\+\_\+show\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/Player\+Controller.\+php\end{DoxyCompactItemize}

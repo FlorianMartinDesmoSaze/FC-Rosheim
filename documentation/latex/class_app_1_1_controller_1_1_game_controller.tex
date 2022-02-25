@@ -1,0 +1,62 @@
+\hypertarget{class_app_1_1_controller_1_1_game_controller}{}\doxysection{Game\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_game_controller}\index{GameController@{GameController}}
+Inheritance diagram for Game\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_game_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_game_controller_ac38314b2650dd736993654f3908a3aba}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_game_repository}{Game\+Repository}} \$game\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_game_controller_a84845d75eae95bf4eecc0f49f04c765a}{new}} (Request \$request, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_game_controller_a771db27a11e7cf97b2d6c77d86c7dfd2}{show}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_game_repository}{Game\+Repository}} \$game\+Repository, int \$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_game_controller_a24bb8e6b203a3242297dc2bfb3840c00}{edit}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_game}{Game}} \$game, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_game_controller_a7d9bed98aeb7e8490f6370c908b4f4bc}{delete}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_game}{Game}} \$game, Entity\+Manager\+Interface \$entity\+Manager)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/game\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_game_controller_a7d9bed98aeb7e8490f6370c908b4f4bc}\label{class_app_1_1_controller_1_1_game_controller_a7d9bed98aeb7e8490f6370c908b4f4bc}} 
+\index{GameController@{GameController}!delete@{delete}}
+\index{delete@{delete}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_game}{Game}}}]{\$game,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}game\+\_\+delete\char`\"{}, methods=\{\char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_game_controller_a24bb8e6b203a3242297dc2bfb3840c00}\label{class_app_1_1_controller_1_1_game_controller_a24bb8e6b203a3242297dc2bfb3840c00}} 
+\index{GameController@{GameController}!edit@{edit}}
+\index{edit@{edit}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_game}{Game}}}]{\$game,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}/edit\char`\"{}, name=\char`\"{}game\+\_\+edit\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_game_controller_ac38314b2650dd736993654f3908a3aba}\label{class_app_1_1_controller_1_1_game_controller_ac38314b2650dd736993654f3908a3aba}} 
+\index{GameController@{GameController}!index@{index}}
+\index{index@{index}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_game_repository}{Game\+Repository}}}]{\$game\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\char`\"{}, name=\char`\"{}game\+\_\+index\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_game_controller_a84845d75eae95bf4eecc0f49f04c765a}\label{class_app_1_1_controller_1_1_game_controller_a84845d75eae95bf4eecc0f49f04c765a}} 
+\index{GameController@{GameController}!new@{new}}
+\index{new@{new}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily new (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/new\char`\"{}, name=\char`\"{}game\+\_\+new\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_game_controller_a771db27a11e7cf97b2d6c77d86c7dfd2}\label{class_app_1_1_controller_1_1_game_controller_a771db27a11e7cf97b2d6c77d86c7dfd2}} 
+\index{GameController@{GameController}!show@{show}}
+\index{show@{show}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_game_repository}{Game\+Repository}}}]{\$game\+Repository,  }\item[{int}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}game\+\_\+show\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/Game\+Controller.\+php\end{DoxyCompactItemize}

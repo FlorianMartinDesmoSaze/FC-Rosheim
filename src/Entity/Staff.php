@@ -20,7 +20,7 @@ class Staff
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,7 +33,7 @@ class Staff
     private $position;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $phone;
 
@@ -59,12 +59,12 @@ class Staff
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }

@@ -9,6 +9,7 @@ use App\Form\ChangePasswordType;
 use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -25,8 +26,13 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="profile")
      */
-    public function profile(User $user): Response
+    public function profile(UserRepository $userRepository, int $id): Response
     {
+        $user = $userRepository->find($id);
+
+        if (! $user) {
+            throw $this->createNotFoundException('The user '. $id . ' does not exist');
+        }
 
         return $this->render('user/profile.html.twig', [
             'user' => $user,

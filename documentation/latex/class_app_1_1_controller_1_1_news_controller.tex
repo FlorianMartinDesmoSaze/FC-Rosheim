@@ -1,0 +1,62 @@
+\hypertarget{class_app_1_1_controller_1_1_news_controller}{}\doxysection{News\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_news_controller}\index{NewsController@{NewsController}}
+Inheritance diagram for News\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_news_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_news_controller_a0e27729e0897749813e1a5d71d24856b}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_news_repository}{News\+Repository}} \$news\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_news_controller_a84845d75eae95bf4eecc0f49f04c765a}{new}} (Request \$request, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_news_controller_acbab323b33ac834df8f2e643e436f57a}{show}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_news_repository}{News\+Repository}} \$news\+Repository, int \$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_news_controller_a64b22531fae6ef2891b1043b1a3c249d}{edit}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_news}{News}} \$news, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_news_controller_a79658f15905b4f04b659c7ffb0edcc32}{delete}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_news}{News}} \$news, Entity\+Manager\+Interface \$entity\+Manager)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/news\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_news_controller_a79658f15905b4f04b659c7ffb0edcc32}\label{class_app_1_1_controller_1_1_news_controller_a79658f15905b4f04b659c7ffb0edcc32}} 
+\index{NewsController@{NewsController}!delete@{delete}}
+\index{delete@{delete}!NewsController@{NewsController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_news}{News}}}]{\$news,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}news\+\_\+delete\char`\"{}, methods=\{\char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_news_controller_a64b22531fae6ef2891b1043b1a3c249d}\label{class_app_1_1_controller_1_1_news_controller_a64b22531fae6ef2891b1043b1a3c249d}} 
+\index{NewsController@{NewsController}!edit@{edit}}
+\index{edit@{edit}!NewsController@{NewsController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_news}{News}}}]{\$news,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}/edit\char`\"{}, name=\char`\"{}news\+\_\+edit\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_news_controller_a0e27729e0897749813e1a5d71d24856b}\label{class_app_1_1_controller_1_1_news_controller_a0e27729e0897749813e1a5d71d24856b}} 
+\index{NewsController@{NewsController}!index@{index}}
+\index{index@{index}!NewsController@{NewsController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_news_repository}{News\+Repository}}}]{\$news\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\char`\"{}, name=\char`\"{}news\+\_\+index\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_news_controller_a84845d75eae95bf4eecc0f49f04c765a}\label{class_app_1_1_controller_1_1_news_controller_a84845d75eae95bf4eecc0f49f04c765a}} 
+\index{NewsController@{NewsController}!new@{new}}
+\index{new@{new}!NewsController@{NewsController}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily new (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/new\char`\"{}, name=\char`\"{}news\+\_\+new\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_news_controller_acbab323b33ac834df8f2e643e436f57a}\label{class_app_1_1_controller_1_1_news_controller_acbab323b33ac834df8f2e643e436f57a}} 
+\index{NewsController@{NewsController}!show@{show}}
+\index{show@{show}!NewsController@{NewsController}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_news_repository}{News\+Repository}}}]{\$news\+Repository,  }\item[{int}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}news\+\_\+show\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/News\+Controller.\+php\end{DoxyCompactItemize}
