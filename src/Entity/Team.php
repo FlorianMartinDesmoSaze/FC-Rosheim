@@ -28,7 +28,7 @@ class Team
      */
     public function preUpdate(): void
     {
-        $this->slug = strtolower((new AsciiSlugger())->slug($this->teamName));
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->teamName.'-'.$this->season));
     }
     
     /**
@@ -54,11 +54,6 @@ class Team
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Image(
-     *     minWidth = 100,
-     *     maxWidth = 2000,
-     *     minHeight = 100,
-     *     maxHeight = 2000)
      */
     private $picture;
 
