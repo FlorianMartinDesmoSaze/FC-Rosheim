@@ -18,9 +18,9 @@ class FileUploader
 
     public function upload(UploadedFile $file)
     {
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $this->slugger->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME); //name of the file
+        $safeFilename = $this->slugger->slug($originalFilename); //needed to safely include the file name as part of the URL
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension(); //name of the file with unique id to avoid dupes
 
         try {
             $file->move($this->getTargetDirectory(), $fileName);

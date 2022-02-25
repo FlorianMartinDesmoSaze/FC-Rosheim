@@ -41,6 +41,8 @@ class TeamController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $pictureTeam = $form->get('picture')->getData();
+            // this condition is needed because the picture's field is not required
+            // so the file must be processed only when a file is uploaded
             if ($pictureTeam) {
                 $pictureFileName = $fileUploader->upload($pictureTeam);
                 $team->setPicture($pictureFileName);
