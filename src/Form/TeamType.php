@@ -39,13 +39,12 @@ class TeamType extends AbstractType
                 // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
-                        'maxSize' => '5000k',
+                        'maxSize' => '1000k',
                         'mimeTypes' => [
-                            'application/jpg',
-                            'application/jpeg',
-                            'application/png',
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
                         ],
-                        'mimeTypesMessage' => 'Veuillez insérer une image valide',
                     ])
                 ],
             ])

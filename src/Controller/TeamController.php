@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\FileUploader;
 
 /**
  * @Route("/team")
@@ -32,13 +33,18 @@ class TeamController extends AbstractController
      * @Route("/new", name="team_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $team = new Team();
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureTeam = $form->get('picture')->getData();
+            if ($pictureTeam) {
+                $pictureFileName = $fileUploader->upload($pictureTeam);
+                $team->setPicture($pictureFileName);
+            }
             $entityManager->persist($team);
             $entityManager->flush();
 
@@ -52,10 +58,13 @@ class TeamController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="team_show", methods={"GET"})
+     * @Route("/{slug<^[a-z0-9]+(?:-[a-z0-9]+)*$>}", name="team_show", methods={"GET"})
      */
-    public function playersByTeam(Team $team, PlayerRepository $playerRepository, int $id): Response
+    public function playersByTeam(Team $team, PlayerRepository $playerRepository, TeamRepository $teamRepository): Response
     {
+        
+        //looking for team id
+        $id = $teamRepository->find($team->getId());
         //use custom request from playerRepo
         $players = $playerRepository->findPlayersByTeam($id);
         $goalKeepers = $playerRepository->findPlayersByPosition($id, 1); //find goalkeepers = 1
