@@ -27,7 +27,8 @@
                     </thead>
                     <tbody id="table_body">
                     {% for news in newsRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_news', {'id': news.id}) }}'">
+                        <tr onclick="window.location='{{ path('admin_news', {'id': news.id}) }}'"
+                            style='cursor: pointer;'>
                             <td>{{ news.id }}</td>
                             <td>
                             {% if news.user_id|default %}

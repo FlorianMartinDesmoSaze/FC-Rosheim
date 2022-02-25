@@ -23,7 +23,8 @@
                     </thead>
                     <tbody id="table_body">
                     {% for user in userRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_users_edit', {'id': user.id}) }}'">
+                        <tr onclick="window.location='{{ path('admin_users_edit', {'id': user.id}) }}'"
+                            style='cursor: pointer;'>
                             <td>{{ user.id }}</td>
                             <td>{{ user.email }}</td>
                             <td>
@@ -71,8 +72,4 @@
         </main>
     </div>
 </div>
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('adminUsers') }}
-{% endblock %}
 {% endblock content %}

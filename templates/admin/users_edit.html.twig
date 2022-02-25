@@ -20,18 +20,18 @@
                             </tr>
                             <tr>
                                 <th>E-mail</th>
-                                <td id="user_email" data-edit="email">
+                                <td id="user_email">
                                     {{ form_widget(form.email, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Pseudonyme</th>
-                                <td id="user_nickname" data-edit="nickname">
+                                <td id="user_nickname">
                                     {{ form_widget(form.nickname, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Prenom</th>
+                                <th>Prénom</th>
                                 <td id="user_firstName">
                                     {{ form_widget(form.first_name, {attr: {class: 'form-control'}}) }}
                                 </td>
@@ -61,29 +61,26 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Equipe</th>
+                                <th>Équipe</th>
                                 <td id="user_team">
                                     {{ form_widget(form.team, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Staff</th>
+                                <th>Responsabilité</th>
                                 <td id="user_staff">
-                                    {# <span class="value">{{ user.staff }} #}
                                     {{ form_widget(form.staff, {attr: {class: 'form-control'}}) }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Roles</th>
-                                <td id="user_staff">
-                                    {# <span class="value">{{ user.staff }} #}
+                                <th>Rôles</th>
+                                <td id="user_roles">
                                     {{ form_widget(form.roles, {attr: {class: 'form-check'}}) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>E-mail vérifié</th>
                                 <td id="user_isVerified">
-                                    {# <span class="value">{{ user.isVerified }} #}
                                     {{ form_widget(form.isVerified, {attr: {class: 'form-check'}}) }}
                                 </td>
                             </tr>

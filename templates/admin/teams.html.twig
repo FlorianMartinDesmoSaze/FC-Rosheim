@@ -23,7 +23,8 @@
                     </thead>
                     <tbody id="table_body">
                     {% for team in teamRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_teams', {'id': team.id}) }}'">
+                        <tr onclick="window.location='{{ path('admin_teams', {'id': team.id}) }}'"
+                            style='cursor: pointer;'>
                             <td>{{ team.id }}</td>
                             <td>
                             {% if team.name|default %}

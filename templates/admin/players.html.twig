@@ -11,7 +11,7 @@
         <main class="col-md-8 full-height">
             {{ include('include/_admin_title.html.twig') }}
                 <div class="card">
-                <h1 class="display-2">Gestion des Équipes</h1>
+                <h1 class="display-2">Gestion des Joueurs·euses</h1>
                 <table class="table table-striped table-dark table-hover">
                     <thead>
                         <tr>
@@ -24,7 +24,8 @@
                     </thead>
                     <tbody id="table_body">
                     {% for player in playerRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_players', {'id': player.id}) }}'">
+                        <tr onclick="window.location='{{ path('admin_players', {'id': player.id}) }}'"
+                            style='cursor: pointer;'>
                             <td>{{ player.id }}</td>
                             <td>
                             {% if player.team|default %}

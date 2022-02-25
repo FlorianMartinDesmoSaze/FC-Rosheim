@@ -24,7 +24,8 @@
                     </thead>
                     <tbody id="table_body">
                     {% for staff in staffRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_staff', {'id': staff.id}) }}'">
+                        <tr onclick="window.location='{{ path('admin_staff', {'id': staff.id}) }}'"
+                            style='cursor: pointer;'>
                             <td>{{ staff.id }}</td>
                             <td>
                             {% if staff.firstName|default %}
