@@ -21,7 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-    .addEntry('news', './assets/js/news.js')
+    // .addEntry('news', './assets/js/news.js')
     // .addEntry('calendarStyle01', 'https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css')
     // .addEntry('calendarStyle02', 'https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css')
     // .addEntry('calendarStyle03', 'https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css')

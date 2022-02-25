@@ -18,3 +18,5 @@ if (arrow){arrow.addEventListener('click', () => {
         news[2].style.display = "none"
     }
 })}
+
+// cereer une classe hiden en 

@@ -19,7 +19,7 @@
 
 	<a href="{{ path('event_new') }}">Create new event</a>
 
-	<div id="calendar-holder"></div>
+	<div id="calendar-holder" class="calendar-padding"></div>
 
 	<a href="{{ path('event_index') }}">back to list</a>
 {% endblock %}
@@ -60,6 +60,10 @@ plugins: [
 ], // https://fullcalendar.io/docs/plugin-index
 timeZone: 'UTC'
 });
+
+// var calendarGrid = document.getElementsByClassName('fc-view-container');
+// calendarGrid.classList.add('calendar-bg');
+
 calendar.setOption('locale', 'fr');
 calendar.render();
 });
