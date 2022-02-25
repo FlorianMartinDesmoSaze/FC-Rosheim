@@ -194,7 +194,9 @@ span.leftbar {
 .card-news:first-child{
     display: block;
 }
-
+#down_arrow:hover{
+    cursor: pointer;
+}
 /* Admin style */
 .value{
     display: none;
@@ -202,7 +204,6 @@ span.leftbar {
 .calendar-padding {
     padding: 2em;
 }
-
 .fc-view-container {
     background: rgba(255, 255, 255, 0.25);
 }
