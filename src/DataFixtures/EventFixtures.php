@@ -16,16 +16,17 @@ class EventFixtures extends Fixture
 
         
         for ($i = 0; $i < 10; $i++) {
-            $randDay = rand(0, 14);
-            $randDayTwo = rand(1, 2)+$randDay;
+            $randDay = rand(1, 30);
+            $randDayTwo = $randDay+1;
+            $randDayThree = $randDayTwo+1;
 
             $event = new Event();
             $event
                 ->setTitle($faker->sentence())
                 ->setDescription($faker->paragraph(2))
                 ->setType('sportif')
-                ->setStartDate($faker->dateTime())
-                ->setEndDate($faker->dateTimeBetween('+'.$randDay.' day', '+'.$randDayTwo.' day'))
+                ->setStartDate($faker->dateTimeBetween('+'.$randDay.' day', '+'.$randDayTwo.' day'))
+                ->setEndDate($faker->dateTimeBetween('+'.$randDayTwo.' day', '+'.$randDayThree.' day'))
                 ->setLocation($faker->city())
                 ;
             $manager->persist($event);
