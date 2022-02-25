@@ -7,18 +7,20 @@ use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TeamRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Team
 {
-        /**
+    /**
      * @ORM\PrePersist
      */
     public function prePersist(): void
     {
-        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->teamName.'-'.$this->season));
     }
 
     /**
@@ -26,7 +28,7 @@ class Team
      */
     public function preUpdate(): void
     {
-        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->teamName));
     }
     
     /**
@@ -38,16 +40,25 @@ class Team
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=3, max=255)
      */
     private $teamName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=3, max=255)
      */
     private $season;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 2000,
+     *     minHeight = 100,
+     *     maxHeight = 2000)
      */
     private $picture;
 

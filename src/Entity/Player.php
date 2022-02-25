@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PlayerRepository;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PlayerRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Player
 {
@@ -17,7 +19,7 @@ class Player
      */
     public function prePersist(): void
     {
-        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->firstName.'-'.$this->lastName));
     }
 
     /**
@@ -25,7 +27,7 @@ class Player
      */
     public function preUpdate(): void
     {
-        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->firstName.'-'.$this->lastName));
     }
     
     /**
@@ -37,26 +39,37 @@ class Player
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=2, max=255)
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=2, max=255)
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=2)
+     * @Assert\NotBlank
      */
     private $number;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime
      */
     private $birthdate;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 400,
+     *     minHeight = 100,
+     *     maxHeight = 400)
      */
     private $picture;
 
