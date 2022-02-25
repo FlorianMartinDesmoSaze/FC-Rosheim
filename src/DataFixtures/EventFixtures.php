@@ -14,14 +14,18 @@ class EventFixtures extends Fixture
     {
         $faker = Faker::create('fr_FR');
 
+        
         for ($i = 0; $i < 10; $i++) {
+            $randDay = rand(0, 14);
+            $randDayTwo = rand(1, 2)+$randDay;
+
             $event = new Event();
             $event
                 ->setTitle($faker->sentence())
                 ->setDescription($faker->paragraph(2))
                 ->setType('sportif')
                 ->setStartDate($faker->dateTime())
-                ->setEndDate($faker->dateTimeBetween('+1 day', '+1 week'))
+                ->setEndDate($faker->dateTimeBetween('+'.$randDay.' day', '+'.$randDayTwo.' day'))
                 ->setLocation($faker->city())
                 ;
             $manager->persist($event);
