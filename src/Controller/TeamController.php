@@ -54,12 +54,22 @@ class TeamController extends AbstractController
     /**
      * @Route("/{id}", name="team_show", methods={"GET"})
      */
-    public function show(TeamRepository $teamRepository, int $id): Response
+    public function playersByTeam(Team $team, PlayerRepository $playerRepository, int $id): Response
     {
-        $team = $teamRepository->find($id);
-        if (! $team) {
-            throw $this->createNotFoundException('The team '. $id . ' does not exist');
+        //use custom request from playerRepo
+        $players = $playerRepository->findPlayersByTeam($id);
+        $goalKeepers = $playerRepository->findPlayersByPosition($id, 1); //find goalkeepers = 1
+        $defenders = $playerRepository->findPlayersByPosition($id, 2); //find defenders = 2
+        $midfielders = $playerRepository->findPlayersByPosition($id, 3); //find midfielders = 3
+        $strickers = $playerRepository->findPlayersByPosition($id, 4); //find strickers = 4
+
+        //if there's no player in team display an error 404
+        if (!$players) {
+            throw $this->createNotFoundException(
+                'Il n\'y a pas de joueurs dans cette équipe'
+            );
         }
+
         return $this->render('team/show.html.twig', [
             'goalKeepers' => $goalKeepers,
             'defenders' => $defenders,

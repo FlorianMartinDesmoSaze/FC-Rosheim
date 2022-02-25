@@ -199,3 +199,10 @@ span.leftbar {
 .value{
     display: none;
 }
+.calendar-padding {
+    padding: 2em;
+}
+
+.fc-view-container {
+    background: rgba(255, 255, 255, 0.25);
+}
