@@ -11,4 +11,13 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
 import 'bootstrap';
+
+// import './js/calendar'
+
+import './js/adminPanelUsers';
+
+import './js/adminPanelUsersEdit';
+
+import './js/news'

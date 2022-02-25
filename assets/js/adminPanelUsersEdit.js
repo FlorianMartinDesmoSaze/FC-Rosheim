@@ -9,19 +9,24 @@ const adminPanelSaveButtonSelector = document.querySelector('#admin_save_button'
 //     element.style.cursor = "pointer";
 //     element.addEventListener('click', e => editTd(element))
 // })
-
-function editTd(element){
-    const input = element.querySelector('.input')
-    input.style.display = none;
-    const value = element.querySelector('.value')
-    value.style.display = block;
-}
-
-adminPanelSaveButtonSelector.addEventListener('click', (e) => {
-    if (confirm("Êtes-vous sûr·e ? Ces changements sont irréversibles.") == true) {
-        console.log("form submitted")
-    } else {
-        e.preventDefault()
-        console.log("form aborted")
+if (adminPanelSaveButtonSelector) {
+    function editTd(element){
+        const input = element.querySelector('.input')
+        // if (input) {
+            input.style.display = none;        
+        // }
+        const value = element.querySelector('.value')
+        // if (value) {
+            value.style.display = block;        
+        // }
     }
-})
+    
+    adminPanelSaveButtonSelector.addEventListener('click', (e) => {
+        if (confirm("Êtes-vous sûr·e ? Ces changements sont irréversibles.") == true) {
+            console.log("form submitted")
+        } else {
+            e.preventDefault()
+            console.log("form aborted")
+        }
+    })    
+}
