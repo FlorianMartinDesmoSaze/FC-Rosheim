@@ -1,0 +1,62 @@
+\hypertarget{class_app_1_1_controller_1_1_team_controller}{}\doxysection{Team\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_team_controller}\index{TeamController@{TeamController}}
+Inheritance diagram for Team\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_team_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_team_controller_a318e31b37f824b91575107d913f9e734}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_team_repository}{Team\+Repository}} \$team\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_team_controller_a84845d75eae95bf4eecc0f49f04c765a}{new}} (Request \$request, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_team_controller_ab7e3571db3b4cf080eb678cd19fe7bf5}{show}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_team_repository}{Team\+Repository}} \$team\+Repository, int \$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_team_controller_a078cbdae84055e0f5434ded05cdcbd51}{edit}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_team}{Team}} \$team, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_team_controller_abfc259965bdeddd7fe7fa143b1319c01}{delete}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_team}{Team}} \$team, Entity\+Manager\+Interface \$entity\+Manager)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/team\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_team_controller_abfc259965bdeddd7fe7fa143b1319c01}\label{class_app_1_1_controller_1_1_team_controller_abfc259965bdeddd7fe7fa143b1319c01}} 
+\index{TeamController@{TeamController}!delete@{delete}}
+\index{delete@{delete}!TeamController@{TeamController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_team}{Team}}}]{\$team,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}team\+\_\+delete\char`\"{}, methods=\{\char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_team_controller_a078cbdae84055e0f5434ded05cdcbd51}\label{class_app_1_1_controller_1_1_team_controller_a078cbdae84055e0f5434ded05cdcbd51}} 
+\index{TeamController@{TeamController}!edit@{edit}}
+\index{edit@{edit}!TeamController@{TeamController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_team}{Team}}}]{\$team,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}/edit\char`\"{}, name=\char`\"{}team\+\_\+edit\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_team_controller_a318e31b37f824b91575107d913f9e734}\label{class_app_1_1_controller_1_1_team_controller_a318e31b37f824b91575107d913f9e734}} 
+\index{TeamController@{TeamController}!index@{index}}
+\index{index@{index}!TeamController@{TeamController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_team_repository}{Team\+Repository}}}]{\$team\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\char`\"{}, name=\char`\"{}team\+\_\+index\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_team_controller_a84845d75eae95bf4eecc0f49f04c765a}\label{class_app_1_1_controller_1_1_team_controller_a84845d75eae95bf4eecc0f49f04c765a}} 
+\index{TeamController@{TeamController}!new@{new}}
+\index{new@{new}!TeamController@{TeamController}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily new (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/new\char`\"{}, name=\char`\"{}team\+\_\+new\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_team_controller_ab7e3571db3b4cf080eb678cd19fe7bf5}\label{class_app_1_1_controller_1_1_team_controller_ab7e3571db3b4cf080eb678cd19fe7bf5}} 
+\index{TeamController@{TeamController}!show@{show}}
+\index{show@{show}!TeamController@{TeamController}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_team_repository}{Team\+Repository}}}]{\$team\+Repository,  }\item[{int}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}team\+\_\+show\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/Team\+Controller.\+php\end{DoxyCompactItemize}

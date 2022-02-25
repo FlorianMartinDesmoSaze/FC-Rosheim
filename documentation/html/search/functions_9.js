@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['show_0',['show',['../class_app_1_1_controller_1_1_event_controller.html#a125f7e7985a7a26ce387a4658a6fa625',1,'App\Controller\EventController\show()'],['../class_app_1_1_controller_1_1_game_controller.html#a771db27a11e7cf97b2d6c77d86c7dfd2',1,'App\Controller\GameController\show()'],['../class_app_1_1_controller_1_1_news_controller.html#acbab323b33ac834df8f2e643e436f57a',1,'App\Controller\NewsController\show()'],['../class_app_1_1_controller_1_1_player_controller.html#a2a2668b3b71b6742c4829e8a3037b020',1,'App\Controller\PlayerController\show()'],['../class_app_1_1_controller_1_1_team_controller.html#ab7e3571db3b4cf080eb678cd19fe7bf5',1,'App\Controller\TeamController\show()'],['../class_app_1_1_controller_1_1_training_controller.html#a07df066a2e33c0d43fe41d8eccf0c309',1,'App\Controller\TrainingController\show()']]]
+];
