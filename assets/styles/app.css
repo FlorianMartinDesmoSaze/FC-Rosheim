@@ -190,3 +190,7 @@ span.leftbar {
 .card-news:first-child{
     display: block;
 }
+
+#down_arrow:hover{
+    cursor: pointer;
+}

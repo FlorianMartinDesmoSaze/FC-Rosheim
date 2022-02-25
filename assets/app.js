@@ -14,4 +14,3 @@ import './bootstrap';
 
 import 'bootstrap';
 
-import './js/adminPanelUsers';
