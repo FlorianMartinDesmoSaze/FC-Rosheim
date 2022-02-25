@@ -27,8 +27,8 @@
                             style='cursor: pointer;'>
                             <td>{{ team.id }}</td>
                             <td>
-                            {% if team.name|default %}
-                                {{ team.name }}
+                            {% if team.teamName|default %}
+                                {{ team.teamName }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
@@ -42,7 +42,7 @@
                             </td>
                             <td>
                             {% if  team.picture|default %}
-                                {{ team.picture }}
+                                <a href="{{ team.picture }}" target="_blank">{{ team.picture }}</a>
                             {% else %}
                                 Non renseigné
                             {% endif %}

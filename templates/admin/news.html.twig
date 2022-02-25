@@ -5,7 +5,6 @@
 
 {% block content %}
 <div class="container-fluid">
-    
     <div class="full-height flex align-items-center">
         {{ include ("include/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
@@ -18,11 +17,11 @@
                             <th>Id</th>
                             <th>Créateur</th>
                             <th>Équipe</th>
+                            <th>Événement</th>
                             <th>Titre</th>
-                            <th>Contenu</th>
                             <th>Image</th>
                             <th>Créé le</th>
-                            <th>Mis à jour le</th>
+                            <th>MàJ le</th>
                         </tr>
                     </thead>
                     <tbody id="table_body">
@@ -34,56 +33,49 @@
                             {% if news.user_id|default %}
                                 {{ news.user_id }}
                             {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                             <td>
                             {% if news.team_id|default %}
                                 {{ news.team_id }}
                             {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                             <td>
                             {% if news.event_id|default %}
                                 {{ news.event_id }}
                             {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                             <td>
                             {% if  news.title|default %}
                                 {{ news.title }}
                             {% else %}
-                                Non renseigné
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if  news.content|default %}
-                                {{ news.content }}
-                            {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                             <td>
                             {% if  news.picture|default %}
-                                {{ news.picture }}
+                                <a href="{{ news.picture }}" target="_blank">{{ news.picture }}</a>
                             {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                             <td>
                             {% if  news.created_at|default %}
                                 {{ news.created_at }}
                             {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                             <td>
                             {% if  news.updated_at|default %}
                                 {{ news.updated_at }}
                             {% else %}
-                                Non renseigné
+                                N/A
                             {% endif %}
                             </td>
                         </tr>
