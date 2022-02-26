@@ -21,3 +21,5 @@ import './js/adminPanelUsers';
 import './js/adminPanelUsersEdit';
 
 import './js/news'
+
+import './js/hamburger'

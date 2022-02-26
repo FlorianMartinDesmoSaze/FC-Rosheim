@@ -1,4 +1,4 @@
-/* Custom background image */
+/******** Custom background image ********/
 body {
     background-color: #000;
     background-image: url("/public_html/img/background_css.jpg");
@@ -7,16 +7,22 @@ body {
     background-position: 50% 0%;
     background-size: 742px;
 }
-/* Style des balises Hn */
+/******** Style des balises Hn ********/
 h1, h2, h3, h4, h5, h6 {
     color: whitesmoke;
 }
-/* style du bouton principal */
+/******** style du bouton principal ********/
 .btn-primary{
     border-radius: 0;
 }
 
-/* Red pipe before header nav items */
+/******** spacing element inside header ********/
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+/******** Red pipe before header nav items ********/
 span.leftbar {
     color:whitesmoke;
     border-left: 1px solid #f12f37;
@@ -24,7 +30,7 @@ span.leftbar {
     display: inline-block;
     height: 0.7rem;
 }
-/* Horizontal red line */
+/******** Horizontal red line ********/
 .redline{
     width: 60%;
     margin: 1.5em 0;
@@ -38,17 +44,17 @@ span.leftbar {
     border-bottom: 1px solid rgba(180,0,0,0.8);
 }
 
-/* Class display flex to avoid redundancy */
+/******** Class display flex to avoid redundancy ********/
 .flex {
     display: flex;
 }
 
-/* Page height (not 100vh to account for header) */
+/******** Page height (not 100vh to account for header) ********/
 .full-height {
     height: 70vh;
 }
 
-/* More spacing for the login/user logo in relation to the rest of the nav */
+/******** More spacing for the login/user logo in relation to the rest of the nav ********/
 #log-logo {
     margin-left: 1rem;
     padding-right: 0.7rem;
@@ -58,7 +64,7 @@ span.leftbar {
     color: whitesmoke;
 }
 
-/* Dropdown menu on connexion icon */
+/******** Dropdown menu on connexion icon ********/
 .dropdown-content {
     display: none;
     position: absolute;
@@ -78,7 +84,7 @@ span.leftbar {
 .dropdown-content a:hover {
     background-color: #f1f1f1;
 }
-/* Affichage du menu dropdown avec animation */
+/******** Affichage du menu dropdown avec animation ********/
 .dropdown:hover .dropdown-content {
     display: block;
     animation: dropdown 1s ease 0s 1 normal forwards;
@@ -95,7 +101,7 @@ span.leftbar {
     }
 }
 
-/* Card style */
+/******** Card style ********/
 .card {
     padding: 2.5rem 2.5rem;
     background-color: #101010cc;
@@ -131,7 +137,7 @@ span.leftbar {
     margin-bottom: 0px;
 }
 
-/* Team */
+/******** Team ********/
 .card-team {
     height: 38px;
     margin-top: 2rem;
@@ -153,7 +159,7 @@ span.leftbar {
     border-radius: 0;
 }
 
-/* Sidebar style */
+/******** Sidebar style ********/
 .sidebar {
     position: fixed;
     overflow-x: hidden;
@@ -184,7 +190,7 @@ span.leftbar {
 #logout:hover {
     background-color: rgba(255, 0, 0, 1);
 }
-/* Form check input */
+/******** Form check input ********/
 .form-check-input {
     margin-left: 0.5em ;
 }
@@ -197,13 +203,105 @@ span.leftbar {
 #down_arrow:hover{
     cursor: pointer;
 }
-/* Admin style */
+/******** Admin style ********/
 .value{
     display: none;
 }
+
+/******** Calendar ********/
 .calendar-padding {
     padding: 2em;
 }
 .fc-view-container {
     background: rgba(255, 255, 255, 0.25);
+}
+
+/******** hamburger menu ********/
+.hamburger {
+    display: none;
+    margin: 8px 1em;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s, ease-in-out;
+    background-color: #ffffff;
+}
+
+.hiden {
+    opacity: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-menu {
+        background-color: #101010;
+        border: solid rgba(180, 0, 0, 0.8) 1px;
+        position: fixed;
+        top: 5rem;
+        right: -100%;
+        flex-direction: column;
+        /* width: 25%; */
+        text-align: left;
+        transition: 0.3s;
+        z-index: 1;
+        
+    }
+    .nav-link {
+        margin-left: 0;
+        padding-right: 0;
+    }
+    
+    .nav-item.dropdown {
+        justify-content: center;
+    }
+        
+
+    .nav-menu.active {
+        right: 0;
+        padding: 1em;
+    }
+
+    #log-logo {
+        margin-left: 0;
+    }
+
+    .nav-item {
+        margin: 0;
+        /* padding: 0 1em; */
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+        transition: all 0.3s, ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+        transition: all 0.3s, ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+        transition: all 0.3s, ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+
+    }
+
+    .card-news {
+        transition: all 0.3s, ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+    }
 }
