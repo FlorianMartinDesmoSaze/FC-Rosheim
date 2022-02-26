@@ -15,9 +15,6 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Créateur</th>
-                            <th>Équipe</th>
-                            <th>Événement</th>
                             <th>Titre</th>
                             <th>Image</th>
                             <th>Créé le</th>
@@ -29,27 +26,6 @@
                         <tr onclick="window.location='{{ path('admin_news_edit', {'id': news.id}) }}'"
                             style='cursor: pointer;'>
                             <td>{{ news.id }}</td>
-                            <td>
-                            {% if news.user|default %}
-                                {{ news.user }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if news.team|default %}
-                                {{ news.team }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                            </td>
-                            <td>
-                            {% if news.event|default %}
-                                {{ news.event }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                            </td>
                             <td>
                             {% if  news.title|default %}
                                 {{ news.title }}
@@ -65,15 +41,15 @@
                             {% endif %}
                             </td>
                             <td>
-                            {% if  news.created_at|default %}
-                                {{ news.created_at }}
+                            {% if  news.createdAt|default %}
+                                {{ news.createdAt|date('d/m/Y H:i') }}
                             {% else %}
                                 N/A
                             {% endif %}
                             </td>
                             <td>
-                            {% if  news.updated_at|default %}
-                                {{ news.updated_at }}
+                            {% if  news.updatedAt|default %}
+                                {{ news.updatedAt|date('d/m/Y H:i') }}
                             {% else %}
                                 N/A
                             {% endif %}
