@@ -44,6 +44,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+                            ///////////////////
+                            //     USERS     //
+                            ///////////////////
     /**
      * @Route("/users", name="admin_users")
      */
@@ -84,6 +87,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+                        ///////////////////
+                        //     STAFF     //
+                        ///////////////////
     /**
      * @Route("/staff", name="admin_staff")
      */
@@ -113,6 +119,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+                        ///////////////////
+                        //      NEWS     //
+                        ///////////////////
     /**
      * @Route("/news", name="admin_news")
      */
@@ -153,6 +162,9 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_news');
     }
 
+                        ///////////////////
+                        //    PLAYERS    //
+                        ///////////////////
     /**
      * @Route("/players", name="admin_players")
      */
@@ -212,6 +224,9 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_players');
     }
 
+                        ///////////////////
+                        //     TEAMS     //
+                        ///////////////////
     /**
      * @Route("/teams", name="admin_teams")
      */
@@ -252,6 +267,9 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_teams');
     }
 
+                        ///////////////////
+                        //    RESULTS    //
+                        ///////////////////
     /**
      * @Route("/results", name="admin_results")
      */
@@ -262,6 +280,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+                        ///////////////////
+                        //     EVENTS    //
+                        ///////////////////
     /**
      * @Route("/events", name="admin_events")
      */
