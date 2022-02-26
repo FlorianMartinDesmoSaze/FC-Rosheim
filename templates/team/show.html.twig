@@ -5,15 +5,35 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="full-height flex align-items-center">
+    <div class="flex align-items-center">
         <main class="col-md-12">
+        {# Since team picture is nullable we should verify if this team has a picture #}
+            {% if team.picture is not null %}
+                <div class="flex justify-content-center">
+                    <figure class="team-picture">
+                        <img src="{{ asset('uploads/' ~ team.picture)}}" alt="Équipe {{ team.teamName ~ ' ' ~ team.season }} du FC Rosheim">
+                        <figcaption>Équipe {{ team.teamName ~ ' ' ~ team.season }} du FC Rosheim</figcaption>
+                    </figure>
+                </div>
+            {% endif %}
             <div class="card flex flex-column">
-        <img src="{{ asset('uploads/team/' ~ team.picture)}}" alt="">
                 {# Goalkeepers list #}
                 <h2>Gardien</h2>
                 <div class="flex flex-row">
                     {% for goalKeeper in goalKeepers %}
-                        <h6>{{ goalKeeper.firstName }}</h6>
+                        {% if goalKeeper.picture is not null %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('uploads/' ~ goalKeeper.picture)}}" 
+                                        alt="Équipe {{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }} du FC Rosheim">
+                                    <figcaption><h6>{{ goalKeeper.firstName }}</h6></figcaption>
+                                </figure>
+                        {% else %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                        alt="Équipe {{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }} du FC Rosheim">
+                                    <figcaption><h6>{{ goalKeeper.firstName }}</h6></figcaption>
+                                </figure>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 {# Defenders list #}
