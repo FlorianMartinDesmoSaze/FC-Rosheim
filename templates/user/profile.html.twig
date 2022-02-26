@@ -8,6 +8,7 @@
         {{ include ("include/_sidebar_profile.html.twig") }}
         <main class="col-md-4 offset-md-1">
             <div class="card text-center">
+            {# verify if user is log, in this case display his fullname if they exist or display his email  #}
                 {% if app.user %}
                     {% if app.user.lastname and app.user.firstname != null %}
                         <h4> Bonjour {{app.user.firstname}} {{app.user.lastname}}</h4>
@@ -20,6 +21,7 @@
                     </div>
                 {% endif %}
                 <span class="redline-center"></span>
+                {# list of user informations and if he is licensied or not #}
                 <ul class="info-user-list">
                     <li>Adresse mail: <span class="bold">{{ app.user.email }}</span></li>
                     <li>Prénom : <span class="bold">{{ app.user.firstname }}</span></li>
