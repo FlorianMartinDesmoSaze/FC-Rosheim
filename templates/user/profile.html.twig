@@ -20,6 +20,22 @@
                     </div>
                 {% endif %}
                 <span class="redline-center"></span>
+                <ul class="info-user-list">
+                    <li>Adresse mail: <span class="bold">{{ app.user.email }}</span></li>
+                    <li>Prénom : <span class="bold">{{ app.user.firstname }}</span></li>
+                    <li>Nom : <span class="bold">{{ app.user.lastname }}</span></li>
+                    <li>N° Téléphone : <span class="bold">{{ app.user.phone }}</span></li>
+                    <li>Date de naissance : <span class="bold">{{ app.user.birthdate|date("d/m/Y") }}</span></li>
+                    {% if app.user.license == 1 %}
+                        <li> Vous êtes <span class="bold">licencié</span> au sein du club</li>
+                    {% else %}
+                        <li> 
+                            Vous n'êtes <span class="bold">pas licencié</span> au sein du club, 
+                            vous pouvez obtenir votre licence en nous <a href="#">contactant</a> 
+                            ou en nous remettant ce <a href="#">PDF</a>.
+                        </li>
+                    {% endif %}
+                </ul>
             <div>
         </main>
     </div>

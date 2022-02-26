@@ -253,3 +253,10 @@ img{
     padding: 5px;
     text-align: center;
 }
+.info-user-list{
+    list-style-type: none;
+    text-align: left;
+}
+.bold{
+    font-weight: bold;
+}
