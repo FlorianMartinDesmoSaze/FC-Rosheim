@@ -7,9 +7,26 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class News
 {
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
