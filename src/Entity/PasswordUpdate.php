@@ -13,12 +13,12 @@ class PasswordUpdate
      * @Assert\Regex(
      * pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%-+])(?!.*(.)\1{2}).*[a-z]/m",
      * match=true,
-     * message="Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole.")
+     * message="Votre mot de passe doit comporter au moins 8 caractères et au moins une lettre majuscule, minuscule, un chiffre et un symbole.")
      */
     private $newPassword;
 
     /**
-     * @Assert\EqualTo(propertyPath="newPassword", message="Le mot de passe de confirmation ne correspond pas.")
+     * @Assert\EqualTo(propertyPath="newPassword", message="Les mots de passe ne correspondent pas.")
      */
     private $confirmPassword;
 

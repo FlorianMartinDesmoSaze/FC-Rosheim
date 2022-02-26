@@ -207,3 +207,43 @@ span.leftbar {
 .fc-view-container {
     background: rgba(255, 255, 255, 0.25);
 }
+/* Images style */
+img{
+    width: 100%;
+}
+.team-picture{
+    position: relative;
+    border: thin rgba(180, 0, 0, 0.8) solid;
+    flex-flow: column;
+    margin: auto;
+    padding: 5px;
+    width: 800px;
+    height: auto;
+    margin: 50px;
+}
+.team-picture figcaption {
+    width: 99%;
+    position: absolute;
+    bottom: 5px;
+    background-color: #101010cc;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+}
+.player-picture{
+    position: relative;
+    flex-flow: column;
+    margin: auto;
+    width: 200px;
+    height: auto;
+    margin: 2px 5px;
+}
+.player-picture figcaption {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: #101010cc;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+}

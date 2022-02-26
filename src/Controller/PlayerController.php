@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,13 +33,20 @@ class PlayerController extends AbstractController
      * @Route("/new", name="player_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $player = new Player();
         $form = $this->createForm(PlayerType::class, $player);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $picturePlayer = $form->get('picture')->getData();
+            // this condition is needed because the picture's field is not required
+            // so the file must be processed only when a file is uploaded
+            if ($picturePlayer) {
+                $pictureFileName = $fileUploader->upload($picturePlayer);
+                $player->setPicture($pictureFileName);
+            }
             $entityManager->persist($player);
             $entityManager->flush();
 
