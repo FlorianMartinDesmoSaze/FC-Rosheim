@@ -16,15 +16,15 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Id équipe</th>
-                            <th>Id position</th>
+                            <th>Équipe</th>
+                            <th>Position</th>
                             <th>Nom de famille</th>
                             <th>Numéro</th>
                         </tr>
                     </thead>
                     <tbody id="table_body">
                     {% for player in playerRepository %}
-                        <tr onclick="window.location='{{ path('admin_players', {'id': player.id}) }}'"
+                        <tr onclick="window.location='{{ path('admin_players_edit', {'id': player.id}) }}'"
                             style='cursor: pointer;'>
                             <td>{{ player.id }}</td>
                             <td>

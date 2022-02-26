@@ -26,7 +26,7 @@
                     </thead>
                     <tbody id="table_body">
                     {% for event in eventRepository %}
-                        <tr onclick="window.location='{{ path('admin_events', {'id': event.id}) }}'"
+                        <tr onclick="window.location='{{ path('admin_events_edit', {'id': event.id}) }}'"
                             style='cursor: pointer;'>
                             <td>{{ event.id }}</td>
                             <td>
@@ -51,15 +51,15 @@
                             {% endif %}
                             </td>
                             <td>
-                            {% if  event.start_date|default %}
-                                {{ event.start_date }}
+                            {% if  event.startDate|default %}
+                                {{ event.startDate|date('d/m/Y H:i') }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if  event.end_date|default %}
-                                {{ event.end_date }}
+                            {% if  event.endDate|default %}
+                                {{ event.endDate|date('d/m/Y H:i') }}
                             {% else %}
                                 Non renseignée
                             {% endif %}

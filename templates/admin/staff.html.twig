@@ -24,7 +24,7 @@
                     </thead>
                     <tbody id="table_body">
                     {% for staff in staffRepository %}
-                        <tr onclick="window.location='{{ path('admin_staff', {'id': staff.id}) }}'"
+                        <tr onclick="window.location='{{ path('admin_staff_edit', {'id': staff.id}) }}'"
                             style='cursor: pointer;'>
                             <td>{{ staff.id }}</td>
                             <td>

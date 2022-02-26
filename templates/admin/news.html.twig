@@ -26,26 +26,26 @@
                     </thead>
                     <tbody id="table_body">
                     {% for news in newsRepository %}
-                        <tr onclick="window.location='{{ path('admin_news', {'id': news.id}) }}'"
+                        <tr onclick="window.location='{{ path('admin_news_edit', {'id': news.id}) }}'"
                             style='cursor: pointer;'>
                             <td>{{ news.id }}</td>
                             <td>
-                            {% if news.user_id|default %}
-                                {{ news.user_id }}
+                            {% if news.user|default %}
+                                {{ news.user }}
                             {% else %}
                                 N/A
                             {% endif %}
                             </td>
                             <td>
-                            {% if news.team_id|default %}
-                                {{ news.team_id }}
+                            {% if news.team|default %}
+                                {{ news.team }}
                             {% else %}
                                 N/A
                             {% endif %}
                             </td>
                             <td>
-                            {% if news.event_id|default %}
-                                {{ news.event_id }}
+                            {% if news.event|default %}
+                                {{ news.event }}
                             {% else %}
                                 N/A
                             {% endif %}

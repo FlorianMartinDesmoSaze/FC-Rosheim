@@ -23,17 +23,16 @@
                     </thead>
                     <tbody id="table_body">
                     {% for team in teamRepository %}
-                        <tr onclick="window.location='{{ path('admin_teams', {'id': team.id}) }}'"
-                            style='cursor: pointer;'>
+                        <tr>
                             <td>{{ team.id }}</td>
-                            <td>
+                            <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
                             {% if team.teamName|default %}
                                 {{ team.teamName }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
-                            <td>
+                            <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
                             {% if team.season|default %}
                                 {{ team.season }}
                             {% else %}
