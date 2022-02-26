@@ -53,13 +53,11 @@ class Player
 
     /**
      * @ORM\Column(type="string", length=2)
-     * @Assert\NotBlank
      */
     private $number;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime
      */
     private $birthdate;
 
