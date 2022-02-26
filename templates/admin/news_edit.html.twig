@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Mon profil - FC Rosheim{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="full-height flex align-items-center">
+        {{ include ("include/_admin_sidepanel.html.twig") }}
+        <main class="col-md-8 full-height">
+            {{ include('include/_admin_title.html.twig') }}
+                <div class="card">
+                <h1 class="display-2">Gestion des News</h1>
+                    {{ form_start(form, {attr: {class: 'form-user-submit'}}) }}
+                    <table class="table table-striped table-dark table-hover">
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <td>{{ news.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Utilisateur·ice lié·e</th>
+                                <td>
+                                    {{ form_widget(form.user) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Équipe liée</th>
+                                <td>
+                                    {{ form_widget(form.team) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Event lié</th>
+                                <td>
+                                    {{ form_widget(form.event) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Titre</th>
+                                <td>
+                                    {{ form_widget(form.title) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Contenu</th>
+                                <td>
+                                    {{ form_widget(form.content) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Image</th>
+                                <td>
+                                    {{ form_widget(form.picture) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Slug</th>
+                                <td>
+                                    {{ form_widget(form.slug) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Créée le</th>
+                                <td>
+                                    {{ form_widget(form.createdAt) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>MàJ le</th>
+                                <td>
+                                    {{ form_widget(form.updatedAt) }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        <button class='btn btn-primary' id='admin_save_button' type="submit">Sauvegarder</button>
+                        <button id="admin_delete_button" class="btn btn-outline-warning" form="delete_form">Supprimer</button>
+                {{ form_end(form) }}
+                    <form id="delete_form" method="post" action="{{ path('admin_news_delete', {id: news.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ news.id) }}">
+                    </form>
+                </div>
+        </main>
+    </div>
+</div>
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('include/_admin_js.html.twig') }}
+{% endblock %}
+{% endblock content %}
