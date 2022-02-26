@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamType;
-use App\Repository\PlayerRepository;
+use App\Service\FileUploader;
 use App\Repository\TeamRepository;
+use App\Repository\PlayerRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,13 +35,20 @@ class TeamController extends AbstractController
      * @Route("/new", name="team_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $team = new Team();
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureTeam = $form->get('picture')->getData();
+            // this condition is needed because the picture's field is not required
+            // so the file must be processed only when a file is uploaded
+            if ($pictureTeam) {
+                $pictureFileName = $fileUploader->upload($pictureTeam);
+                $team->setPicture($pictureFileName);
+            }
             $entityManager->persist($team);
             $entityManager->flush();
 
@@ -52,10 +62,13 @@ class TeamController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="team_show", methods={"GET"})
+     * @Route("/{slug<^[a-z0-9]+(?:-[a-z0-9]+)*$>}", name="team_show", methods={"GET"})
      */
-    public function playersByTeam(Team $team, PlayerRepository $playerRepository, int $id): Response
+    public function playersByTeam(Team $team, PlayerRepository $playerRepository, TeamRepository $teamRepository): Response
     {
+        
+        //looking for team id
+        $id = $teamRepository->find($team->getId());
         //use custom request from playerRepo
         $players = $playerRepository->findPlayersByTeam($id);
         $goalKeepers = $playerRepository->findPlayersByPosition($id, 1); //find goalkeepers = 1
@@ -84,12 +97,36 @@ class TeamController extends AbstractController
      * @Route("/{id}/edit", name="team_edit", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function edit(Request $request, Team $team, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, TeamRepository $teamRepository,
+        Team $team, EntityManagerInterface $entityManager, FileUploader $fileUploader, int $id): Response
     {
         $form = $this->createForm(TeamType::class, $team);
+        $team = $teamRepository->find($id); //we find team by id
+        //we check if an image was already set
+        if($team->getPicture()!=null){
+            //we must transform the image string from DB to File to respect the form types
+            $oldFileName = $team->getPicture(); //we get image name in db
+            $oldFileNamePath = $this->getParameter('images_directory').'/'.$oldFileName; //we get his path
+            $pictureFile = new File($oldFileNamePath); //create file
+            $team->setPicture($pictureFile);
+        }else{ //else we define $oldFileNamePath as null to avoid error when trying to remove an inexistant old file
+            $oldFileNamePath = null;
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //we check if picture field isn't null
+            if($team->getPicture()!=null){
+                $filesystem = new Filesystem(); //we use this class in order to use his function remove()
+                $pictureTeam = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureTeam);
+                $team->setPicture($pictureFileName);
+                $filesystem->remove($oldFileNamePath); //we delete old picture from application
+            }
+            // else we set old picture
+            else{
+                $team->setPicture($oldFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);

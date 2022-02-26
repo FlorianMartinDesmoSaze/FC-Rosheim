@@ -9,7 +9,7 @@
             {% for team in teams %}
                 <div class="row col-md-12 flex justify-content-md-center">
                     <div class="col-md-4 justify-content-md-center flex align-items-center card-team">
-                        <a id="teamName" href="{{ path('team_show', {'id': team.id}) }}">{{ team.teamName }} {{ team.season }}</a>
+                        <a id="teamName" href="{{ path('team_show', {'slug': team.slug}) }}">{{ team.teamName }} {{ team.season }}</a>
                     </div>
                     <div class="col-md-1">
                         <a href="{{ path('team_edit', {'id': team.id}) }}" class="btn btn-primary btn-team" title="Modifier l'équipe">Modifier</a>
@@ -21,6 +21,7 @@
             </div>
             {% endfor %}
             <a href="{{ path('team_new') }}" class="btn btn-primary btn-team" title="Nouvelle équipe">Créer une nouvelle équipe</a>
+            <a href="{{ path('player_new') }}" class="btn btn-primary btn-team" title="Nouveau joueur">Créer un nouveau joueur</a>
         </div>
     </div>  
     

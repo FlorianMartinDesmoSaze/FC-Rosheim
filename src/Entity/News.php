@@ -2,14 +2,38 @@
 
 namespace App\Entity;
 
-use App\Repository\NewsRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\NewsRepository;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class News
 {
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate(): void
+    {
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->updatedAt = new DateTimeImmutable();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -19,6 +43,8 @@ class News
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=4, max=255)
      */
     private $title;
 
@@ -29,6 +55,11 @@ class News
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400)
      */
     private $picture;
 
