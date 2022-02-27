@@ -283,7 +283,7 @@ img{
 .player-picture:hover h3{
     color: #101010cc;
 }
-figcaption h6{
+figcaption h3{
     margin-bottom: 0;
 }
 .info-user-list{
@@ -294,12 +294,12 @@ figcaption h6{
     position: absolute;
     top: 0;
     width: 100%;
-    height: 87%;
+    height: 89%;
     opacity: 0;
 }
 .player-picture:hover .player-info{
     background-color: rgba(180, 0, 0, 0.5);
-    animation: slide 0.1s ease 0s 1 normal both;
+    animation: slide 1s ease 0s 1 normal both;
 }
 @keyframes slide {
     0% {
