@@ -200,9 +200,32 @@ span.leftbar {
 .card-news:first-child{
     display: block;
 }
+#down_arrow{
+    margin-top: 0;
+    transition: .2s ease-in-out;
+    opacity: .7;
+}
 #down_arrow:hover{
     cursor: pointer;
+    /* margin-top: 20px; */
+    animation: 1s ease-in-out 0s infinite slide;
 }
+    @keyframes slide {
+        0% {
+            opacity: .7;
+            transform: translateY(0px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: .7;
+        transform: translateY(0px);
+}
+}
+
 /******** Admin style ********/
 .value{
     display: none;
