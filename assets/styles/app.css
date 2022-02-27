@@ -204,6 +204,8 @@ span.leftbar {
     margin-top: 0;
     transition: .2s ease-in-out;
     opacity: .7;
+    /* position: fixed;
+    top: 50%; */
 }
 #down_arrow:hover{
     cursor: pointer;
