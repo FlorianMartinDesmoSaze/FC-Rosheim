@@ -23,3 +23,7 @@ import './js/adminPanelUsersEdit';
 import './js/news'
 
 import './js/hamburger'
+
+import './js/mediaIcons'
+
+
