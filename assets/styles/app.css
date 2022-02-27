@@ -171,7 +171,7 @@ span.leftbar {
     border-right: 0px solid rgba(180, 0, 0, 0);
     transition: 0.2s;
 }
-.sidebar li:hover{
+.sidebar .nav-media li:hover{
     border-right: 3px solid rgba(180, 0, 0, 0.8);
 }
 .sidebar ul {
@@ -208,6 +208,79 @@ span.leftbar {
     display: none;
 }
 
+/******** External links ********/
+
+.media-container {
+    color: white;
+    position: fixed;
+    top: 30%;
+    font-size: 140%;
+    margin: 0;
+    padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 1em;
+    /* height: 100%;
+    width: 5em; */
+}
+
+/* .navbar-media {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+} */
+
+.fa-brands {
+    color: white;
+    font-size: 140%;
+    transition: .2s ease-in-out;
+    position: fixed;
+}
+
+.fa-brands.active {
+    left: 24px;
+}
+
+.fa-youtube {
+    top: 62%;
+    left: -100%;
+}
+
+.fa-facebook-square {
+    top: 56%;
+    left: -100%;
+}
+
+.fa-solid {
+    color: white;
+    font-size: 140%;
+    transition: .2s ease-in-out;
+    position: fixed;
+    top: 50%;
+}
+
+.display-media>button{
+    background: none;
+	border: none;
+	padding: 0;
+}
+
+.nav-media {
+    display: flex;
+    flex-direction: column;
+    left: 5em;
+    align-items: center;
+}
+
+.fa-brands:hover, .fa-solid:hover{
+    color: rgba(180, 0, 0, 0.8);
+    font-size: 160%;
+    transition: .2s ease-in-out;
+}
+
 /******** Calendar ********/
 .calendar-padding {
     padding: 2em;
@@ -220,6 +293,11 @@ span.leftbar {
 .hamburger {
     display: none;
     margin: 8px 1em;
+}
+
+.hamburger:hover>.bar{
+    background: rgba(180, 0, 0, 0.8);
+    transition: .2s ease-in-out;
 }
 
 .bar {
@@ -244,7 +322,6 @@ span.leftbar {
         top: 5rem;
         right: -100%;
         flex-direction: column;
-        /* width: 25%; */
         text-align: left;
         transition: 0.3s;
         z-index: 2;

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="{% block meta_description %}Bienvenue sur l'application web du Football Club de Rosheim situé dans la commune du même nom dans le Bas-Rhin{% endblock %}">
         <title>{% block title %}FC Rosheim{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/2e16462455.js" crossorigin="anonymous"></script>
         {% block stylesheets %}
             <link rel="shortcut icon" href="/img/logo.ico" type="image">
 
@@ -20,7 +21,9 @@
     </head>
     <body>
         {{ include ("include/_header.html.twig") }}
-        {% block content %}{% endblock %}
+        {{ include ("include/_externalLinks.html.twig") }}
+        {% block content %}
+        {% endblock %}
     </body>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
