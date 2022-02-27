@@ -6,6 +6,7 @@ use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Service\FileUploader;
 use App\Repository\PlayerRepository;
+use App\Repository\StatsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,16 +63,34 @@ class PlayerController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="player_show", methods={"GET"})
+     * @Route("/{id}", name="goal_keeper_show", methods={"GET"})
      */
-    public function show(PlayerRepository $playerRepository, int $id): Response
+    public function goalKeepershow(PlayerRepository $playerRepository, StatsRepository $statsRepository, int $id): Response
     {
         $player = $playerRepository->find($id);
+        $stat = $statsRepository->findOneBy(['player' => $id]);
 
         if (! $player) {
             throw $this->createNotFoundException('The player '. $id . ' does not exist');
         }
-        return $this->render('player/show.html.twig', [
+        return $this->render('player/goal_keeper_show.html.twig', [
+            'stat' => $stat,
+            'player' => $player,
+        ]);
+    }
+        /**
+     * @Route("/{id}", name="field_player_show", methods={"GET"})
+     */
+    public function fieldPlayershow(PlayerRepository $playerRepository, StatsRepository $statsRepository, int $id): Response
+    {
+        $player = $playerRepository->find($id);
+        $stat = $statsRepository->findOneBy(['player_id' => $id]);
+
+        if (! $player) {
+            throw $this->createNotFoundException('The player '. $id . ' does not exist');
+        }
+        return $this->render('player/field_player_show.html.twig', [
+            'stat' => $stat,
             'player' => $player,
         ]);
     }

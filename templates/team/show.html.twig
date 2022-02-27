@@ -17,88 +17,91 @@
                 </div>
             {% endif %}
             <div class="card flex flex-column">
-                {# Goalkeepers list #}
-                <h2>Gardien</h2>
-                <div class="flex flex-row">
-                    {% for goalKeeper in goalKeepers %}
-                        <a href="">
-                        {% if goalKeeper.picture is not null %}
-                            <figure class="player-picture">
-                                <img src="{{ asset('uploads/' ~ goalKeeper.picture)}}" 
-                                    alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
-                                <figcaption><h3>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h3></figcaption>
-                                    <span class="number">{{ goalKeeper.number }}</span>
-                                <div class="player-info">
-                                    <span class="stat-games">10<p class="stat-desc"> Match joués</p></span>
-                                    <span class="stat-cs">9<p class="stat-desc">Cleen sheets</p></span>
-                                    <span class="stat-saves">23<p class="stat-desc">Arrêts</p></span>
-                                </div>
-                            </figure>
-                        {% else %}
-                            <figure class="player-picture">
-                                <img src="{{ asset('img/no_player_picture.jpg')}}" 
-                                    alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
-                                <figcaption><h3>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h3></figcaption>
-                            </figure>
-                        {% endif %}
+{############################################### Goalkeepers list ###################################################}
+                <h1>Gardien</h1>
+                <div class="flex flex-wrap">
+                    {% for goalKeeper in goalKeepers %} {# we get our gk list #}  
+                        <a href="{{ path('goal_keeper_show', {'id': goalKeeper.id}) }}">
+                            {% if goalKeeper is not null %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('uploads/' ~ goalKeeper.picture)}}" 
+                                        alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
+                                    {{ include('include/player/_goal_keeper_stats.html.twig') }}
+                                </figure>
+                            {% else %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                        alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
+                                    {{ include('include/player/_goal_keeper_stats.html.twig') }}
+                                </figure>
+                            {% endif %} 
                         </a>
                     {% endfor %}
                 </div>
-                {# Defenders list #}
-                <h2>Défenseur</h2>
-                <div class="flex flex-row">
+                <span class="redline-player"></span>
+{############################################### Defenders list ###################################################}
+                <h1>Défenseur</h1>
+                <div class="flex flex-wrap">
                     {% for defender in defenders %}
-                        {% if defender.picture is not null %}
-                            <figure class="player-picture">
-                                <img src="{{ asset('uploads/' ~ defender.picture)}}" 
-                                    alt="{{ defender.firstName ~ ' ' ~ defender.lastName }}, défenseur du FC Rosheim">
-                                <figcaption><h6>{{ defender.firstName ~ ' ' ~ defender.lastName }}</h6></figcaption>
-                            </figure>
-                        {% else %}
-                            <figure class="player-picture">
-                                <img src="{{ asset('img/no_player_picture.jpg')}}" 
-                                    alt="{{ defender.firstName ~ ' ' ~ defender.lastName }}, défenseur du FC Rosheim">
-                                <figcaption><h6>{{ defender.firstName ~ ' ' ~ defender.lastName}}</h6></figcaption>
-                            </figure>
-                        {% endif %}
+                        <a href="{{ path('field_player_show', {'id': defender.id}) }}">
+                            {% if defender.picture is not null %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('uploads/' ~ defender.picture)}}" 
+                                        alt="{{ defender.firstName ~ ' ' ~ defender.lastName }}, défenseur du FC Rosheim">
+                                    {{ include('include/player/_defender_stats.html.twig') }}
+                                </figure>
+                            {% else %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                        alt="{{ defender.firstName ~ ' ' ~ defender.lastName }}, défenseur du FC Rosheim">
+                                    {{ include('include/player/_defender_stats.html.twig') }}
+                                </figure>
+                            {% endif %} 
+                        </a>
                     {% endfor %}
                 </div>
-                {# Midfielders list #}
-                <h2>Milieu</h2>
-                <div class="flex flex-row">
+                <span class="redline-player"></span>
+{############################################### Midfielders list ###################################################}
+                <h1>Milieu</h1>
+                <div class="flex flex-wrap">
                     {% for midfielder in midfielders %}
+                        <a href="{{ path('field_player_show', {'id': midfielder.id}) }}">
                         {% if midfielder.picture is not null %}
                             <figure class="player-picture">
                                 <img src="{{ asset('uploads/' ~ midfielder.picture)}}" 
                                     alt="{{ midfielder.firstName ~ ' ' ~ midfielder.lastName }}, milieu du FC Rosheim">
-                                <figcaption><h6>{{ midfielder.firstName ~ ' ' ~ midfielder.lastName }}</h6></figcaption>
+                                {{ include('include/player/_midfielder_stats.html.twig') }}
                             </figure>
                         {% else %}
                             <figure class="player-picture">
                                 <img src="{{ asset('img/no_player_picture.jpg')}}" 
                                     alt="{{ midfielder.firstName ~ ' ' ~ midfielder.lastName }}, milieu du FC Rosheim">
-                                <figcaption><h6>{{ midfielder.firstName ~ ' ' ~ midfielder.lastName}}</h6></figcaption>
+                                {{ include('include/player/_midfielder_stats.html.twig') }}
                             </figure>
-                        {% endif %}
+                        {% endif %} 
+                        </a>
                     {% endfor %}
                 </div>
-                {# Strickers list #}
-                <h2>Attaquant</h2>
-                <div class="flex flex-row">
+                <span class="redline-player"></span>
+{############################################### Strickers list ###################################################}
+                <h1>Attaquant</h1>
+                <div class="flex flex-wrap">
                     {% for stricker in strickers %}
+                        <a href="{{ path('field_player_show', {'id': stricker.id}) }}">
                         {% if stricker.picture is not null %}
                             <figure class="player-picture">
                                 <img src="{{ asset('uploads/' ~ stricker.picture)}}" 
                                     alt="{{ stricker.firstName ~ ' ' ~ stricker.lastName }}, attaquant du FC Rosheim">
-                                <figcaption><h6>{{ stricker.firstName ~ ' ' ~ stricker.lastName }}</h6></figcaption>
+                                {{ include('include/player/_stricker_stats.html.twig') }}
                             </figure>
                         {% else %}
                             <figure class="player-picture">
                                 <img src="{{ asset('img/no_player_picture.jpg')}}" 
                                     alt="{{ stricker.firstName ~ ' ' ~ stricker.lastName }}, attaquant du FC Rosheim">
-                                <figcaption><h6>{{ stricker.firstName ~ ' ' ~ stricker.lastName}}</h6></figcaption>
+                                {{ include('include/player/_stricker_stats.html.twig') }}
                             </figure>
-                        {% endif %}
+                        {% endif %} 
+                        </a>
                     {% endfor %}
                 </div>
             </div>
