@@ -1,45 +1,68 @@
 {% block header %}
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32"><img src="/img/logo.png" height="42px" width="50.59" alt="logo FC Rosheim"/></svg>
-                </a>
-        
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="/" class="nav-link"><span class="leftbar">{# span border makes the cute little pipe to the left of the nav-items #}</span>Home</a></li>
-                    <li class="nav-item"><a href="/news" class="nav-link"><span class="leftbar"></span>News</a></li>
-                    <li class="nav-item"><a href="/team" class="nav-link"><span class="leftbar"></span>Équipes</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><span class="leftbar"></span>Résultats</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><span class="leftbar"></span>Prochainement</a></li>
-                    {# Si l'utilisateur a un rôle user (et est donc connecté) : #}
-                    {% if is_granted('ROLE_USER') %}
-                        <li class=" nav-item dropdown flex" id="log-logo">
-                            <div class="nav-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" alt="logo du profil de l'utilisateur">
-                                    <title> Profil de l'utilisateur</title>
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                            </div>
-                    {# Dropdown sur l'icône avec la possibilité de consulter son profil ou de se déconnecter #}
-                            <div class="dropdown-content">
-                                <a href="{{ path('profile', {'id': app.user.id}) }}" class="">Profil</a>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('admin_index') }}" class="">Panneau admin</a>
-                                {% endif %}
-                                <a href="{{ path('app_logout', {'id': app.user.id}) }}" class="">Se déconnecter</a>
-                            </div>
-                        </li>
-                    {# Sinon l'icône renvoie vers l'authentification #}
-                    {% else %} 
-                        <li class="nav-item" id="log-logo">
-                            <a href="{{ path('app_login') }}" class="nav-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" alt="logo du profil de l'utilisateur">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-        </header>
-        {% endblock %}
+	<header class="d-flex flex-wrap py-3 mb-4 header">
+		{# <nav class="navbar"> #}
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none nav-logo">
+				<svg class="bi me-2" width="0" height="0"><img src="/img/logo.png" height="42px" width="50.59" alt="logo FC Rosheim"/></svg>
+			</a>
+
+			<ul class="nav nav-pills nav-menu">
+				<li class="nav-item">
+					<a href="/" class="nav-link">
+						<span class="leftbar">{# span border makes the cute little pipe to the left of the nav-items #}</span>Home</a>
+				</li>
+				<li class="nav-item">
+					<a href="/news" class="nav-link">
+						<span class="leftbar"></span>News</a>
+				</li>
+				<li class="nav-item">
+					<a href="/team" class="nav-link">
+						<span class="leftbar"></span>Équipes</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<span class="leftbar"></span>Résultats</a>
+				</li>
+				<li class="nav-item">
+					<a href="/event" class="nav-link">
+						<span class="leftbar"></span>Prochainement</a>
+				</li>
+				{# Si l'utilisateur a un rôle user (et est donc connecté) : #}
+				{% if is_granted('ROLE_USER') %}
+					<li class=" nav-item dropdown flex" id="log-logo">
+						<div class="nav-link">
+							<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-circle" viewbox="0 0 16 16" alt="logo du profil de l'utilisateur">
+								<title>
+									Profil de l'utilisateur</title>
+								<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+								<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+							</svg>
+						</div>
+						{# Dropdown sur l'icône avec la possibilité de consulter son profil ou de se déconnecter #}
+						<div class="dropdown-content">
+							<a href="{{ path('profile', {'id': app.user.id}) }}" class="">Profil</a>
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('admin_index') }}" class="">Panneau admin</a>
+							{% endif %}
+							<a href="{{ path('app_logout', {'id': app.user.id}) }}" class="">Se déconnecter</a>
+						</div>
+					</li>
+					{# Sinon l'icône renvoie vers l'authentification #}
+				{% else %}
+					<li class="nav-item" id="log-logo">
+						<a href="{{ path('app_login') }}" class="nav-link">
+							<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-circle" viewbox="0 0 16 16" alt="logo du profil de l'utilisateur">
+								<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+								<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+							</svg>
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		{# </nav> #}
+	</header>
+{% endblock %}
