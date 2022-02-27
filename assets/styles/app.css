@@ -40,6 +40,12 @@ span.leftbar {
     display: block;
     border-bottom: 1px solid rgba(180,0,0,0.8);
 }
+.redline-player{
+    width: 99.5%;
+    margin: 1.5em auto;
+    display: block;
+    border-bottom: 1px solid rgba(180,0,0,0.8);
+}
 
 /* Class display flex to avoid redundancy */
 .flex {
@@ -263,6 +269,14 @@ img{
     width: 100%;
     height: 100%;
 }
+.player-picture:hover .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 89%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 .player-picture figcaption {
     width: 100%;
     position: absolute;
@@ -298,13 +312,12 @@ figcaption h3{
     opacity: 0;
 }
 .player-picture:hover .player-info{
-    background-color: rgba(180, 0, 0, 0.5);
-    animation: slide 1s ease 0s 1 normal both;
+    animation: slide 200ms ease 0s 1 normal both;
 }
 @keyframes slide {
     0% {
-        opacity: 0;
-        transform: scaleX(0.0);
+        opacity: 100%;
+        transform: scaleX(0.5);
         transform-origin: 0% 0%;
     }
     100% {
@@ -336,7 +349,7 @@ figcaption h3{
 .stat-desc{
     font-size: 1rem;
 }
-.stat-cs{
+.stat-botleft{
     font-size: 60px;
     position: absolute;
     width: 90px;
@@ -344,7 +357,7 @@ figcaption h3{
     left: 30px;
     color: #f1f1f1;
 }
-.stat-saves{
+.stat-botright{
     font-size: 60px;
     position: absolute;
     width: 90px;
