@@ -21,19 +21,27 @@
                 <h2>Gardien</h2>
                 <div class="flex flex-row">
                     {% for goalKeeper in goalKeepers %}
+                        <a href="">
                         {% if goalKeeper.picture is not null %}
                             <figure class="player-picture">
                                 <img src="{{ asset('uploads/' ~ goalKeeper.picture)}}" 
                                     alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
-                                <figcaption><h6>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h6></figcaption>
+                                <figcaption><h3>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h3></figcaption>
+                                    <span class="number">{{ goalKeeper.number }}</span>
+                                <div class="player-info">
+                                    <span class="stat-games">10<p class="stat-desc"> Match joués</p></span>
+                                    <span class="stat-cs">9<p class="stat-desc">Cleen sheets</p></span>
+                                    <span class="stat-saves">23<p class="stat-desc">Arrêts</p></span>
+                                </div>
                             </figure>
                         {% else %}
                             <figure class="player-picture">
                                 <img src="{{ asset('img/no_player_picture.jpg')}}" 
                                     alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
-                                <figcaption><h6>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h6></figcaption>
+                                <figcaption><h3>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h3></figcaption>
                             </figure>
                         {% endif %}
+                        </a>
                     {% endfor %}
                 </div>
                 {# Defenders list #}

@@ -7,15 +7,18 @@ body {
     background-position: 50% 0%;
     background-size: 742px;
 }
-/* Style des balises Hn */
+/* Style Hn */
 h1, h2, h3, h4, h5, h6 {
     color: whitesmoke;
 }
-/* style du bouton principal */
+/* style primary button */
 .btn-primary{
     border-radius: 0;
 }
-
+/* style font bold without usiing <strong> */
+.bold{
+    font-weight: bold;
+}
 /* Red pipe before header nav items */
 span.leftbar {
     color:whitesmoke;
@@ -115,7 +118,6 @@ span.leftbar {
 }
 .card p {
     color: whitesmoke;
-    margin-top: 1.5em;
     margin-bottom: 0;
 }
 .card a {
@@ -127,10 +129,6 @@ span.leftbar {
 .card button{
     border-radius: 0;
 }
-.card input {
-    margin-bottom: 0px;
-}
-
 /* Team */
 .card-team {
     height: 38px;
@@ -152,7 +150,33 @@ span.leftbar {
     margin-top: 2rem;
     border-radius: 0;
 }
-
+/* Sidebar profile */
+.sidebar-profile li {
+    padding: 10px;
+    list-style-type: none;
+    margin: 0;
+    border-right: 0px solid rgba(180, 0, 0, 0);
+    transition: 0.2s;
+}
+.sidebar-profile li:hover{
+    border-right: 3px solid rgba(180, 0, 0, 0.8);
+}
+.sidebar-profile ul {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+}
+.sidebar-profile a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+#logout{
+    background-color: rgba(180, 0, 0, 0.8);
+    transition: 0.5s;
+}
+#logout:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
 /* Sidebar style */
 .sidebar {
     position: fixed;
@@ -176,13 +200,6 @@ span.leftbar {
 .sidebar a{
     text-decoration: none;
     color: whitesmoke;
-}
-#logout{
-    background-color: rgba(180, 0, 0, 0.8);
-    transition: 0.5s;
-}
-#logout:hover {
-    background-color: rgba(255, 0, 0, 1);
 }
 /* Form check input */
 .form-check-input {
@@ -211,6 +228,7 @@ span.leftbar {
 img{
     width: 100%;
 }
+/* Team style */
 .team-picture{
     position: relative;
     border: thin rgba(180, 0, 0, 0.8) solid;
@@ -230,12 +248,13 @@ img{
     padding: 5px;
     text-align: center;
 }
+/* Player style */
 .player-picture{
     position: relative;
     flex-flow: column;
     margin: auto;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 400px;
     margin: 2px 5px;
 }
 .player-picture img{
@@ -253,10 +272,83 @@ img{
     padding: 5px;
     text-align: center;
 }
+.player-picture:hover figcaption{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: #ffffffcc;
+    padding: 5px;
+    text-align: center;
+}
+.player-picture:hover h3{
+    color: #101010cc;
+}
+figcaption h6{
+    margin-bottom: 0;
+}
 .info-user-list{
     list-style-type: none;
     text-align: left;
 }
-.bold{
-    font-weight: bold;
+.player-info{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 87%;
+    opacity: 0;
+}
+.player-picture:hover .player-info{
+    background-color: rgba(180, 0, 0, 0.5);
+    animation: slide 0.1s ease 0s 1 normal both;
+}
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: scaleX(0.0);
+        transform-origin: 0% 0%;
+    }
+    100% {
+        opacity: 100%;
+        transform: scaleX(1);
+        transform-origin: 0% 0%;
+    }
+}
+.number{
+    font-size: 60px;
+    width: 90px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: rgba(180, 0, 0, 0.8);
+}
+.player-picture:hover .number{
+    color: #f1f1f1;
+    z-index: 1;
+}
+.stat-games{
+    font-size: 60px;
+    position: absolute;
+    width: 90px;
+    top: 30px;
+    right: 30px;
+    color: #f1f1f1;
+}
+.stat-desc{
+    font-size: 1rem;
+}
+.stat-cs{
+    font-size: 60px;
+    position: absolute;
+    width: 90px;
+    bottom: 30px;
+    left: 30px;
+    color: #f1f1f1;
+}
+.stat-saves{
+    font-size: 60px;
+    position: absolute;
+    width: 90px;
+    bottom: 30px;
+    right: 30px;
+    color: #f1f1f1;
 }
