@@ -175,7 +175,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/news/new", name="admin_news_edit")
+     * @Route("/news/{id}", name="admin_news_edit")
      */
     public function edit_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
