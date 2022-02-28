@@ -6,6 +6,12 @@ body {
     background-attachment: fixed;
     background-position: 50% 0%;
     background-size: 742px;
+    padding-top: 9em;
+}
+
+/******** reset nav z-index ********/
+.fixed-top {
+    z-index: 2;
 }
 /* Style Hn */
 h1, h2, h3, h4, h5, h6 {
@@ -21,6 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 /******** spacing element inside header ********/
 .header{
+    background-color: #0c0c0c;
     display: flex;
     justify-content: space-between;
 }
@@ -271,16 +278,8 @@ span.leftbar {
     box-sizing: border-box;
     align-items: center;
     padding: 1em;
-    /* height: 100%;
-    width: 5em; */
-}
 
-/* .navbar-media {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-} */
+}
 
 .fa-brands {
     color: white;
@@ -368,7 +367,7 @@ span.leftbar {
         background-color: #101010;
         border: solid rgba(180, 0, 0, 0.8) 1px;
         position: fixed;
-        top: 5rem;
+        top: 7rem;
         right: -100%;
         flex-direction: column;
         text-align: left;
@@ -397,7 +396,6 @@ span.leftbar {
 
     .nav-item {
         margin: 0;
-        /* padding: 0 1em; */
     }
 
     .hamburger {
@@ -565,4 +563,57 @@ figcaption h3{
     bottom: 30px;
     right: 30px;
     color: #f1f1f1;
+}
+
+/******** Force style ********/
+
+.margin-force {
+    padding-top: 5em;
+}
+
+.padding-force {
+    padding-top: 5em;
+}
+
+.fixed-force {
+    position: fixed;
+}
+
+.padding-crubs {
+    padding-right: 8px;
+}
+
+/******** Breadcrumb ********/
+
+.breadcrumb-link {
+    color: #f12f37;
+}
+
+.breadcrumb-link a:hover {
+    color: #f12f37;
+}
+
+.breadcrumb-link a{
+    color: #f1f1f1;
+
+}
+
+.breadcrumb-text{
+    color: #f1f1f1;
+}
+
+.breadcrumb-container {
+    display: flex;
+    justify-content: left;
+    padding-left: 1em;
+    z-index: 3;
+    position: fixed;
+    top: 25px;
+    left: 55px;
+}
+
+@media only screen and (min-width:769px) and (max-width:865px) {
+.breadcrumb-container{
+    display: none;
+}
 }
