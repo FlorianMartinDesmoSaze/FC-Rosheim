@@ -60,14 +60,12 @@ class Event
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
-     * @Assert\DateTime
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
-     * @Assert\DateTime
      */
     private $endDate;
 

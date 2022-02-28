@@ -352,6 +352,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString()
     {
-        return $this->getFirstName() ." ". $this->getLastName();
+        if ($this->getFirstName() !== null && $this->getLastName() !== null) {
+            return $this->getFirstName() . " " . $this->getLastName();
+        } else {
+            return $this->getEmail();
+        }
     }
 }

@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class AdminUsersType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -27,14 +28,8 @@ class AdminUsersType extends AbstractType
             ->add('phone')
             ->add('lastName')
             ->add('first_name')
-            ->add('birthdate', null, [
-                'widget' => 'choice',
-                'years' => range(date('Y'), date('Y') - 100),
-                'placeholder' => [
-                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
-                ],
-                // 'months' => range(date('m'), 12),
-                // 'days' => range(date('d'), 31),
+            ->add('birthdate', DateType::class, [
+                'widget' => 'single_text',
             ])
             ->add('license')
             ->add('isVerified')

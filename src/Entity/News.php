@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
+use App\Repository\NewsRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\NewsRepository;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints as Assert;
 

@@ -3,10 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Event;
-use App\Entity\News;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,10 +19,11 @@ class EventType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
+            ->add('user')
             //->add('type')
             //->add('type', EntityType::class,['class'=>Event::class,'choice_label'=>'type','expanded' => true,] )
             ->add('type',ChoiceType::class, [
-                'choices' => ['evenement sportif'=>Event::EVT_SPORT,'evenement associatif'=>Event::EVT_ASSO]])
+                'choices' => ['Événement sportif'=>Event::EVT_SPORT,'Événement associatif'=>Event::EVT_ASSO]])
             ->add('startDate')
             ->add('endDate')
             ->add('location')
