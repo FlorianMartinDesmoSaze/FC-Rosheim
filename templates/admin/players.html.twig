@@ -7,9 +7,9 @@
 <div class="container-fluid">
     
     <div class="full-height flex align-items-center">
-        {{ include ("include/_admin_sidepanel.html.twig") }}
+        {{ include ("include/admin/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
-            {{ include('include/_admin_title.html.twig') }}
+            {{ include('include/admin/_admin_title.html.twig') }}
                 <div class="card">
                 <h1 class="display-2">Gestion des Joueurs·euses</h1>
                 <table class="table table-striped table-dark table-hover">
@@ -31,14 +31,14 @@
                             {% if player.team|default %}
                                 {{ player.team }}
                             {% else %}
-                                Non renseigné
+                                Non renseignée
                             {% endif %}
                             </td>
                             <td>
                             {% if player.position|default %}
                                 {{ player.position }}
                             {% else %}
-                                Non renseigné
+                                Non renseignée
                             {% endif %}
                             </td>
                             <td>

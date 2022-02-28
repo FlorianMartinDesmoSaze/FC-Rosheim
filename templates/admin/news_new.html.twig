@@ -6,9 +6,9 @@
 {% block content %}
 <div class="container-fluid">
     <div class="full-height flex align-items-center">
-        {{ include ("include/_admin_sidepanel.html.twig") }}
+        {{ include ("include/admin/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
-            {{ include('include/_admin_title.html.twig') }}
+            {{ include('include/admin/_admin_title.html.twig') }}
                 <div class="card">
                 <h1 class="display-2">Nouvelle News</h1>
                     {{ form_start(form, {attr: {class: 'form-user-submit'}}) }}
@@ -76,4 +76,8 @@
         </main>
     </div>
 </div>
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('adminLeaveWarning') }}
+{% endblock %}
 {% endblock content %}
