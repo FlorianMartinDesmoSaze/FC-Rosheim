@@ -10,6 +10,7 @@ use App\Entity\Stats;
 use App\Entity\Team;
 use App\Entity\User;
 use App\Form\EventType;
+use App\Form\NewEventType;
 use App\Form\NewsType;
 use App\Form\PlayerType;
 use App\Form\StaffType;
@@ -406,7 +407,7 @@ class AdminController extends AbstractController
     public function new_event(Request $request, EntityManagerInterface $entityManager): Response
     {
         $event = new Event();
-        $form = $this->createForm(EventType::class, $event);
+        $form = $this->createForm(NewEventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
