@@ -234,9 +234,9 @@ span.leftbar {
 #down_arrow:hover{
     cursor: pointer;
     margin-top: 20px;
-    animation: 1s ease-in-out 0s infinite slide;
+    animation: 1s ease-in-out 0s infinite slide_arrow;
 }
-    @keyframes slide {
+    @keyframes slide_arrow {
         0% {
             opacity: .7;
             transform: translateY(0px);
@@ -513,9 +513,9 @@ figcaption h3{
     opacity: 0;
 }
 .player-picture:hover .player-info{
-    animation: slide 200ms ease 0s 1 normal both;
+    animation: slide_player 200ms ease 0s 1 normal both;
 }
-@keyframes slide {
+@keyframes slide_player {
     0% {
         opacity: 100%;
         transform: scaleX(0.5);
