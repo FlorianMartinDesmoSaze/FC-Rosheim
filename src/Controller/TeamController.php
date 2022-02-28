@@ -6,6 +6,7 @@ use App\Entity\Team;
 use App\Form\TeamType;
 use App\Service\FileUploader;
 use App\Repository\TeamRepository;
+use App\Repository\StatsRepository;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -64,7 +65,8 @@ class TeamController extends AbstractController
     /**
      * @Route("/{slug<^[a-z0-9]+(?:-[a-z0-9]+)*$>}", name="team_show", methods={"GET"})
      */
-    public function playersByTeam(Team $team, PlayerRepository $playerRepository, TeamRepository $teamRepository): Response
+    public function playersByTeam(Team $team, PlayerRepository $playerRepository, 
+        StatsRepository $statsRepository, TeamRepository $teamRepository): Response
     {
         
         //looking for team id
@@ -75,15 +77,10 @@ class TeamController extends AbstractController
         $defenders = $playerRepository->findPlayersByPosition($id, 2); //find defenders = 2
         $midfielders = $playerRepository->findPlayersByPosition($id, 3); //find midfielders = 3
         $strickers = $playerRepository->findPlayersByPosition($id, 4); //find strickers = 4
-
-        //if there's no player in team display an error 404
-        if (!$players) {
-            throw $this->createNotFoundException(
-                'Il n\'y a pas de joueurs dans cette équipe'
-            );
-        }
+        $stats = $statsRepository->findBy(['player' => $players]);
 
         return $this->render('team/show.html.twig', [
+            'stats' => $stats,
             'goalKeepers' => $goalKeepers,
             'defenders' => $defenders,
             'midfielders' => $midfielders,
