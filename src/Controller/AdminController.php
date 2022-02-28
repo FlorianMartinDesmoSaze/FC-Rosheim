@@ -58,7 +58,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/users/delete/{id}", name="admin_users_delete")
+     * @Route("/users/delete/{id}", name="admin_users_delete", methods={"DELETE"})
      */
     public function deleteUser(User $user, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
@@ -257,7 +257,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/players/delete/{id}", name="admin_players_delete")
+     * @Route("/players/delete/{id}", name="admin_players_delete", methods={"DELETE"})
      */
     public function deletePlayer(Player $player, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
@@ -300,7 +300,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/teams/delete/{id}", name="admin_teams_delete")
+     * @Route("/teams/delete/{id}", name="admin_teams_delete", methods={"DELETE"})
      */
     public function deleteTeam(Team $team, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
@@ -356,7 +356,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/events/delete/{id}", name="admin_events_delete")
+     * @Route("/events/delete/{id}", name="admin_events_delete", methods={"DELETE"})
      */
     public function deleteEvent(Event $event, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
