@@ -19,6 +19,12 @@
                                 <td>{{ news.id }}</td>
                             </tr>
                             <tr>
+                                <th>Titre</th>
+                                <td>
+                                    {{ form_widget(form.title) }}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Utilisateur·ice lié·e</th>
                                 <td>
                                     {{ form_widget(form.user) }}
@@ -34,12 +40,6 @@
                                 <th>Event lié</th>
                                 <td>
                                     {{ form_widget(form.event) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Titre</th>
-                                <td>
-                                    {{ form_widget(form.title) }}
                                 </td>
                             </tr>
                             <tr>

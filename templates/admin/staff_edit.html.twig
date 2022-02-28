@@ -65,7 +65,7 @@
                         <button class='btn btn-primary' id='admin_save_button' type="submit">Sauvegarder</button>
                         <button id="admin_delete_button" class="btn btn-outline-warning" form="delete_form">Supprimer</button>
                 {{ form_end(form) }}
-                    <form id="delete_form" method="post" action="{{ path('admin_users_delete', {id: staff.id}) }}">
+                    <form id="delete_form" method="post" action="{{ path('admin_staff_delete', {id: staff.id}) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ staff.id) }}">
                     </form>

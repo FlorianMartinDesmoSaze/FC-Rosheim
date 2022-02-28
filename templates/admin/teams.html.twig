@@ -36,14 +36,14 @@
                             {% if team.season|default %}
                                 {{ team.season }}
                             {% else %}
-                                Non renseigné
+                                Non renseignée
                             {% endif %}
                             </td>
                             <td>
                             {% if  team.picture|default %}
                                 <a href="{{ team.picture }}" target="_blank">{{ team.picture }}</a>
                             {% else %}
-                                Non renseigné
+                                Non renseignée
                             {% endif %}
                             </td>
                         </tr>
@@ -54,7 +54,7 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <button class='btn btn-primary clickable' onclick="window.location='#'">Créer une nouvelle Équipe</button>
+                <button class='btn btn-primary clickable' onclick="window.location='{{ path('admin_teams_new') }}'">Créer une nouvelle Équipe</button>
                 </div>
         </main>
     </div>
