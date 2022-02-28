@@ -53,7 +53,7 @@ class PlayerController extends AbstractController
             $entityManager->persist($player);
             $entityManager->flush();
 
-            return $this->redirectToRoute('player_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('team_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('player/new.html.twig', [
@@ -131,7 +131,7 @@ class PlayerController extends AbstractController
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('player_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('team_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('player/edit.html.twig', [
@@ -151,6 +151,6 @@ class PlayerController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('player_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('team_show', [], Response::HTTP_SEE_OTHER);
     }
 }
