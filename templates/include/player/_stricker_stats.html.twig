@@ -1,0 +1,12 @@
+<div class="overlay"></div>
+<figcaption><h3>{{ stricker.firstName ~ ' ' ~ stricker.lastName }}</h3></figcaption>
+<span class="number">{{ stricker.number }}</span>
+{% for stat in stats %} {# we get our stat list #}
+    {% if stat.player.id is defined and stat.player.id == stricker.id  %} {# to avoid problems with for we verify player.id #} 
+        <div class="player-info">
+            <span class="stat-games">{{stat.gamePlayed}}<p class="stat-desc"> Match joués</p></span>
+            <span class="stat-botleft">{{stat.assists}}<p class="stat-desc">Passes D.</p></span>
+            <span class="stat-botright">{{stat.goals}}<p class="stat-desc">Buts</p></span>
+        </div>
+    {% endif %}
+{% endfor %}

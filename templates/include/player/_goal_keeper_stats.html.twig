@@ -1,0 +1,12 @@
+<div class="overlay"></div>
+<figcaption><h3>{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}</h3></figcaption>
+<span class="number">{{ goalKeeper.number }}</span>
+{% for stat in stats %} {# we get our stat list #}
+    {% if stat.player.id is defined and stat.player.id == goalKeeper.id  %} {# to avoid problems with for we verify player.id #} 
+        <div class="player-info">
+            <span class="stat-games">{{stat.gamePlayed}}<p class="stat-desc"> Match joués</p></span>
+            <span class="stat-botleft">{{stat.cleanSheets}}<p class="stat-desc">Cleen sheets</p></span>
+            <span class="stat-botright">{{stat.saves}}<p class="stat-desc">Arrêts</p></span>
+        </div>
+    {% endif %}
+{% endfor %}

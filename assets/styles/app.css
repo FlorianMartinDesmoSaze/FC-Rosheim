@@ -209,7 +209,7 @@ span.leftbar {
 }
 #down_arrow:hover{
     cursor: pointer;
-    /* margin-top: 20px; */
+    margin-top: 20px;
     animation: 1s ease-in-out 0s infinite slide;
 }
     @keyframes slide {
