@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StaffRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StaffRepository::class)
@@ -19,16 +20,22 @@ class Staff
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=2, max=255)
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=2, max=255)
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=2, max=255)
      */
     private $position;
 
@@ -39,6 +46,9 @@ class Staff
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas une adresse valide."
+     * )
      */
     private $email;
 

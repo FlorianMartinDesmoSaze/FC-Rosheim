@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil - FC Rosheim{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="full-height flex align-items-center">
+        {{ include ("include/_sidebar_profile.html.twig") }}
+        <main class="col-md-4 offset-md-1">
+            <div class="card">
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <div class="redline"></div>
+                    <button class="btn btn-primary">{{ button_label|default('Modifier') }}</button>
+                {{ form_end(form) }}
+                <a class="" href="{{path('update_password', {'id': app.user.id})}}" title="Modifier le mdp">Modifier le mdp</a>
+        </main>
+    </div>
+</div>
+{% endblock %}

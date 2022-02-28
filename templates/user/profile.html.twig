@@ -5,18 +5,10 @@
 {% block content %}
 <div class="container-fluid">
     <div class="full-height flex align-items-center">
-        <aside class="col-md-3">
-            <div class="sidebar">
-                <ul>
-                    <a href="{{ path('profile', {'id': app.user.id}) }}"><li>Mes Informations</li></a>
-                    <a href="#"><li>Mon équipe favorite</li></a>
-                    <a href="#"><li>Modifier mes informations</li></a>
-                    <a href="{{path('app_logout')}}"><li id="logout">Se déconnecter</li></a>
-                </ul>
-            </div>
-        </aside>
+        {{ include ("include/_sidebar_profile.html.twig") }}
         <main class="col-md-4 offset-md-1">
             <div class="card text-center">
+            {# verify if user is log, in this case display his fullname if they exist or display his email  #}
                 {% if app.user %}
                     {% if app.user.lastname and app.user.firstname != null %}
                         <h4> Bonjour {{app.user.firstname}} {{app.user.lastname}}</h4>
@@ -29,7 +21,24 @@
                     </div>
                 {% endif %}
                 <span class="redline-center"></span>
-            </div>
+                {# list of user informations and if he is licensied or not #}
+                <ul class="info-user-list">
+                    <li>Adresse mail: <span class="bold">{{ app.user.email }}</span></li>
+                    <li>Prénom : <span class="bold">{{ app.user.firstname }}</span></li>
+                    <li>Nom : <span class="bold">{{ app.user.lastname }}</span></li>
+                    <li>N° Téléphone : <span class="bold">{{ app.user.phone }}</span></li>
+                    <li>Date de naissance : <span class="bold">{{ app.user.birthdate|date("d/m/Y") }}</span></li>
+                    {% if app.user.license == 1 %}
+                        <li> Vous êtes <span class="bold">licencié</span> au sein du club</li>
+                    {% else %}
+                        <li> 
+                            Vous n'êtes <span class="bold">pas licencié</span> au sein du club, 
+                            vous pouvez obtenir votre licence en nous <a href="#">contactant</a> 
+                            ou en nous remettant ce <a href="#">PDF</a>.
+                        </li>
+                    {% endif %}
+                </ul>
+            <div>
         </main>
     </div>
 </div>

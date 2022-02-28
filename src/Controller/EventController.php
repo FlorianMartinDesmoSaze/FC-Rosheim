@@ -17,6 +17,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class EventController extends AbstractController
 {
+    /**
+     * @Route("/calendar", name="event_calendar", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function calendar(): Response
+    {
+        return $this->render('booking/calendar.html.twig');
+    }
     
     /**
      * @Route("/", name="event_index", methods={"GET"})
@@ -27,6 +36,7 @@ class EventController extends AbstractController
             'events' => $eventRepository->findAll(),
         ]);
     }
+
 
     /**
      * @Route("/new", name="event_new", methods={"GET", "POST"})

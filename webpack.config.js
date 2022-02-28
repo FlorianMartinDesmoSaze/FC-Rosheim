@@ -23,7 +23,10 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('adminSubmitWarning', './assets/js/adminSubmitWarning')
     .addEntry('adminLeaveWarning', './assets/js/adminLeaveWarning')
-    .addEntry('news', './assets/js/news.js')
+    // .addEntry('adminUsersEdit', './assets/js/adminPanelUsersEdit')
+    // .addEntry('calendarStyle01', 'https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css')
+    // .addEntry('calendarStyle02', 'https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css')
+    // .addEntry('calendarStyle03', 'https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
