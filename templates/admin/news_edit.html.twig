@@ -55,21 +55,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Slug</th>
-                                <td>
-                                    {{ form_widget(form.slug) }}
-                                </td>
-                            </tr>
-                            <tr>
                                 <th>Créée le</th>
                                 <td>
                                     {{ form_widget(form.createdAt) }}
-                                </td>
-                            </tr>
-                            <tr hidden>
-                                <th>MàJ le</th>
-                                <td>
-                                    {{ form_widget(form.updatedAt) }}
                                 </td>
                             </tr>
                         </tbody>
@@ -87,6 +75,6 @@
 </div>
 {% block javascripts %}
     {{ parent() }}
-    {{ include('include/_admin_js.html.twig') }}
+    {{ include('include/admin/_admin_js.html.twig') }}
 {% endblock %}
 {% endblock content %}
