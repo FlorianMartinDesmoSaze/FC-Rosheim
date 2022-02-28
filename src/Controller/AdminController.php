@@ -12,6 +12,7 @@ use App\Entity\User;
 use App\Form\EventType;
 use App\Form\NewsType;
 use App\Form\PlayerType;
+use App\Form\StaffType;
 use App\Form\TeamType;
 use App\Form\UserType;
 use App\Repository\EventRepository;
