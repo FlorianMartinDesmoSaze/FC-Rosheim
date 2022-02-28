@@ -155,7 +155,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/news/new", name="admin_news_new")
      */
-    public function edit_news(Request $request, EntityManagerInterface $entityManager): Response
+    public function new_news(Request $request, EntityManagerInterface $entityManager): Response
     {
         $news = new News();
         $form = $this->createForm(NewsType::class, $news);
@@ -175,9 +175,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/news/{id}", name="admin_news_edit")
+     * @Route("/news/new", name="admin_news_edit")
      */
-    public function new_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
+    public function edit_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
@@ -194,7 +194,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/news/delete/{id}", name="admin_news_delete")
+     * @Route("/news/delete/{id}", name="admin_news_delete", methods={"DELETE"})
      */
     public function deleteNews(News $news, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
