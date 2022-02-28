@@ -16,72 +16,48 @@
                         <tbody>
                             <tr>
                                 <th>ID</th>
-                                <td>{{ user.id }}</td>
-                            </tr>
-                            <tr>
-                                <th>E-mail</th>
-                                <td id="user_email">
-                                    {{ form_widget(form.email) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Pseudonyme</th>
-                                <td id="user_nickname">
-                                    {{ form_widget(form.nickname) }}
-                                </td>
+                                <td>{{ staff.id }}</td>
                             </tr>
                             <tr>
                                 <th>Prénom</th>
-                                <td id="user_firstName">
-                                    {{ form_widget(form.first_name) }}
+                                <td id="staff_firstName">
+                                    {{ form_widget(form.firstName) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Nom de famille</th>
-                                <td id="user_lastName">
+                                <td id="staff_lastName">
                                     {{ form_widget(form.lastName) }}
                                 </td>
                             </tr>
                             <tr>
+                                <th>E-mail</th>
+                                <td id="staff_email">
+                                    {{ form_widget(form.email) }}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Telephone</th>
-                                <td id="user_phone">
+                                <td id="staff_phone">
                                     {{ form_widget(form.phone) }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Date de naissance</th>
-                                <td id="user_birthDate">
-                                    {{ form_widget(form.birthdate) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>License</th>
-                                <td id="user_license">
-                                    {{ form_widget(form.license) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Équipe</th>
-                                <td id="user_team">
-                                    {{ form_widget(form.team) }}
+                                <th>Compte Utilisateur</th>
+                                <td id="staff_account">
+                                    {{ form_widget(form.user) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Responsabilité</th>
-                                <td id="user_staff">
-                                    {{ form_widget(form.staff) }}
+                                <td id="staff_position">
+                                    {{ form_widget(form.position) }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Rôles</th>
-                                <td id="user_roles">
-                                    {{ form_widget(form.roles) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>E-mail vérifié</th>
-                                <td id="user_isVerified">
-                                    {{ form_widget(form.isVerified) }}
+                                <th>Photo</th>
+                                <td>
+                                    {{ form_widget(form.picture) }}
                                 </td>
                             </tr>
                         </tbody>
@@ -89,9 +65,9 @@
                         <button class='btn btn-primary' id='admin_save_button' type="submit">Sauvegarder</button>
                         <button id="admin_delete_button" class="btn btn-outline-warning" form="delete_form">Supprimer</button>
                 {{ form_end(form) }}
-                    <form id="delete_form" method="post" action="{{ path('admin_users_delete', {id: user.id}) }}">
+                    <form id="delete_form" method="post" action="{{ path('admin_users_delete', {id: staff.id}) }}">
                         <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ staff.id) }}">
                     </form>
                 </div>
         </main>
