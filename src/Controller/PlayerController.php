@@ -7,6 +7,7 @@ use App\Form\PlayerType;
 use App\Service\FileUploader;
 use App\Repository\PlayerRepository;
 use App\Repository\StatsRepository;
+use App\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +54,7 @@ class PlayerController extends AbstractController
             $entityManager->persist($player);
             $entityManager->flush();
 
-            return $this->redirectToRoute('team_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('player/new.html.twig', [
@@ -131,7 +132,7 @@ class PlayerController extends AbstractController
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('team_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('player/edit.html.twig', [
@@ -151,6 +152,6 @@ class PlayerController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('team_show', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);
     }
 }
