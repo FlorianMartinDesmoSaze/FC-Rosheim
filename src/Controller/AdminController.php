@@ -69,7 +69,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_users');
     }
     /**
-     * @Route("/users/{id}", name="admin_users_edit")
+     * @Route("/users/{id}", name="admin_users_edit", methods={"GET", "POST"})
      */
     public function edit_users(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
@@ -101,23 +101,15 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/staff/{id}", name="admin_staff_edit")
+     * @Route("/staff/delete/{id}", name="admin_staff_delete", methods={"DELETE"})
      */
-    public function edit_staff(Request $request, Staff $staff, EntityManagerInterface $entityManager): Response
+    public function deleteStaff(Staff $staff, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
-        $form = $this->createForm(StaffType::class, $staff);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin_staff', [], Response::HTTP_SEE_OTHER);
+        if ($this->isCsrfTokenValid('delete' . $staff->getId(), $request->get('_token'))) {
+            $em->remove($staff);
+            $em->flush();
         }
-
-        return $this->renderForm('admin/staff_edit.html.twig', [
-            'staff' => $staff,
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('admin_staff');
     }
     /**
      * @Route("/staff/new/", name="admin_staff_new")
@@ -140,6 +132,25 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
+    /**
+     * @Route("/staff/{id}", name="admin_staff_edit", methods={"GET", "POST"})
+     */
+    public function edit_staff(Request $request, Staff $staff, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(StaffType::class, $staff);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_staff', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/staff_edit.html.twig', [
+            'staff' => $staff,
+            'form' => $form,
+        ]);
+    }
 
                         ///////////////////
                         //      NEWS     //
@@ -152,6 +163,17 @@ class AdminController extends AbstractController
         return $this->render('admin/news.html.twig', [
             'newsRepository' => $newsRepository->findAll(),
         ]);
+    }
+    /**
+     * @Route("/news/delete/{id}", name="admin_news_delete", methods={"DELETE"})
+     */
+    public function deleteNews(News $news, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $news->getId(), $request->get('_token'))) {
+            $em->remove($news);
+            $em->flush();
+        }
+        return $this->redirectToRoute('admin_news');
     }
     /**
      * @Route("/news/new", name="admin_news_new")
@@ -176,7 +198,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/news/{id}", name="admin_news_edit")
+     * @Route("/news/{id}", name="admin_news_edit", methods={"GET", "POST"})
      */
     public function edit_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
@@ -194,17 +216,6 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
-    /**
-     * @Route("/news/delete/{id}", name="admin_news_delete", methods={"DELETE"})
-     */
-    public function deleteNews(News $news, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        if ($this->isCsrfTokenValid('delete' . $news->getId(), $request->get('_token'))) {
-            $em->remove($news);
-            $em->flush();
-        }
-        return $this->redirectToRoute('admin_news');
-    }
 
                         ///////////////////
                         //    PLAYERS    //
@@ -219,7 +230,39 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/players/{id}", name="admin_players_edit")
+     * @Route("/players/delete/{id}", name="admin_players_delete", methods={"DELETE"})
+     */
+    public function deletePlayer(Player $player, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $player->getId(), $request->get('_token'))) {
+            $em->remove($player);
+            $em->flush();
+        }
+        return $this->redirectToRoute('admin_players');
+    }
+    /**
+     * @Route("/players/new", name="admin_players_new")
+     */
+    public function new_player(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $player = new Player();
+        $form = $this->createForm(PlayerType::class, $player);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($player);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_players', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/players_new.html.twig', [
+            'player' => $player,
+            'form' => $form,
+        ]);
+    }
+    /**
+     * @Route("/players/{id}", name="admin_players_edit", methods={"GET", "POST"})
      */
     public function edit_player(Request $request, Player $player, EntityManagerInterface $entityManager): Response
     {
@@ -238,7 +281,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/stats/{id}", name="admin_stats_edit")
+     * @Route("/stats/{id}", name="admin_stats_edit", methods={"GET", "POST"})
      */
     public function edit_stats(Request $request, Stats $stats, EntityManagerInterface $entityManager): Response
     {
@@ -256,17 +299,6 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
-    /**
-     * @Route("/players/delete/{id}", name="admin_players_delete", methods={"DELETE"})
-     */
-    public function deletePlayer(Player $player, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        if ($this->isCsrfTokenValid('delete' . $player->getId(), $request->get('_token'))) {
-            $em->remove($player);
-            $em->flush();
-        }
-        return $this->redirectToRoute('admin_players');
-    }
 
                         ///////////////////
                         //     TEAMS     //
@@ -281,7 +313,39 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/teams/{id}", name="admin_teams_edit")
+     * @Route("/teams/new", name="admin_teams_new")
+     */
+    public function new_team(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $team = new Team();
+        $form = $this->createForm(TeamType::class, $team);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($team);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_teams', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/teams_new.html.twig', [
+            'team' => $team,
+            'form' => $form,
+        ]);
+    }
+    /**
+     * @Route("/teams/delete/{id}", name="admin_teams_delete", methods={"DELETE"})
+     */
+    public function deleteTeam(Team $team, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $team->getId(), $request->get('_token'))) {
+            $em->remove($team);
+            $em->flush();
+        }
+        return $this->redirectToRoute('admin_teams');
+    }
+    /**
+     * @Route("/teams/{id}", name="admin_teams_edit", methods={"GET", "POST"})
      */
     public function edit_team(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
@@ -298,17 +362,6 @@ class AdminController extends AbstractController
             'team' => $team,
             'form' => $form,
         ]);
-    }
-    /**
-     * @Route("/teams/delete/{id}", name="admin_teams_delete", methods={"DELETE"})
-     */
-    public function deleteTeam(Team $team, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        if ($this->isCsrfTokenValid('delete' . $team->getId(), $request->get('_token'))) {
-            $em->remove($team);
-            $em->flush();
-        }
-        return $this->redirectToRoute('admin_teams');
     }
 
                         ///////////////////
@@ -337,7 +390,39 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/events/{id}", name="admin_events_edit")
+     * @Route("/events/delete/{id}", name="admin_events_delete", methods={"DELETE"})
+     */
+    public function deleteEvent(Event $event, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $event->getId(), $request->get('_token'))) {
+            $em->remove($event);
+            $em->flush();
+        }
+        return $this->redirectToRoute('admin_events');
+    }
+    /**
+     * @Route("/events/new", name="admin_events_new")
+     */
+    public function new_event(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $event = new Event();
+        $form = $this->createForm(EventType::class, $event);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_events', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/events_new.html.twig', [
+            'event' => $event,
+            'form' => $form,
+        ]);
+    }
+    /**
+     * @Route("/events/{id}", name="admin_events_edit", methods={"GET", "POST"})
      */
     public function edit_event(Request $request, Event $event, EntityManagerInterface $entityManager): Response
     {
@@ -354,16 +439,5 @@ class AdminController extends AbstractController
             'event' => $event,
             'form' => $form,
         ]);
-    }
-    /**
-     * @Route("/events/delete/{id}", name="admin_events_delete", methods={"DELETE"})
-     */
-    public function deleteEvent(Event $event, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        if ($this->isCsrfTokenValid('delete' . $event->getId(), $request->get('_token'))) {
-            $em->remove($event);
-            $em->flush();
-        }
-        return $this->redirectToRoute('admin_events');
     }
 }
