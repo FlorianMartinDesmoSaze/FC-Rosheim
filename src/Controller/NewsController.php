@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 // use App\Entity\Team;
 
 /**
@@ -21,8 +22,10 @@ class NewsController extends AbstractController
     /**
      * @Route("/", name="news_index", methods={"GET"})
      */
-    public function index(NewsRepository $newsRepository): Response
+    public function index(NewsRepository $newsRepository, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
 
         return $this->render('news/index.html.twig', [
             'news' => $newsRepository->findAll(),
