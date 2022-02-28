@@ -110,10 +110,31 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_users', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_staff', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/staff_edit.html.twig', [
+            'staff' => $staff,
+            'form' => $form,
+        ]);
+    }
+    /**
+     * @Route("/staff/new/", name="admin_staff_new")
+     */
+    public function new_staff(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $staff = new Staff();
+        $form = $this->createForm(StaffType::class, $staff);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($staff);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_staff', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/staff_new.html.twig', [
             'staff' => $staff,
             'form' => $form,
         ]);
@@ -132,9 +153,31 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/news/new", name="admin_news_new")
+     */
+    public function edit_news(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $news = new News();
+        $form = $this->createForm(NewsType::class, $news);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($news);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_news', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/news_new.html.twig', [
+            'news' => $news,
+            'form' => $form,
+        ]);
+    }
+
+    /**
      * @Route("/news/{id}", name="admin_news_edit")
      */
-    public function edit_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
+    public function new_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);

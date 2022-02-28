@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\NewsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
@@ -14,17 +15,20 @@ class News
     /**
      * @ORM\PrePersist
      */
-    public function prePersist()
+    public function prePersist(): void
     {
-        $this->updatedAt = new \DateTime();
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = $this->createdAt;
     }
 
     /**
      * @ORM\PreUpdate
      */
-    public function preUpdate()
+    public function preUpdate(): void
     {
-        $this->updatedAt = new \DateTime();
+        $this->slug = strtolower((new AsciiSlugger())->slug($this->title));
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     /**
