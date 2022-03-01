@@ -1,0 +1,16 @@
+{% block sidepanel %}
+    <aside class="col-md-3">
+        <div class="sidebar">
+            <ul>
+                <a href="{{ path('admin_users') }}"><li id='select_users' class="red-bar-on-hover">Utilisateurs</li></a>
+                <a href="{{ path('admin_staff') }}"><li id='select_staff' class="red-bar-on-hover">Staff</li></a>
+                <a href="{{ path('admin_news') }}"><li id='select_news' class="red-bar-on-hover">News</li></a>
+                <a href="{{ path('admin_players') }}"><li id='select_players' class="red-bar-on-hover">Joueurs·euses</li></a>
+                <a href="{{ path('admin_teams') }}"><li id='select_teams' class="red-bar-on-hover">Équipes</li></a>
+                <a href="{{ path('admin_results') }}"><li id='select_results' class="red-bar-on-hover">Résultats</li></a>
+                <a href="{{ path('admin_events') }}"><li id='select_events' class="red-bar-on-hover">Événements</li></a>
+                <a href="{{path('app_logout')}}"><li id="logout">Se déconnecter</li></a>
+            </ul>
+        </div>
+    </aside>
+{% endblock %}

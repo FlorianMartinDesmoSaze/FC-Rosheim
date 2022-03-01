@@ -14,16 +14,8 @@ import './bootstrap';
 
 import 'bootstrap';
 
-// import './js/calendar'
-
-import './js/adminPanelUsers';
-
-import './js/adminPanelUsersEdit';
-
 import './js/news'
 
 import './js/hamburger'
 
 import './js/mediaIcons'
-
-

@@ -18,7 +18,7 @@ class SponsorFixtures extends Fixture
             $sponsor
                 ->setName($faker->company())
                 ->setLink($faker->url())
-                ->setPicture('//via.placeholder.com/350x150')
+                ->setPicture('player-test.png')
                 ->setSlug($faker->slug(3, false))
                 ->setStatus($faker->boolean())
             ;

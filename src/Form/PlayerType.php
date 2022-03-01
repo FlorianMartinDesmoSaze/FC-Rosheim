@@ -6,6 +6,7 @@ use App\Entity\Team;
 use App\Entity\Player;
 use App\Entity\Position;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
@@ -38,13 +39,8 @@ class PlayerType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('birthdate', DateTimeType::class, [
-                'widget' => 'choice',
-                'years' => range(date('Y'), date('Y') - 100),
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                ],
-                'required' => false,
+            ->add('birthdate', DateType::class, [
+                'widget' => 'single_text',
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Photo du joueur',

@@ -21,6 +21,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('adminSubmitWarning', './assets/js/adminSubmitWarning')
+    .addEntry('adminLeaveWarning', './assets/js/adminLeaveWarning')
     // .addEntry('adminUsersEdit', './assets/js/adminPanelUsersEdit')
     // .addEntry('calendarStyle01', 'https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css')
     // .addEntry('calendarStyle02', 'https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css')

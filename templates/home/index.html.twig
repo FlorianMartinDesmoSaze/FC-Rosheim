@@ -1,16 +1,22 @@
 {% extends 'base.html.twig' %}
-{% block title %}Page d'accueil - FC Rosheim{% endblock %}
-{% block meta_description %}Bienvenue sur l'application web du Football Club de Rosheim situé dans la commune du même nom dans le Bas-Rhin{% endblock %}
-{% block content %}
-    <div class="container-fluid ">
-        <div class="flex flex-column align-items-center justify-content-md-center full-height">
-                {% for new in news %}
-            <div class="col-md-4 justify-content-md-center flex align-items-center card card-news">
-                <h1>{{ new.title }}</h1>
-            </div>
-                {% endfor %}
-        {{ include ("include/_down_arrow.html.twig") }}
-        </div>
-    </div>
-
+{% block title %}Page d'accueil - FC Rosheim
 {% endblock %}
+{% block meta_description %}Bienvenue sur l'application web du Football Club de Rosheim situé dans la commune du même nom dans le Bas-Rhin
+{% endblock %}
+{% block content %}
+	<div class="row vertical-center">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<div class="col-xl news-container flex flex-column align-items-center justify-content-lg-center align-self-center">
+				{% for new in news %}
+					<div class="col-10 justify-content-md-center flex align-items-center card card-news">
+						<h1 class="text-center">{{ new.title }}</h1>
+                        <p>{{ new.content }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		{{ include ("include/_down_arrow.html.twig") }}
+		</div>
+		<div class="col-2"></div>
+	</div>
+</div>{% endblock %}

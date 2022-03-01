@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 // use App\Entity\Team;
 
 /**
@@ -24,8 +25,10 @@ class NewsController extends AbstractController
     /**
      * @Route("/", name="news_index", methods={"GET"})
      */
-    public function index(NewsRepository $newsRepository): Response
+    public function index(NewsRepository $newsRepository, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
 
         return $this->render('news/index.html.twig', [
             'news' => $newsRepository->findAll(),
@@ -36,8 +39,12 @@ class NewsController extends AbstractController
      * @Route("/new", name="news_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
+        $breadcrumbs->addItem("new", $this->generateUrl("news_new"));
+
         $news = new News();
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);

@@ -7,20 +7,10 @@
 <div class="container-fluid">
     
     <div class="full-height flex align-items-center">
-        <aside class="col-md-3">
-            <div class="sidebar">
-                <ul>  
-                    <a href="{{ path('admin_users') }}"><li id='select_users'>Gestion utilisateur</li></a>
-                    <a href="{{ path('admin_news') }}"><li id='select_news'>News</li></a>
-                    <a href="{{ path('admin_teams') }}"><li id='select_teams'>Équipes</li></a>
-                    <a href="{{ path('admin_results') }}"><li id='select_results'>Résultats</li></a>
-                    <a href="{{ path('admin_events') }}"><li id='select_events'>Évenements</li></a>
-                </ul>
-            </div>
-        </aside>
+        {{ include ("include/admin/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
-            <h1 class='display-1 text-center'>PANNEAU D'ADMINISTRATION</h1>
-                <div class="card">
+            {{ include('include/admin/_admin_title.html.twig') }}
+                <div class="card admin">
                 <h1 class="display-2">Gestion des Équipes</h1>
                 <table class="table table-striped table-dark table-hover">
                     <thead>
@@ -33,37 +23,38 @@
                     </thead>
                     <tbody id="table_body">
                     {% for team in teamRepository %}
-                        <tr class='clickable' onclick="window.location='{{ path('admin_teams', {'id': team.id}) }}'">
+                        <tr>
                             <td>{{ team.id }}</td>
-                            <td>
-                            {% if team.name|default %}
-                                {{ team.name }}
+                            <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
+                            {% if team.teamName|default %}
+                                {{ team.teamName }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
-                            <td>
+                            <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
                             {% if team.season|default %}
                                 {{ team.season }}
                             {% else %}
-                                Non renseigné
+                                Non renseignée
                             {% endif %}
                             </td>
                             <td>
                             {% if  team.picture|default %}
-                                {{ team.picture }}
+                                <a href="{{ team.picture }}" target="_blank">{{ team.picture }}</a>
                             {% else %}
-                                Non renseigné
+                                Non renseignée
                             {% endif %}
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="9">Pas d'équipes trouvées.</td>
+                            <td colspan="9">Aucune équipe trouvée.
+                                Cliquez sur le bouton ci-dessous pour commencer à en renseigner !</td>
                         </tr>
                     {% endfor %}
                 </table>
-                <button class='btn btn-primary clickable' onclick="window.location='#'">Créer une nouvelle Équipe</button>
+                <button class='btn btn-primary clickable' onclick="window.location='{{ path('admin_teams_new') }}'">Créer une nouvelle Équipe</button>
                 </div>
         </main>
     </div>

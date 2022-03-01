@@ -9,21 +9,19 @@
         {% block stylesheets %}
             <link rel="shortcut icon" href="/img/logo.ico" type="image">
 
-            {# to properly display calendar #}
-            {# {% if condition %} #}
-            {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css"> #}
-            {# {% endif %} #}
-
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="">
+
         {{ include ("include/_header.html.twig") }}
+        <div class="col-md-12">
+        <div class="col-md-1">
         {{ include ("include/_externalLinks.html.twig") }}
+        </div>
         {% block content %}
         {% endblock %}
+        </div>
     </body>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

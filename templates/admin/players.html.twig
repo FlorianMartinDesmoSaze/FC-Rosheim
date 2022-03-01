@@ -5,64 +5,66 @@
 
 {% block content %}
 <div class="container-fluid">
+    
     <div class="full-height flex align-items-center">
         {{ include ("include/admin/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
             {{ include('include/admin/_admin_title.html.twig') }}
                 <div class="card admin">
-                <h1 class="display-2">Gestion des News</h1>
+                <h1 class="display-2">Gestion des Joueurs·euses</h1>
                 <table class="table table-striped table-dark table-hover">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Titre</th>
-                            <th>Image</th>
-                            <th>Créé le</th>
-                            <th>MàJ le</th>
+                            <th>Équipe</th>
+                            <th>Position</th>
+                            <th>Nom de famille</th>
+                            <th>Numéro</th>
                         </tr>
                     </thead>
                     <tbody id="table_body">
-                    {% for news in newsRepository %}
-                        <tr onclick="window.location='{{ path('admin_news_edit', {'id': news.id}) }}'"
+                    {% for player in playerRepository %}
+                        <tr onclick="window.location='{{ path('admin_players_edit', {'id': player.id}) }}'"
                             style='cursor: pointer;'>
-                            <td>{{ news.id }}</td>
+                            <td>{{ player.id }}</td>
                             <td>
-                            {% if  news.title|default %}
-                                {{ news.title }}
+                            {% if player.team|default %}
+                                {{ player.team }}
                             {% else %}
-                                N/A
+                                Non renseignée
                             {% endif %}
                             </td>
                             <td>
-                            {% if  news.picture|default %}
-                                <a href="{{ news.picture }}" target="_blank">{{ news.picture }}</a>
+                            {% if player.position|default %}
+                                {{ player.position }}
                             {% else %}
-                                N/A
+                                Non renseignée
                             {% endif %}
                             </td>
                             <td>
-                            {% if  news.createdAt|default %}
-                                {{ news.createdAt|date('d/m/Y H:i') }}
+                            {% if  player.lastName|default %}
+                                {{ player.lastName }}
                             {% else %}
-                                N/A
+                                Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if  news.updatedAt|default %}
-                                {{ news.updatedAt|date('d/m/Y H:i') }}
-                            {% else %}
-                                N/A
-                            {% endif %}
+                                {% if  player.number|default %}
+                                    {{ player.number }}
+                                {% else %}
+                                    Non renseigné
+                                {% endif %}
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="9">Aucune news trouvée.
+                            <td colspan="9">Aucun·e joueur·euse trouvé·e.
                                 Cliquez sur le bouton ci-dessous pour commencer à en ajouter !</td>
                         </tr>
                     {% endfor %}
                 </table>
-                <button class='btn btn-primary clickable' onclick="window.location='{{ path('admin_news_new') }}'">Créer une nouvelle News</button>
+                <button class='btn btn-primary clickable'
+                        onclick="window.location='{{ path('admin_players_new') }}'">Créer une nouvelle entrée</button>
                 </div>
         </main>
     </div>
