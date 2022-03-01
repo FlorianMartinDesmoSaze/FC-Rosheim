@@ -42,8 +42,6 @@ class AdminController extends AbstractController
      */
     public function index(Breadcrumbs $breadcrumbs): Response
     {
-        $breadcrumbs->addItem("home", $this->generateUrl("home"));
-        $breadcrumbs->addItem("index", $this->generateUrl("index"));
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
