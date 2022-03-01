@@ -9,14 +9,19 @@
 		<div class="col-8">
 			<div class="col-xl news-container flex flex-column align-items-center justify-content-lg-center align-self-center">
 				{% for new in news %}
-					<div class="col-10 justify-content-md-center flex align-items-center card card-news">
-						<h1 class="text-center">{{ new.title }}</h1>
-                        <p>{{ new.content }}</p>
-					</div>
-				{% endfor %}
+					<div class="col-10 justify-content-md-center flex align-items-center card card-news overflow-auto">
+						<div class="row-11">
+							<h1 class="text-center">{{ new.title }}</h1>
+							<p class="hiden-text">{{ new.content }}</p>
+						</div>
+						<div class="flex-left d-flex flex-row-reverse">
+							<a calss="" href="/news/{{ new.id }}">Lire la suite</a>
+						</div>
+					{% endfor %}
+				</div>
 			</div>
-		{{ include ("include/_down_arrow.html.twig") }}
+			<div class="col-2"></div>
 		</div>
-		<div class="col-2"></div>
+				{{ include ("include/_down_arrow.html.twig") }}
 	</div>
-</div>{% endblock %}
+{% endblock %}
