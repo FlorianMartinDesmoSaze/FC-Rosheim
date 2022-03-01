@@ -14,12 +14,14 @@ use App\Form\NewEventType;
 use App\Form\NewsType;
 use App\Form\PlayerType;
 use App\Form\StaffType;
+use App\Form\StatsType;
 use App\Form\TeamType;
 use App\Form\UserType;
 use App\Repository\EventRepository;
 use App\Repository\NewsRepository;
 use App\Repository\PlayerRepository;
 use App\Repository\StaffRepository;
+use App\Repository\StatsRepository;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -281,18 +283,43 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
+
+                        ///////////////////
+                        //     STATS     //
+                        ///////////////////
     /**
      * @Route("/stats/{id}", name="admin_stats_edit", methods={"GET", "POST"})
      */
-    public function edit_stats(Request $request, Stats $stats, EntityManagerInterface $entityManager): Response
+    public function edit_stats(Request $request,
+                               StatsRepository $statsRepository,
+                               PlayerRepository $playerRepository,
+                               EntityManagerInterface $entityManager,
+                               int $id): Response
     {
+        // fetch player and stats by id
+        $player = $playerRepository->find($id);
+        $stats = $statsRepository->findOneBy(['player' => $id]);
+
+        // if there are no stats for this player yet, create them
+        if ($stats == null){
+            $stats = new Stats();
+            $newStats = true;
+        } else {
+            $newStats = false;
+        }
+
         $form = $this->createForm(StatsType::class, $stats);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // only persist if we had to create a new stat sheet
+            if ($newStats){
+                $stats->setPlayer($player);
+                $entityManager->persist($stats);
+            }
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_players', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_players_edit', ['id'=>$id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/stats_edit.html.twig', [
