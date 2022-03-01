@@ -247,7 +247,14 @@ span.leftbar {
 }
 .card-news{
     display: none;
+    width: 100%;
+    height: 350px;
 }
+
+.news-container {
+    height: 400px;
+}
+
 .card-news:first-child{
     display: block;
 }
