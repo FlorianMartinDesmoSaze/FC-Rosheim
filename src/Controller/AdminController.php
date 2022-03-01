@@ -6,7 +6,6 @@ use App\Entity\Event;
 use App\Entity\News;
 use App\Entity\Player;
 use App\Entity\Staff;
-use App\Entity\Stats;
 use App\Entity\Team;
 use App\Entity\User;
 use App\Form\EventType;
@@ -21,8 +20,10 @@ use App\Repository\EventRepository;
 use App\Repository\NewsRepository;
 use App\Repository\PlayerRepository;
 use App\Repository\StaffRepository;
+use App\Repository\StatsRepository;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -289,8 +290,15 @@ class AdminController extends AbstractController
     /**
      * @Route("/stats/{id}", name="admin_stats_edit", methods={"GET", "POST"})
      */
-    public function edit_stats(Request $request, Stats $stats, EntityManagerInterface $entityManager): Response
+    public function edit_stats(Request $request,
+                               PlayerRepository $playerRepository,
+                               StatsRepository $statsRepository,
+                               EntityManager $entityManager,
+                               int $id): Response
     {
+        $player = $playerRepository->find($id);
+        $stats = $statsRepository->findOneBy(['player' => $id]);
+
         $form = $this->createForm(StatsType::class, $stats);
         $form->handleRequest($request);
 
