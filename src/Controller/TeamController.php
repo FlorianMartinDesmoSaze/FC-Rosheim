@@ -142,6 +142,10 @@ class TeamController extends AbstractController
     public function delete(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$team->getId(), $request->request->get('_token'))) {
+            $filesystem = new Filesystem(); //we use this class in order to use his function remove() to remove a file
+            $fileName = $team->getPicture();
+            $fileNamePath = $this->getParameter('images_directory').'/'.$fileName;
+            $filesystem->remove($fileNamePath); //we delete old picture from application
             $entityManager->remove($team);
             $entityManager->flush();
         }
