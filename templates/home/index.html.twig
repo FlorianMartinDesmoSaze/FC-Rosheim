@@ -8,20 +8,28 @@
 		<div class="col-2"></div>
 		<div class="col-8">
 			<div class="col-xl news-container flex flex-column align-items-center justify-content-lg-center align-self-center">
-				{% for new in news %}
-					<div class="col-10 justify-content-md-center flex align-items-center card card-news overflow-auto">
-						<div class="row-11">
-							<h1 class="text-center">{{ new.title }}</h1>
-							<p class="hiden-text">{{ new.content }}</p>
+				{% if news %}
+					{% for new in news %}
+						<div class="col-10 justify-content-md-center flex align-items-center card card-news overflow-auto">
+							<div class="row-11">
+								<h1 class="text-center">{{ new.title }}</h1>
+								<p class="hiden-text">{{ new.content }}</p>
+							</div>
+							<div class="flex-left d-flex flex-row-reverse">
+								<a calss="" href="/news/{{ new.id }}">Lire la suite</a>
+							</div>
 						</div>
-						<div class="flex-left d-flex flex-row-reverse">
-							<a calss="" href="/news/{{ new.id }}">Lire la suite</a>
-						</div>
+					{% endfor %}
+				{% else %}
+					<div class="card container-fluid d-flex flex">
+						<h2 class="text-center">Il n'y a pas encore de news sur le site</h2>
 					</div>
-				{% endfor %}
+				{% endif %}
 			</div>
 			<div class="col-2"></div>
 		</div>
+        {% if news %}
 		{{ include ("include/_down_arrow.html.twig") }}
+        {% endif %}
 	</div>
 {% endblock %}

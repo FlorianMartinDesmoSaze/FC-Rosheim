@@ -297,7 +297,7 @@ span.leftbar {
 .media-container {
     color: white;
     position: fixed;
-    top: 30%;
+    top: 15%;
     font-size: 140%;
     margin: 0;
     padding-left: 1em;
@@ -325,12 +325,12 @@ span.leftbar {
 }
 
 .fa-youtube {
-    top: 62%;
+    top: 24%;
     left: -100%;
 }
 
 .fa-facebook-square {
-    top: 56%;
+    top: 18%;
     left: -100%;
 }
 
@@ -339,7 +339,7 @@ span.leftbar {
     font-size: 140%;
     transition: .2s ease-in-out;
     position: fixed;
-    top: 50%;
+    top: 12%;
 }
 
 .display-media>button{
