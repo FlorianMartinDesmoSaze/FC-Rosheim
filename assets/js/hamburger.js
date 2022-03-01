@@ -20,7 +20,7 @@ function mobileMenu() {
     })
     if (isEven(userClick)) {
         console.log('if');
-        arrow.setAttribute('style', 'opacity:1' )
+        arrow.setAttribute('style', 'opacity:.7' )
         arrow.classList.toggle('exclusion');
     }else {
         console.log('not if');
