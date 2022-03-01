@@ -1,20 +1,23 @@
 const arrow = document.querySelector('#down_arrow');
 
-if (arrow) {
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+hamburger.addEventListener("click", mobileMenu);
+
+
+let userClick = 0;
+
+function mobileMenu() {
+    userClick++;
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
     
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-    hamburger.addEventListener("click", mobileMenu);
-    
-    function isEven(n) {
-        return n % 2 == 0;
-    }
-    let userClick = 0;
-    
-    function mobileMenu() {
-        userClick++;
-        hamburger.classList.toggle("active");
-        navMenu.classList.toggle("active");
+    if (arrow) {
+
+        function isEven(n) {
+            return n % 2 == 0;
+        }
+        
         const news = document.querySelectorAll('.card-news')
         
         news.forEach((e) => {
