@@ -21,9 +21,11 @@ function mobileMenu() {
     if (isEven(userClick)) {
         console.log('if');
         arrow.setAttribute('style', 'opacity:1' )
+        arrow.classList.toggle('exclusion');
     }else {
         console.log('not if');
         arrow.setAttribute('style', 'opacity:0' )
+        arrow.classList.toggle('exclusion');
     }
     console.log(userClick);
 }
