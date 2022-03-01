@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Entity\News;
 use App\Entity\Player;
 use App\Entity\Staff;
+use App\Entity\Stats;
 use App\Entity\Team;
 use App\Entity\User;
 use App\Form\EventType;
@@ -23,7 +24,6 @@ use App\Repository\StaffRepository;
 use App\Repository\StatsRepository;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -291,21 +291,35 @@ class AdminController extends AbstractController
      * @Route("/stats/{id}", name="admin_stats_edit", methods={"GET", "POST"})
      */
     public function edit_stats(Request $request,
-                               PlayerRepository $playerRepository,
                                StatsRepository $statsRepository,
-                               EntityManager $entityManager,
+                               PlayerRepository $playerRepository,
+                               EntityManagerInterface $entityManager,
                                int $id): Response
     {
+        // fetch player and stats by id
         $player = $playerRepository->find($id);
         $stats = $statsRepository->findOneBy(['player' => $id]);
+
+        // if there are no stats for this player yet, create them
+        if ($stats == null){
+            $stats = new Stats();
+            $newStats = true;
+        } else {
+            $newStats = false;
+        }
 
         $form = $this->createForm(StatsType::class, $stats);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // only persist if we had to create a new stat sheet
+            if ($newStats){
+                $stats->setPlayer($player);
+                $entityManager->persist($stats);
+            }
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_players', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_players_edit', ['id'=>$id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/stats_edit.html.twig', [
