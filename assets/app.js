@@ -14,8 +14,6 @@ import './bootstrap';
 
 import 'bootstrap';
 
-// import './js/calendar'
-
 import './js/news'
 
 import './js/hamburger'

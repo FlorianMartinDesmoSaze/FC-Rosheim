@@ -29,6 +29,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 /**
  * @Route("/admin")
@@ -40,8 +41,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/index", name="admin_index")
      */
-    public function index(): Response
+    public function index(Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("index", $this->generateUrl("index"));
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
