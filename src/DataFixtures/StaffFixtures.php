@@ -39,7 +39,7 @@ class StaffFixtures extends Fixture
                 ->setPhone($faker->phoneNumber())
                 ->setEmail($faker->email())
                 // ->setUser($user)
-                ->setPicture('//via.placeholder.com/350x150')
+                ->setPicture('player-test.png')
                 ;
             $manager->persist($staff);
         }

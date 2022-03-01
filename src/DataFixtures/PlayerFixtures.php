@@ -27,7 +27,7 @@ class PlayerFixtures extends Fixture
                 ->setLastName($faker->lastName())
                 ->setNumber($faker->numberBetween(1, 30))
                 ->setBirthdate($faker->dateTimeBetween('-40 year', '-18 year'))
-                ->setPicture('//via.placeholder.com/350x150')
+                ->setPicture('player-test.png')
                 ->setSlug($faker->slug(3, false))
                 ->setTeam(null)
                 ->setPosition(null)
