@@ -15,9 +15,13 @@
     <body class="">
 
         {{ include ("include/_header.html.twig") }}
+        <div class="col-md-12">
+        <div class="col-md-1">
         {{ include ("include/_externalLinks.html.twig") }}
+        </div>
         {% block content %}
         {% endblock %}
+        </div>
     </body>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

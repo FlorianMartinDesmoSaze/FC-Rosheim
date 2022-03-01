@@ -4,11 +4,13 @@
 {% block content %}
     <div class="container-fluid ">
         <div class="flex flex-column align-items-center justify-content-md-center full-height">
+        <div class="news-container">
                 {% for new in news %}
-            <div class="col-md-4 justify-content-md-center flex align-items-center card card-news">
+            <div class="col-md-4 justify-content-md-center flex align-items-center card card-news card-{{new.id}}">
                 <h1>{{ new.title }}</h1>
             </div>
                 {% endfor %}
+        </div>
         {{ include ("include/_down_arrow.html.twig") }}
         </div>
     </div>
