@@ -24,7 +24,7 @@ class NewsController extends AbstractController
      */
     public function index(NewsRepository $newsRepository, Breadcrumbs $breadcrumbs): Response
     {
-        $breadcrumbs->addItem("Home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
         $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
 
         return $this->render('news/index.html.twig', [
@@ -36,8 +36,12 @@ class NewsController extends AbstractController
      * @Route("/new", name="news_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
+        $breadcrumbs->addItem("new", $this->generateUrl("news_new"));
+
         $news = new News();
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);

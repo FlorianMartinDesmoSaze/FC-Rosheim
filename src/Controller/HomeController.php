@@ -14,7 +14,7 @@ class HomeController extends AbstractController
      */
     public function index(NewsRepository $newsRepository, Breadcrumbs $breadcrumbs): Response
     {
-        $breadcrumbs->addItem("Home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
 
         $news = $newsRepository->findLastThreeNews();
 
