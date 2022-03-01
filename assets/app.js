@@ -19,7 +19,3 @@ import './js/news'
 import './js/hamburger'
 
 import './js/mediaIcons'
-
-import './js/breadcrumb_bg'
-
-
