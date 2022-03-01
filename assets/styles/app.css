@@ -650,3 +650,7 @@ figcaption h3{
 .hiden {
     opacity: 0;
 }
+
+.exclusion {
+    display: none;
+}
