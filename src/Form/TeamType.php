@@ -45,6 +45,7 @@ class TeamType extends AbstractType
                             'image/jpg',
                             'image/jpeg',
                             'image/png',
+                            'image/webp',
                         ],
                     ])
                 ],

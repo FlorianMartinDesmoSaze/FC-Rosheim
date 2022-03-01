@@ -647,6 +647,17 @@ figcaption h3{
 
 /******** HIDEN ********/
 
+@media only screen and (max-width: 500px) {
+    .hiden-text {
+        display: none;
+    }
+
+    .flex-left {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 .hiden {
     opacity: 0;
 }
@@ -660,11 +671,12 @@ figcaption h3{
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
+    border-radius: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #0c0c0c; 
+    background: #0c0c0c;
 }
 
 /* Handle */
@@ -674,5 +686,5 @@ figcaption h3{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #f12f37; 
+    background: #f12f37;
 }
