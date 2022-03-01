@@ -26,7 +26,7 @@ class TeamFixtures extends Fixture
             $team
                 ->setTeamName("FC" . $faker->lastName())
                 ->setSeason("spring")
-                ->setPicture("//via.placeholder.com/350x150")
+                ->setPicture("//via.placeholder.it/350x150")
                 ->setSlug($faker->slug(3, false))
                 ;
             $manager->persist($team);
