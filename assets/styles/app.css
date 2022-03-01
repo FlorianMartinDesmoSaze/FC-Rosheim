@@ -251,8 +251,9 @@ span.leftbar {
     height: 350px;
 }
 
-.news-container {
-    height: 400px;
+.vertical-center {
+    min-height: 50%; 
+    min-height: 50vh;
 }
 
 .card-news:first-child{
@@ -389,10 +390,6 @@ span.leftbar {
     background-color: #ffffff;
 }
 
-.hiden {
-    opacity: 0;
-}
-
 @media only screen and (max-width: 900px) {
     .nav-menu {
         background-color: #101010;
@@ -456,6 +453,11 @@ span.leftbar {
     }
 
     .card-news {
+        transition: all 0.3s, ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+    }
+
+    #down_arrow {
         transition: all 0.3s, ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
     }
@@ -641,4 +643,10 @@ figcaption h3{
     position: fixed;
     top: 25px;
     left: 55px;
+}
+
+/******** HIDEN ********/
+
+.hiden {
+    opacity: 0;
 }
