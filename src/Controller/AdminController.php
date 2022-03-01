@@ -14,6 +14,7 @@ use App\Form\NewEventType;
 use App\Form\NewsType;
 use App\Form\PlayerType;
 use App\Form\StaffType;
+use App\Form\StatsType;
 use App\Form\TeamType;
 use App\Form\UserType;
 use App\Repository\EventRepository;
@@ -281,6 +282,10 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
+
+                        ///////////////////
+                        //     STATS     //
+                        ///////////////////
     /**
      * @Route("/stats/{id}", name="admin_stats_edit", methods={"GET", "POST"})
      */
