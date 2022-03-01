@@ -19,7 +19,6 @@ class StatsType extends AbstractType
             ->add('goals')
             ->add('yellowCards')
             ->add('redCards')
-            ->add('player')
         ;
     }
 
