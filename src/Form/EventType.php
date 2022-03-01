@@ -27,8 +27,6 @@ class EventType extends AbstractType
             ->add('startDate')
             ->add('endDate')
             ->add('location')
-
-             
         ;
     }
 
