@@ -27,7 +27,7 @@
                         <tr onclick="window.location='{{ path('admin_results_edit', {'id': game.id}) }}'"
                             style='cursor: pointer;'>
                             <td>
-                                {% if game.team|default %}
+                                {% if game.team is not null %}
                                     {{ game.team }}
                                 {% else %}
                                     Non renseignée
@@ -37,12 +37,12 @@
                                 {{ game.opponent }}
                             </td>
                             <td>
-                                {% if game.scoreTeam|default %}
+                                {% if game.scoreTeam is not null %}
                                     {{ game.scoreTeam }} -
                                 {% else %}
                                     N/A -
                                 {% endif %}
-                                {% if game.scoreOpponent|default %}
+                                {% if game.scoreOpponent is not null %}
                                     {{ game.scoreOpponent }}
                                 {% else %}
                                     N/A
@@ -67,7 +67,7 @@
                     {% endfor %}
                 </table>
                 <button class='btn btn-primary clickable'
-                        onclick="window.location='{{ path('admin_results') }}'">Créer une nouvelle entrée</button>
+                        onclick="window.location='{{ path('admin_results_new') }}'">Créer une nouvelle entrée</button>
             </div>
         </main>
     </div>
