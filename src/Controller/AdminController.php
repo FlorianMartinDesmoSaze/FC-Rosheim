@@ -9,9 +9,9 @@ use App\Entity\Staff;
 use App\Entity\Stats;
 use App\Entity\Team;
 use App\Entity\User;
+use App\Form\AdminNewsType;
 use App\Form\EventType;
 use App\Form\NewEventType;
-use App\Form\NewsType;
 use App\Form\PlayerType;
 use App\Form\StaffType;
 use App\Form\StatsType;
@@ -120,19 +120,28 @@ class AdminController extends AbstractController
     /**
      * @Route("/staff/new/", name="admin_staff_new")
      */
-    public function new_staff(Request $request, EntityManagerInterface $entityManager): Response
+    public function new_staff(Request $request,
+                               FileUploader $fileUploader,
+                               EntityManagerInterface $entityManager): Response
     {
         $staff = new Staff();
         $form = $this->createForm(StaffType::class, $staff);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if ($staff->getPicture() != null) {
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $pictureStaff = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureStaff);
+                $staff->setPicture($pictureFileName);
+            }
+
             $entityManager->persist($staff);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_staff', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('admin/staff_new.html.twig', [
             'staff' => $staff,
             'form' => $form,
@@ -141,12 +150,48 @@ class AdminController extends AbstractController
     /**
      * @Route("/staff/{id}", name="admin_staff_edit", methods={"GET", "POST"})
      */
-    public function edit_staff(Request $request, Staff $staff, EntityManagerInterface $entityManager): Response
+    public function edit_staff(Request $request,
+                                Staff $staff,
+                                FileUploader $fileUploader,
+                                StaffRepository $staffRepository,
+                                EntityManagerInterface $entityManager,
+                                int $id): Response
+
     {
         $form = $this->createForm(StaffType::class, $staff);
+        $staff = $staffRepository->find($id); // find staff by id
+        // check whether an image is already set
+
+        $oldFileName = null;
+        $oldFileNamePath = null;
+
+        if($staff->getPicture() != null){
+            // transform the image string from DB to File to comply with form types
+            $oldFileName = $staff->getPicture(); // get image name from db
+            $oldFileNamePath = $this->getParameter('images_directory').'/'.$oldFileName; // get its path
+            $pictureFile = new File($oldFileNamePath); // create file
+            $staff->setPicture($pictureFile);
+            // else define $oldFileNamePath as null to avoid getting an error
+            // when trying to remove an inexistant old file
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if($staff->getPicture() != null){
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $pictureStaff = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureStaff);
+                $staff->setPicture($pictureFileName);
+                if ($oldFileName != null) {
+                    // delete old picture from the app only if there was one before
+                    $filesystem->remove($oldFileNamePath);
+                }
+            }
+            // else set keep the existing picture
+            else {
+                $staff->setPicture($oldFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_staff', [], Response::HTTP_SEE_OTHER);
@@ -184,19 +229,27 @@ class AdminController extends AbstractController
     /**
      * @Route("/news/new", name="admin_news_new")
      */
-    public function new_news(Request $request, EntityManagerInterface $entityManager): Response
+    public function new_news(Request $request,
+                             FileUploader $fileUploader,
+                             EntityManagerInterface $entityManager): Response
     {
         $news = new News();
-        $form = $this->createForm(NewsType::class, $news);
+        $form = $this->createForm(AdminNewsType::class, $news);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if ($news->getPicture() != null) {
+                $pictureNews = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureNews);
+                $news->setPicture($pictureFileName);
+            }
+
             $entityManager->persist($news);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_news', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('admin/news_new.html.twig', [
             'news' => $news,
             'form' => $form,
@@ -206,12 +259,48 @@ class AdminController extends AbstractController
     /**
      * @Route("/news/{id}", name="admin_news_edit", methods={"GET", "POST"})
      */
-    public function edit_news(Request $request, News $news, EntityManagerInterface $entityManager): Response
+    public function edit_news(Request $request,
+                                News $news,
+                                FileUploader $fileUploader,
+                                NewsRepository $newsRepository,
+                                EntityManagerInterface $entityManager,
+                                int $id): Response
+
     {
-        $form = $this->createForm(NewsType::class, $news);
+        $form = $this->createForm(AdminNewsType::class, $news);
+        $news = $newsRepository->find($id); // find news by id
+        // check whether an image is already set
+
+        $oldFileName = null;
+        $oldFileNamePath = null;
+
+        if($news->getPicture() != null){
+            // transform the image string from DB to File to comply with form types
+            $oldFileName = $news->getPicture(); // get image name from db
+            $oldFileNamePath = $this->getParameter('images_directory').'/'.$oldFileName; // get its path
+            $pictureFile = new File($oldFileNamePath); // create file
+            $news->setPicture($pictureFile);
+            // else define $oldFileNamePath as null to avoid getting an error
+            // when trying to remove an inexistant old file
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if($news->getPicture() != null){
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $pictureNews = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureNews);
+                $news->setPicture($pictureFileName);
+                if ($oldFileName != null) {
+                    // delete old picture from the app only if there was one before
+                    $filesystem->remove($oldFileNamePath);
+                }
+            }
+            // else set keep the existing picture
+            else {
+                $news->setPicture($oldFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_news', [], Response::HTTP_SEE_OTHER);
@@ -249,19 +338,28 @@ class AdminController extends AbstractController
     /**
      * @Route("/players/new", name="admin_players_new")
      */
-    public function new_player(Request $request, EntityManagerInterface $entityManager): Response
+    public function new_player(Request $request,
+                             FileUploader $fileUploader,
+                             EntityManagerInterface $entityManager): Response
     {
         $player = new Player();
         $form = $this->createForm(PlayerType::class, $player);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if ($player->getPicture() != null) {
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $picturePlayer = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($picturePlayer);
+                $player->setPicture($pictureFileName);
+            }
+
             $entityManager->persist($player);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_players', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('admin/players_new.html.twig', [
             'player' => $player,
             'form' => $form,
@@ -382,19 +480,28 @@ class AdminController extends AbstractController
     /**
      * @Route("/teams/new", name="admin_teams_new")
      */
-    public function new_team(Request $request, EntityManagerInterface $entityManager): Response
+    public function new_team(Request $request,
+                             FileUploader $fileUploader,
+                             EntityManagerInterface $entityManager): Response
     {
         $team = new Team();
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if ($team->getPicture() != null) {
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $pictureTeam = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureTeam);
+                $team->setPicture($pictureFileName);
+            }
+
             $entityManager->persist($team);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_teams', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('admin/teams_new.html.twig', [
             'team' => $team,
             'form' => $form,
