@@ -41,7 +41,9 @@ class PlayerType extends AbstractType
                 'constraints' => new Length(['max' => 2])
             ])
             ->add('birthdate', DateType::class, [
-                'widget' => 'single_text',
+                'label' => 'Date de naissance*',
+                'years' => range(date('Y'), date('Y') - 100),
+                'format' => 'dd-MM-yyyy'
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Photo du joueur',

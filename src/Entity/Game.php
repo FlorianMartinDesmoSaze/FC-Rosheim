@@ -27,26 +27,22 @@ class Game
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\PositiveOrZero
      */
     private $scoreTeam;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\PositiveOrZero
      */
     private $scoreOpponent;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank
-     * @Assert\DateTime
+     * @Assert\Type("\DateTimeInterface")
      */
     private $gameDate;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank
      */
     private $home;
 
