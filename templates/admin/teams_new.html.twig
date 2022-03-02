@@ -24,12 +24,14 @@
                                 <th>Saison</th>
                                 <td>
                                     {{ form_widget(form.season) }}
+                                    {{ form_errors(form.season) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Image</th>
                                 <td>
                                     {{ form_widget(form.picture) }}
+                                    {{ form_errors(form.picture) }}
                                 </td>
                             </tr>
                         </tbody>

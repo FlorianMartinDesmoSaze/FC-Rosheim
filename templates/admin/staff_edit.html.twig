@@ -34,12 +34,14 @@
                                 <th>E-mail</th>
                                 <td id="staff_email">
                                     {{ form_widget(form.email) }}
+                                    {{ form_errors(form.email) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Telephone</th>
                                 <td id="staff_phone">
                                     {{ form_widget(form.phone) }}
+                                    {{ form_errors(form.phone) }}
                                 </td>
                             </tr>
                             <tr>
@@ -56,8 +58,9 @@
                             </tr>
                             <tr>
                                 <th>Photo</th>
-                                <td>
+                                <td>>
                                     {{ form_widget(form.picture) }}
+                                    {{ form_errors(form.picture) }}
                                 </td>
                             </tr>
                         </tbody>
