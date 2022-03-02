@@ -4,16 +4,16 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
@@ -35,14 +35,14 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'label' => 'Nouveau mot de passe',
+                    'label' => 'Mot de passe',
                     'attr' => ['class' => 'form-control'],
                 ],
                 'second_options' => [
-                    'label' => 'Confirmez le nouveau mot de passe',
+                    'label' => 'Confirmez le mot de passe',
                     'attr' => ['class' => 'form-control'],
                 ],
-                'invalid_message' => 'Les mots de passe ne corespondent pas',
+                'invalid_message' => 'Les mots de passe ne correspondent pas',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -57,7 +57,7 @@ class RegistrationFormType extends AbstractType
                         'maxMessage' => 'Votre mot de passe doit comporter un maximum {{ limit }} caractères',
                     ]),
                     new Regex([
-                        'pattern' => "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%-+])(?!.*(.)\1{2}).*[a-z]/m",
+                        'pattern' => "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%-+=_\\\|\(\)\[\]\{\}\;\:\'\"\<\>\?\!\`\^&\*])(?!.*(.)\1{2}).*[a-z]/m",
                         'match' => true,
                         'message' => "Attention : Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole."
                     ]),
