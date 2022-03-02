@@ -9,6 +9,10 @@ body {
     padding-top: 9em;
 }
 
+.row > * {
+    padding-right: 0;
+}
+
 a {
     color: #f12f37;
 }
@@ -284,6 +288,8 @@ span.leftbar {
     margin-top: 0;
     transition: .2s ease-in-out;
     opacity: .7;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
     /* position: fixed;
     top: 50%; */
 }

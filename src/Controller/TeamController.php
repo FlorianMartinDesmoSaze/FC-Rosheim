@@ -4,18 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamType;
-use App\Service\FileUploader;
-use App\Repository\TeamRepository;
-use App\Repository\StatsRepository;
 use App\Repository\PlayerRepository;
+use App\Repository\StatsRepository;
+use App\Repository\TeamRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 /**
  * @Route("/team")
@@ -25,10 +26,15 @@ class TeamController extends AbstractController
     /**
      * @Route("/", name="team_index", methods={"GET"})
      */
-    public function index(TeamRepository $teamRepository): Response
+    public function index(TeamRepository $teamRepository, Breadcrumbs $breadcrumbs): Response
     {
+
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("team", $this->generateUrl("team_index"));
+
         return $this->render('team/index.html.twig', [
             'teams' => $teamRepository->findAll(),
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -36,11 +42,15 @@ class TeamController extends AbstractController
      * @Route("/new", name="team_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, Breadcrumbs $breadcrumbs): Response
     {
         $team = new Team();
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
+
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("team", $this->generateUrl("team_index"));
+        $breadcrumbs->addItem("new", $this->generateUrl("team_new"));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $pictureTeam = $form->get('picture')->getData();
@@ -59,6 +69,7 @@ class TeamController extends AbstractController
         return $this->renderForm('team/new.html.twig', [
             'team' => $team,
             'form' => $form,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -66,7 +77,7 @@ class TeamController extends AbstractController
      * @Route("/{slug<^[a-z0-9]+(?:-[a-z0-9]+)*$>}", name="team_show", methods={"GET"})
      */
     public function playersByTeam(Team $team, PlayerRepository $playerRepository, 
-        StatsRepository $statsRepository, TeamRepository $teamRepository): Response
+        StatsRepository $statsRepository, TeamRepository $teamRepository, Breadcrumbs $breadcrumbs): Response
     {
         
         //looking for team id
@@ -79,6 +90,13 @@ class TeamController extends AbstractController
         $strickers = $playerRepository->findPlayersByPosition($id, 4); //find strickers = 4
         $stats = $statsRepository->findBy(['player' => $players]);
 
+        $team = $teamRepository->find($id);
+        $teamId = $team->getId();
+
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("team", $this->generateUrl("team_index"));
+        $breadcrumbs->addItem($teamId, $this->generateUrl("news_index", [], $teamId));
+
         return $this->render('team/show.html.twig', [
             'stats' => $stats,
             'goalKeepers' => $goalKeepers,
@@ -86,7 +104,8 @@ class TeamController extends AbstractController
             'midfielders' => $midfielders,
             'strickers' => $strickers,
             'players' => $players,
-            'team' => $team
+            'team' => $team,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -95,10 +114,11 @@ class TeamController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, TeamRepository $teamRepository,
-        Team $team, EntityManagerInterface $entityManager, FileUploader $fileUploader, int $id): Response
+        Team $team, EntityManagerInterface $entityManager, FileUploader $fileUploader, int $id, Breadcrumbs $breadcrumbs): Response
     {
         $form = $this->createForm(TeamType::class, $team);
         $team = $teamRepository->find($id); //we find team by id
+
         //we check if an image was already set
         if($team->getPicture()!=null){
             //we must transform the image string from DB to File to respect the form types
@@ -132,6 +152,7 @@ class TeamController extends AbstractController
         return $this->renderForm('team/edit.html.twig', [
             'team' => $team,
             'form' => $form,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
