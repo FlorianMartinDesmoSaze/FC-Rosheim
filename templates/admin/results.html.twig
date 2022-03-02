@@ -10,10 +10,65 @@
         {{ include ("include/admin/_admin_sidepanel.html.twig") }}
         <main class="col-md-8 full-height">
             {{ include('include/admin/_admin_title.html.twig') }}
-                <div class="card admin">
+            <div class="card admin">
                 <h1 class="display-2">Gestion des Résultats</h1>
-                <p class='display-5 text-center'>/!\ Under construction /!\</p>
-                </div>
+                <table class="table table-striped table-dark table-hover">
+                    <thead>
+                    <tr>
+                        <th>Équipe</th>
+                        <th>Adversaire</th>
+                        <th>Score</th>
+                        <th>Date du match</th>
+                        <th>À domicile</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table_body">
+                    {% for game in gameRepository %}
+                        <tr onclick="window.location='{{ path('admin_results_edit', {'id': game.id}) }}'"
+                            style='cursor: pointer;'>
+                            <td>
+                                {% if game.team|default %}
+                                    {{ game.team }}
+                                {% else %}
+                                    Non renseignée
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ game.opponent }}
+                            </td>
+                            <td>
+                                {% if game.scoreTeam|default %}
+                                    {{ game.scoreTeam }} -
+                                {% else %}
+                                    N/A -
+                                {% endif %}
+                                {% if game.scoreOpponent|default %}
+                                    {{ game.scoreOpponent }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ game.gameDate|date('d/m/Y H:i') }}
+                            </td>
+                            <td>
+                                {% if game.home == true %}
+                                    Oui
+                                {% else %}
+                                    Non
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">Aucun match trouvé.
+                                Cliquez sur le bouton ci-dessous pour commencer à en renseigner !</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button class='btn btn-primary clickable'
+                        onclick="window.location='{{ path('admin_results') }}'">Créer une nouvelle entrée</button>
+            </div>
         </main>
     </div>
 </div>
