@@ -20,10 +20,14 @@ class GameController extends AbstractController
     /**
      * @Route("/", name="game_index", methods={"GET"})
      */
-    public function index(GameRepository $gameRepository): Response
+    public function gamesIndex(GameRepository $gameRepository): Response
     {
+        $today = New \DateTime('now');
+        $upcomingGames = $gameRepository->upcomingGames($today);
+        $passedGames = $gameRepository->passedGames($today);
         return $this->render('game/index.html.twig', [
-            'games' => $gameRepository->findAll(),
+            'passedGames' => $passedGames,
+            'upcomingGames' => $upcomingGames,
         ]);
     }
 

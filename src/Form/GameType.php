@@ -19,14 +19,13 @@ class GameType extends AbstractType
     {
         $builder
             ->add('opponent', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'Adversaire',
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('scoreTeam', IntegerType::class, [
-                'label' => 'Prénom',
-                'mapped' => false,
+                'label' => 'Score de l\'équipe',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
@@ -34,8 +33,7 @@ class GameType extends AbstractType
                 ],
             ])
             ->add('scoreOpponent', IntegerType::class, [
-                'label' => 'Prénom',
-                'mapped' => false,
+                'label' => 'Score de l\'adversaire',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',

@@ -27,13 +27,11 @@ class Game
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\PositiveOrZero
      */
     private $scoreTeam;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\PositiveOrZero
      */
     private $scoreOpponent;
 

@@ -135,6 +135,15 @@ span.leftbar {
     margin-bottom: 1.5em;
     border-radius: 0;
 }
+.card input[type="checkbox"]{
+    border-radius: 0;
+}
+.card select {
+    border-radius: 0;
+}
+.card legend{
+    color: whitesmoke;
+}
 .card p {
     color: whitesmoke;
     margin-bottom: 0;
@@ -653,4 +662,10 @@ figcaption h3{
 
 .exclusion {
     display: none;
+}
+.win{
+    color: green;
+}
+.loose{
+    color: red;
 }
