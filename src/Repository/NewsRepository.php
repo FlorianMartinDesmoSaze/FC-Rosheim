@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\News;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @method News|null find($id, $lockMode = null, $lockVersion = null)
@@ -54,6 +53,14 @@ class NewsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('n')
             ->orderBy('n.createdAt', 'DESC')
             ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findAllByLatest()
+    {
+        return $this->createQueryBuilder('n')
+            ->orderBy('n.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;
