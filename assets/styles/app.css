@@ -147,6 +147,15 @@ span.leftbar {
     margin-bottom: 1.5em;
     border-radius: 0;
 }
+.card input[type="checkbox"]{
+    border-radius: 0;
+}
+.card select {
+    border-radius: 0;
+}
+.card legend{
+    color: whitesmoke;
+}
 .card p {
     color: whitesmoke;
     margin-bottom: 0;
@@ -676,6 +685,17 @@ figcaption h3{
 
 .exclusion {
     display: none;
+}
+/******** Games ********/
+.win{
+    color: rgb(84, 211, 84);
+}
+.loose{
+    color: red;
+}
+.link-no-style{
+    text-decoration: none; /* no underline */
+    margin-bottom: 1.5em;
 }
 
 /******** Scroll bar ********/
