@@ -2,12 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Staff;
+use App\Repository\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory as Faker;
-use App\Entity\Staff;
-use App\Entity\User;
-use App\Repository\UserRepository;
 
 class StaffFixtures extends Fixture
 {
@@ -39,7 +38,6 @@ class StaffFixtures extends Fixture
                 ->setPhone($faker->phoneNumber())
                 ->setEmail($faker->email())
                 // ->setUser($user)
-                ->setPicture('player-test.png')
                 ;
             $manager->persist($staff);
         }

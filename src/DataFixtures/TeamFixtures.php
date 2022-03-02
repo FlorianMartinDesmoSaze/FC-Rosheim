@@ -2,10 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Team;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory as Faker;
-use App\Entity\Team;
 
 class TeamFixtures extends Fixture
 {
@@ -26,7 +26,6 @@ class TeamFixtures extends Fixture
             $team
                 ->setTeamName("FC" . $faker->lastName())
                 ->setSeason("spring")
-                ->setPicture("player-test.png")
                 ->setSlug($faker->slug(3, false))
                 ;
             $manager->persist($team);
