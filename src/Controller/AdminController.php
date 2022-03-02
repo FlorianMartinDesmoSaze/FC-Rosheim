@@ -24,9 +24,12 @@ use App\Repository\StaffRepository;
 use App\Repository\StatsRepository;
 use App\Repository\TeamRepository;
 use App\Repository\UserRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -267,12 +270,48 @@ class AdminController extends AbstractController
     /**
      * @Route("/players/{id}", name="admin_players_edit", methods={"GET", "POST"})
      */
-    public function edit_player(Request $request, Player $player, EntityManagerInterface $entityManager): Response
+    public function edit_player(Request $request,
+                                Player $player,
+                                FileUploader $fileUploader,
+                                PlayerRepository $playerRepository,
+                                EntityManagerInterface $entityManager,
+                                int $id): Response
+
     {
         $form = $this->createForm(PlayerType::class, $player);
+        $player = $playerRepository->find($id); // find player by id
+        // check whether an image is already set
+
+        $oldFileName = null;
+        $oldFileNamePath = null;
+
+        if($player->getPicture() != null){
+            // transform the image string from DB to File to comply with form types
+            $oldFileName = $player->getPicture(); // get image name from db
+            $oldFileNamePath = $this->getParameter('images_directory').'/'.$oldFileName; // get its path
+            $pictureFile = new File($oldFileNamePath); // create file
+            $player->setPicture($pictureFile);
+            // else define $oldFileNamePath as null to avoid getting an error
+            // when trying to remove an inexistant old file
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if($player->getPicture() != null){
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $picturePlayer = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($picturePlayer);
+                $player->setPicture($pictureFileName);
+                if ($oldFileName != null) {
+                    // delete old picture from the app only if there was one before
+                    $filesystem->remove($oldFileNamePath);
+                }
+            }
+            // else set keep the existing picture
+            else {
+                $player->setPicture($oldFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_players', [], Response::HTTP_SEE_OTHER);
@@ -375,12 +414,48 @@ class AdminController extends AbstractController
     /**
      * @Route("/teams/{id}", name="admin_teams_edit", methods={"GET", "POST"})
      */
-    public function edit_team(Request $request, Team $team, EntityManagerInterface $entityManager): Response
+    public function edit_team(Request $request,
+                                Team $team,
+                                FileUploader $fileUploader,
+                                TeamRepository $teamRepository,
+                                EntityManagerInterface $entityManager,
+                                int $id): Response
+
     {
         $form = $this->createForm(TeamType::class, $team);
+        $team = $teamRepository->find($id); // find team by id
+        // check whether an image is already set
+
+        $oldFileName = null;
+        $oldFileNamePath = null;
+
+        if($team->getPicture() != null){
+            // transform the image string from DB to File to comply with form types
+            $oldFileName = $team->getPicture(); // get image name from db
+            $oldFileNamePath = $this->getParameter('images_directory').'/'.$oldFileName; // get its path
+            $pictureFile = new File($oldFileNamePath); // create file
+            $team->setPicture($pictureFile);
+            // else define $oldFileNamePath as null to avoid getting an error
+            // when trying to remove an inexistant old file
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // check if picture field isn't null
+            if($team->getPicture() != null){
+                $filesystem = new Filesystem(); // use this class in order to use its remove() function
+                $pictureTeam = $form->get('picture')->getData();
+                $pictureFileName = $fileUploader->upload($pictureTeam);
+                $team->setPicture($pictureFileName);
+                if ($oldFileName != null) {
+                    // delete old picture from the app only if there was one before
+                    $filesystem->remove($oldFileNamePath);
+                }
+            }
+            // else set keep the existing picture
+            else {
+                $team->setPicture($oldFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_teams', [], Response::HTTP_SEE_OTHER);

@@ -63,11 +63,6 @@ class Player
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Image(
-     *     minWidth = 100,
-     *     maxWidth = 400,
-     *     minHeight = 100,
-     *     maxHeight = 400)
      */
     private $picture;
 
@@ -149,7 +144,7 @@ class Player
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
