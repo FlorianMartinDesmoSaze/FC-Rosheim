@@ -32,6 +32,7 @@ h1, h2, h3, h4, h5, h6 {
 /* style primary button */
 .btn-primary{
     border-radius: 0;
+    color: #fff !important;
 }
 /* style font bold without usiing <strong> */
 .bold{

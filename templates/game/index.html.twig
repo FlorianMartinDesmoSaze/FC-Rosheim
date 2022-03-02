@@ -6,12 +6,11 @@
 {% block content %}
     <main class="card col-md-6 container">
         {% if is_granted("ROLE_ADMIN") %}
-            <a class="crud-btn" href="{{ path('game_new') }}">Nouveau match</a>
+            <a class="btn btn-primary" href="{{ path('game_new') }}">Nouveau match</a>
             <span class="redline-player"></span>
         {% endif %}
         {####################### Matchs à venir ##########################}
         <h1>Matchs à venir</h1>
-        <span class="redline"></span>
         {% for upcomingGame in upcomingGames %}
             <a class="link-no-style" href="{{ path('game_show', {'id': upcomingGame.id}) }}">
                 <div class="card col-md-12 text-center">
@@ -42,9 +41,9 @@
         {% else %}
             Pas de matchs enregistrés
         {% endfor %}
+        <span class="redline-player"></span>
         {####################### Matchs passés ##########################}
         <h1>Matchs passés</h1>
-        <span class="redline"></span>
         {% for passedGame in passedGames %}
                 <a class="link-no-style" href="{{ path('game_show', {'id': passedGame.id}) }}">
                     <div class="card col-md-12 text-center">
