@@ -1,53 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Player{% endblock %}
+{% block title %}{{ player.firstName ~ ' ' ~ player.lastName }} - FC Rosheim{% endblock %}
+{% block meta_description %}{{ player.firstName ~ ' ' ~ player.lastName }} du FC Rosheim {{player.team.teamName}}{% endblock %}
 
 {% block content %}
-    <h1>Player</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ player.id }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ player.firstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ player.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ player.number }}</td>
-            </tr>
-            <tr>
-                <th>Birthdate</th>
-                <td>{{ player.birthdate ? player.birthdate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td><img src="{{ asset('uploads/' ~ player.picture)}}" 
-                        alt="{{ player.firstName ~ ' ' ~ player.lastName }}, gardien du FC Rosheim"></td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ player.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
-    {% if stat != null %} 
-    <p>{{ stat.gamePlayed }}</p>
-    <p>{{ stat.cleanSheets }}</p>
-    <p>{{ stat.saves }}</p>
-    <p>{{ stat.yellowCards }}</p>
-    <p>{{ stat.redCards }}</p>
-    {% endif %}
-    <a href="{{ path('player_index') }}">back to list</a>
-
-    <a href="{{ path('player_edit', {'id': player.id}) }}">edit</a>
-
+<main class="card container-fluid ">
+<a href="{{ path('team_show', {'slug': player.team.slug}) }}">Revenir à la liste</a>
+    <h1><strong>{{ player.firstName ~ ' ' ~ player.lastName }} {{ player.position.name|lower }} du FC Rosheim {{player.team.teamName}}</strong></h1>
+    <span class="redline"></span>
+            <div class="col-md-12 row">
+                <div class="col-md-6 flex justify-content-center">
+                    {% if player is not null %}
+                        <figure class="player-picture">
+                            <img src="{{ asset('uploads/' ~ player.picture)}}" 
+                                alt="{{ player.firstName ~ ' ' ~ player.lastName }}, gardien du FC Rosheim">
+                            <figcaption>Photo de {{ player.firstName ~ ' ' ~ player.lastName }}</figcaption>
+                        </figure>
+                    {% else %}
+                        <figure class="player-picture">
+                            <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                alt="{{ player.firstName ~ ' ' ~ player.lastName }}, gardien du FC Rosheim">
+                        </figure>
+                    {% endif %} 
+                </div>
+                <div class="col-md-6 info-player-responsive">
+                <h4>Numéro du joueur : {{ player.number }}</h4>
+                {% if stat != null %} 
+                    <h4>Matchs joués : {{ stat.gamePlayed }}</h4>
+                    <h4>Clean Sheets : {{ stat.cleanSheets }}</h4>
+                    <h4>Arrêts : {{ stat.saves }}</h4>
+                    <h4>Carton Jaune : <span class="draw">{{ stat.yellowCards }}</span></h4>
+                    <h4>Carton Rouge : <span class="loose">{{ stat.redCards }}</span></h4>
+                {% endif %}
+                </div>
+            </div>
+    <a class="btn btn-primary" href="{{ path('player_edit', {'id': player.id}) }}">Modifier le joueur</a>
     {{ include('player/_delete_form.html.twig') }}
+</main>
 {% endblock %}

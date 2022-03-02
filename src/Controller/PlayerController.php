@@ -64,7 +64,7 @@ class PlayerController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="goal_keeper_show", methods={"GET"})
+     * @Route("/goal-keeper/{id}", name="goal_keeper_show", methods={"GET"})
      */
     public function goalKeepershow(PlayerRepository $playerRepository, StatsRepository $statsRepository, int $id): Response
     {
@@ -85,7 +85,7 @@ class PlayerController extends AbstractController
     public function fieldPlayershow(PlayerRepository $playerRepository, StatsRepository $statsRepository, int $id): Response
     {
         $player = $playerRepository->find($id);
-        $stat = $statsRepository->findOneBy(['player_id' => $id]);
+        $stat = $statsRepository->findOneBy(['player' => $id]);
 
         if (! $player) {
             throw $this->createNotFoundException('The player '. $id . ' does not exist');

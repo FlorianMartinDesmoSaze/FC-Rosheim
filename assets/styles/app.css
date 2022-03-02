@@ -771,4 +771,7 @@ figcaption h3{
         width: -webkit-fill-available !important;
         width: 100% !important;
     }
+    .info-player-responsive{
+        text-align: center;
+    }
 }
