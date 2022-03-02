@@ -694,6 +694,9 @@ figcaption h3{
 .loose{
     color: red;
 }
+.draw{
+    color: rgb(241, 201, 22);
+}
 .link-no-style{
     text-decoration: none; /* no underline */
     margin-bottom: 1.5em;

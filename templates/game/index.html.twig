@@ -4,32 +4,32 @@
 {% block meta_description %}Liste des matchs du FC Rosheim{% endblock %}
 
 {% block content %}
-    <main class="card col-md-6 container">
+    <main class="card col-md-6 container-fluid">
         {% if is_granted("ROLE_ADMIN") %}
             <a class="btn btn-primary" href="{{ path('game_new') }}">Nouveau match</a>
             <span class="redline-player"></span>
         {% endif %}
-        {####################### Matchs à venir ##########################}
+{############################################ Matchs à venir ###############################################}
         <h1>Matchs à venir</h1>
         {% for upcomingGame in upcomingGames %}
             <a class="link-no-style" href="{{ path('game_show', {'id': upcomingGame.id}) }}">
                 <div class="card col-md-12 text-center">
                     {% if upcomingGame.home == 1 %}
-                        <h4>{{ upcomingGame.gameDate ? upcomingGame.gameDate|date('d/m/Y H:i') : '' }}</h4>
+                        <h4>{{ upcomingGame.gameDate ? upcomingGame.gameDate|date('d/m/Y à H:i') : '' }}</h4>
                         <div class="text-center">
-                            <h3>{{upcomingGame.team.teamName}} 
+                            <h3>FC Rosheim {{upcomingGame.team.teamName}} 
                                 <span class="{{(upcomingGame.scoreTeam < upcomingGame.scoreOpponent) ? 'loose' : 'win'}}">{{ upcomingGame.scoreTeam }} </span> - 
                                 <span class="{{(upcomingGame.scoreTeam > upcomingGame.scoreOpponent) ? 'loose' : 'win'}}">{{ upcomingGame.scoreOpponent }}</span>
                                 {{upcomingGame.opponent}}
                             </h3>
                         </div>
                     {% else %}
-                        <h4>{{ upcomingGame.gameDate ? upcomingGame.gameDate|date('d/m/Y H:i') : '' }}</h4>
+                        <h4>{{ upcomingGame.gameDate ? upcomingGame.gameDate|date('d/m/Y à H:i') : '' }}</h4>
                         <div class="text-center">
                             <h3>{{upcomingGame.opponent}}
                                 <span class="{{(upcomingGame.scoreTeam > upcomingGame.scoreOpponent) ? 'loose' : 'win'}}">{{ upcomingGame.scoreOpponent }}</span> - 
                                 <span class="{{(upcomingGame.scoreTeam < upcomingGame.scoreOpponent) ? 'loose' : 'win'}}">{{ upcomingGame.scoreTeam }} </span>
-                                {{upcomingGame.team.teamName}} 
+                                FC Rosheim {{upcomingGame.team.teamName}} 
                             </h3>
                         </div>
                     {% endif %}
@@ -42,27 +42,27 @@
             Pas de matchs enregistrés
         {% endfor %}
         <span class="redline-player"></span>
-        {####################### Matchs passés ##########################}
+{############################################ Matchs passés ################################################}
         <h1>Matchs passés</h1>
         {% for passedGame in passedGames %}
                 <a class="link-no-style" href="{{ path('game_show', {'id': passedGame.id}) }}">
                     <div class="card col-md-12 text-center">
                         {% if passedGame.home == 1 %}
-                            <h4>{{ passedGame.gameDate ? passedGame.gameDate|date('d/m/Y H:i') : '' }}</h4>
+                            <h4>{{ passedGame.gameDate ? passedGame.gameDate|date('d/m/Y à H:i') : '' }}</h4>
                             <div class="text-center">
-                                <h3>{{passedGame.team.teamName}} 
+                                <h3>FC Rosheim {{passedGame.team.teamName}} 
                                     <span class="{{(passedGame.scoreTeam <= passedGame.scoreOpponent) ? 'loose' : 'win'}}">{{ passedGame.scoreTeam }} </span> - 
                                     <span class="{{(passedGame.scoreTeam >= passedGame.scoreOpponent) ? 'loose' : 'win'}}">{{ passedGame.scoreOpponent }}</span>
                                     {{passedGame.opponent}}
                                 </h3>
                             </div>
                         {% else %}
-                        <h4>{{ passedGame.gameDate ? passedGame.gameDate|date('d/m/Y H:i') : '' }}</h4>
+                        <h4>{{ passedGame.gameDate ? passedGame.gameDate|date('d/m/Y à H:i') : '' }}</h4>
                         <div class="text-center">
                             <h3>{{passedGame.opponent}}
                                 <span class="{{(passedGame.scoreTeam >= passedGame.scoreOpponent) ? 'loose' : 'win'}}">{{ passedGame.scoreOpponent }}</span> - 
                                 <span class="{{(passedGame.scoreTeam <= passedGame.scoreOpponent) ? 'loose' : 'win'}}">{{ passedGame.scoreTeam }} </span>
-                                {{passedGame.team.teamName}} 
+                                FC Rosheim {{passedGame.team.teamName}} 
                             </h3>
                         </div>
                         {% endif %}     
