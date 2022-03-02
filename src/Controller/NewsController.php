@@ -4,17 +4,18 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Form\NewsType;
-use App\Service\FileUploader;
 use App\Repository\NewsRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
+
 // use App\Entity\Team;
 
 /**
@@ -31,7 +32,7 @@ class NewsController extends AbstractController
         $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
 
         return $this->render('news/index.html.twig', [
-            'news' => $newsRepository->findAll(),
+            'news' => $newsRepository->findAllByLatest(),
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
