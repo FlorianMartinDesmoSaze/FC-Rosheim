@@ -2,12 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\stats;
+use App\Repository\PlayerRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory as Faker;
-use App\Entity\stats;
-use App\Entity\Player;
-use App\Repository\PlayerRepository;
 
 class StatsFixtures extends Fixture
 {
@@ -33,6 +32,7 @@ class StatsFixtures extends Fixture
                 ->setAssists($faker->numberBetween(0, 10))
                 ->setGoals($faker->numberBetween(0, 50))
                 ->setYellowCards($faker->numberBetween(0, 10))
+                ->setRedCards($faker->numberBetween(0, 10))
                 ;
             $manager->persist($stats);
         }
