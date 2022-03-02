@@ -10,53 +10,50 @@
         <main class="col-md-8 full-height">
             {{ include('include/admin/_admin_title.html.twig') }}
                 <div class="card admin">
-                <h1 class="display-2">Nouveau Staff</h1>
-                    {{ form_start(form, {attr: {class: 'form-user-submit'}}) }}
+                <h1 class="display-2">Gestion des Statistiques</h1>
+                    {{ form_start(form, {attr: {class: 'form-players-submit'}}) }}
                     <table class="table table-striped table-dark table-hover">
                         <tbody>
                             <tr>
-                                <th>Prénom</th>
-                                <td id="staff_firstName">
-                                    {{ form_widget(form.firstName) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Nom de famille</th>
-                                <td id="staff_lastName">
-                                    {{ form_widget(form.lastName) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>E-mail</th>
-                                <td id="staff_email">
-                                    {{ form_widget(form.email) }}
-                                    {{ form_errors(form.email) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Telephone</th>
-                                <td id="staff_phone">
-                                    {{ form_widget(form.phone) }}
-                                    {{ form_errors(form.phone) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Compte Utilisateur</th>
-                                <td id="staff_account">
-                                    {{ form_widget(form.user) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Responsabilité</th>
-                                <td id="staff_position">
-                                    {{ form_widget(form.position) }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Photo</th>
+                                <th>Matches joués</th>
                                 <td>
-                                    {{ form_widget(form.picture) }}
-                                    {{ form_errors(form.picture) }}
+                                    {{ form_widget(form.gamePlayed) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Cartons jaunes</th>
+                                <td>
+                                    {{ form_widget(form.yellowCards) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Cartons rouges</th>
+                                <td>
+                                    {{ form_widget(form.redCards) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Buts</th>
+                                <td>
+                                    {{ form_widget(form.goals) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Passes décisives</th>
+                                <td>
+                                    {{ form_widget(form.assists) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Arrêts</th>
+                                <td>
+                                    {{ form_widget(form.saves) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Clean sheets</th>
+                                <td>
+                                    {{ form_widget(form.cleanSheets) }}
                                 </td>
                             </tr>
                         </tbody>
@@ -69,6 +66,6 @@
 </div>
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('adminLeaveWarning') }}
+    {{ include('include/admin/_admin_js.html.twig') }}
 {% endblock %}
 {% endblock content %}

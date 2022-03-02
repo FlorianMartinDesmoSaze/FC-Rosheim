@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Mon profil - FC Rosheim{% endblock %}
+{% block title %}{{ include('admin/_title.html.twig') }}{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
@@ -16,7 +16,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Titre</th>
-                            <th>Image</th>
+                            <th>Par</th>
                             <th>Créé le</th>
                             <th>MàJ le</th>
                         </tr>
@@ -27,18 +27,14 @@
                             style='cursor: pointer;'>
                             <td>{{ news.id }}</td>
                             <td>
-                            {% if  news.title|default %}
                                 {{ news.title }}
-                            {% else %}
-                                N/A
-                            {% endif %}
                             </td>
                             <td>
-                            {% if  news.picture|default %}
-                                <a href="{{ news.picture }}" target="_blank">{{ news.picture }}</a>
-                            {% else %}
-                                N/A
-                            {% endif %}
+                                {% if  news.user|default %}
+                                    {{ news.user }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
                             </td>
                             <td>
                             {% if  news.createdAt|default %}

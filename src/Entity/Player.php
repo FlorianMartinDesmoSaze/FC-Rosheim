@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PlayerRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -63,11 +63,6 @@ class Player
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Image(
-     *     minWidth = 100,
-     *     maxWidth = 400,
-     *     minHeight = 100,
-     *     maxHeight = 400)
      */
     private $picture;
 
@@ -212,5 +207,10 @@ class Player
         $this->stats = $stats;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName() . " " . $this->getLastName();
     }
 }

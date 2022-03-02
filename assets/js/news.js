@@ -2,6 +2,7 @@ const arrow = document.querySelector('#down_arrow');
 if (arrow) {
     
     let news = document.querySelectorAll(".card-news");
+    console.log(news);
     // add click event on arrow
     news[0].style.display = "block";
     if (arrow){arrow.addEventListener('click', () => {

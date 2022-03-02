@@ -1,6 +1,9 @@
 {% block breadcrumbs %}
+
+{% if breadcrumbs is defined %}
 <div class="breadcrumb-container">
-<div class="padding-crubs breadcrumb-text">Vous êtes ici </div><div class="padding-crubs breadcrumb-bg breadcrumb-link">{{ wo_render_breadcrumbs() }}</div>
+    <div class="padding-crubs breadcrumb-text">Vous êtes <font color="#f12f37">ici</font> </div><div class="padding-crubs breadcrumb-bg breadcrumb-link">{{ wo_render_breadcrumbs() }}</div>
 </div>
+{% endif %}
 
 {% endblock %}

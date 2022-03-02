@@ -46,6 +46,7 @@ class NewsType extends AbstractType
                             'image/jpg',
                             'image/jpeg',
                             'image/png',
+                            'image/webp',
                         ],
                     ])
                 ],

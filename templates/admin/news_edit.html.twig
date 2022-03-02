@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Mon profil - FC Rosheim{% endblock %}
+{% block title %}{{ include('admin/_title.html.twig') }}{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
@@ -22,6 +22,7 @@
                                 <th>Titre</th>
                                 <td>
                                     {{ form_widget(form.title) }}
+                                    {{ form_errors(form.title) }}
                                 </td>
                             </tr>
                             <tr>
@@ -46,12 +47,14 @@
                                 <th>Contenu</th>
                                 <td>
                                     {{ form_widget(form.content) }}
+                                    {{ form_errors(form.content) }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Image</th>
                                 <td>
                                     {{ form_widget(form.picture) }}
+                                    {{ form_errors(form.picture) }}
                                 </td>
                             </tr>
                             <tr>
