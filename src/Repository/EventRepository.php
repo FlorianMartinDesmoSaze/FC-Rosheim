@@ -47,4 +47,12 @@ class EventRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findAllByLatest()
+    {
+        return $this->createQueryBuilder('n')
+            ->orderBy('n.startDate', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

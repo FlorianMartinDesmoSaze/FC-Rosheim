@@ -28,28 +28,28 @@
                             style='cursor: pointer;'>
                             <td>{{ player.id }}</td>
                             <td>
-                            {% if player.team|default %}
+                            {% if player.team is not null %}
                                 {{ player.team }}
                             {% else %}
                                 Non renseignée
                             {% endif %}
                             </td>
                             <td>
-                            {% if player.position|default %}
+                            {% if player.position is not null %}
                                 {{ player.position }}
                             {% else %}
                                 Non renseignée
                             {% endif %}
                             </td>
                             <td>
-                            {% if  player.lastName|default %}
+                            {% if  player.lastName is not null %}
                                 {{ player.lastName }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                                {% if  player.number|default %}
+                                {% if  player.number is not null %}
                                     {{ player.number }}
                                 {% else %}
                                     Non renseigné

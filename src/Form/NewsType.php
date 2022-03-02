@@ -2,18 +2,18 @@
 
 namespace App\Form;
 
+use App\Entity\Event;
 use App\Entity\News;
 use App\Entity\Team;
-use App\Entity\Event;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class NewsType extends AbstractType
 {
@@ -27,7 +27,7 @@ class NewsType extends AbstractType
                 ]
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Titre',
+                'label' => 'Contenu',
                 'attr' => [
                     'class' => 'form-control',
                 ]
@@ -60,6 +60,9 @@ class NewsType extends AbstractType
                 'label' => 'Évènement',
                 'class' => Event::class,
                 'choice_label' => 'title',
+            ])
+            ->add('Envoyer', SubmitType::class, [
+                'attr'=> ['class' => 'crud-btn'],
             ])
         ;
     }

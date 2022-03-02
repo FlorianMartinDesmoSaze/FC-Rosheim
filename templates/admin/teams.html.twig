@@ -26,21 +26,21 @@
                         <tr>
                             <td>{{ team.id }}</td>
                             <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
-                            {% if team.teamName|default %}
+                            {% if team.teamName is not null %}
                                 {{ team.teamName }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
-                            {% if team.season|default %}
+                            {% if team.season is not null %}
                                 {{ team.season }}
                             {% else %}
                                 Non renseignée
                             {% endif %}
                             </td>
                             <td>
-                            {% if  team.picture|default %}
+                            {% if  team.picture is not null %}
                                 <a href="{{ team.picture }}" target="_blank">{{ team.picture }}</a>
                             {% else %}
                                 Non renseignée

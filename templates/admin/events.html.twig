@@ -29,35 +29,35 @@
                             style='cursor: pointer;'>
                             <td>{{ event.id }}</td>
                             <td>
-                            {% if event.user|default %}
+                            {% if event.user is not null %}
                                 {{ event.user }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if event.title|default %}
+                            {% if event.title is not null %}
                                 {{ event.title }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if  event.type|default %}
+                            {% if  event.type is not null %}
                                 {{ event.type }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if  event.startDate|default %}
+                            {% if  event.startDate is not null %}
                                 {{ event.startDate|date('d/m/Y H:i') }}
                             {% else %}
                                 Non renseigné
                             {% endif %}
                             </td>
                             <td>
-                            {% if  event.location|default %}
+                            {% if  event.location is not null %}
                                 {{ event.location }}
                             {% else %}
                                 Non renseigné

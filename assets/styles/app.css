@@ -151,6 +151,15 @@ span.leftbar {
     margin-bottom: 1.5em;
     border-radius: 0;
 }
+.card input[type="checkbox"]{
+    border-radius: 0;
+}
+.card select {
+    border-radius: 0;
+}
+.card legend{
+    color: whitesmoke;
+}
 .card p {
     color: whitesmoke;
     margin-bottom: 0;
@@ -683,6 +692,17 @@ figcaption h3{
 .exclusion {
     display: none;
 }
+/******** Games ********/
+.win{
+    color: rgb(84, 211, 84);
+}
+.loose{
+    color: red;
+}
+.link-no-style{
+    text-decoration: none; /* no underline */
+    margin-bottom: 1.5em;
+}
 
 /******** Scroll bar ********/
 
@@ -712,16 +732,13 @@ figcaption h3{
 .crud-btn {
     border: solid 1px rgba(180, 0, 0, 0.8);
     background-color: #0c0c0c; 
-    color: white;
+    color: rgba(180, 0, 0, 0.8);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     text-decoration: none !important;
-}
-.crud-btn a {
-    text-decoration: none;
 }
 
 .delete-btn {

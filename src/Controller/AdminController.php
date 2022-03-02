@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Game;
 use App\Entity\News;
 use App\Entity\Player;
 use App\Entity\Staff;
@@ -11,13 +12,16 @@ use App\Entity\Team;
 use App\Entity\User;
 use App\Form\AdminNewsType;
 use App\Form\EventType;
+use App\Form\GameType;
 use App\Form\NewEventType;
+use App\Form\NewGameType;
 use App\Form\PlayerType;
 use App\Form\StaffType;
 use App\Form\StatsType;
 use App\Form\TeamType;
 use App\Form\UserType;
 use App\Repository\EventRepository;
+use App\Repository\GameRepository;
 use App\Repository\NewsRepository;
 use App\Repository\PlayerRepository;
 use App\Repository\StaffRepository;
@@ -212,7 +216,7 @@ class AdminController extends AbstractController
     public function news(NewsRepository $newsRepository): Response
     {
         return $this->render('admin/news.html.twig', [
-            'newsRepository' => $newsRepository->findAll(),
+            'newsRepository' => $newsRepository->findAllByLatest(),
         ]);
     }
     /**
@@ -580,12 +584,64 @@ class AdminController extends AbstractController
     /**
      * @Route("/results", name="admin_results")
      */
-    public function results(): Response
+    public function results(GameRepository $gameRepository): Response
     {
         return $this->render('admin/results.html.twig', [
-            'controller_name' => 'AdminController',
+            'gameRepository' => $gameRepository->findAllByLatest(),
         ]);
     }
+    /**
+     * @Route("/results/delete/{id}", name="admin_results_delete", methods={"DELETE"})
+     */
+    public function deleteGame(Game $game, EntityManagerInterface $em, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        if ($this->isCsrfTokenValid('delete' . $game->getId(), $request->get('_token'))) {
+            $em->remove($game);
+            $em->flush();
+        }
+        return $this->redirectToRoute('admin_results');
+    }
+    /**
+     * @Route("/results/new", name="admin_results_new")
+     */
+    public function new_game(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $game = new Game();
+        $form = $this->createForm(NewGameType::class, $game);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($game);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_results', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/results_new.html.twig', [
+            'game' => $game,
+            'form' => $form,
+        ]);
+    }
+    /**
+     * @Route("/results/{id}", name="admin_results_edit", methods={"GET", "POST"})
+     */
+    public function edit_game(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(GameType::class, $game);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_results', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/results_edit.html.twig', [
+            'game' => $game,
+            'form' => $form,
+        ]);
+    }
+
 
                         ///////////////////
                         //     EVENTS    //
@@ -596,7 +652,7 @@ class AdminController extends AbstractController
     public function events(EventRepository $eventRepository): Response
     {
         return $this->render('admin/events.html.twig', [
-            'eventRepository' => $eventRepository->findAll(),
+            'eventRepository' => $eventRepository->findAllByLatest(),
         ]);
     }
     /**
