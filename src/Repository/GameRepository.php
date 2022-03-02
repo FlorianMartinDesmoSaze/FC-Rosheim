@@ -24,6 +24,8 @@ class GameRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('g')
             ->andWhere('g.gameDate < :today')
             ->setParameter('today', $today)
+            ->orderBy('g.gameDate', 'DESC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
@@ -33,6 +35,8 @@ class GameRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('g')
             ->andWhere('g.gameDate > :today')
             ->setParameter('today', $today)
+            ->orderBy('g.gameDate', 'DESC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;

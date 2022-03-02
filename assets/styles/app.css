@@ -688,11 +688,16 @@ figcaption h3{
 }
 /******** Games ********/
 .win{
-    color: green;
+    color: rgb(84, 211, 84);
 }
 .loose{
     color: red;
 }
+.link-no-style{
+    text-decoration: none; /* no underline */
+    margin-bottom: 1.5em;
+}
+
 /******** Scroll bar ********/
 
 /* width */
