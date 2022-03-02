@@ -1,46 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}News{% endblock %}
+{% block title %}News - FC Rosheim
+{% endblock %}
+{% block meta_description %}Contenu d'une news du club FC Rosheim
+{% endblock %}
 
 {% block content %}
-    <h1>News</h1>
+{# start global content #}
+<div class="row">
+<div class="col-2"></div>
+<div class="col-8 card container-fluid d-flex flex">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ news.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ news.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ news.content }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ news.picture }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ news.slug }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ news.createdAt ? news.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ news.updatedAt ? news.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+{# content #}
+<div class="mb-3">
+	<h2>{{ news.title }}</h2>
 
-    <a href="{{ path('news_index') }}">back to list</a>
+	<p>{{ news.content }}</p>
 
-    <a href="{{ path('news_edit', {'id': news.id}) }}">edit</a>
+	<img>{{ news.picture }}</img>
 
-    {{ include('news/_delete_form.html.twig') }}
+	<p class="justify-content-end flex font-italic date-time">Rédigé le
+		{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
+		à
+		{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p>
+	{# <p>Modifié le
+		{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
+		à
+		{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p> #}
+
+</div>
+
+{# buttons #}
+<div class="btn-container d-flex justify-content-between">
+	<a class="crud-btn" href="{{ path('news_index') }}">back to list</a>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a class="crud-btn" href="{{ path('news_edit', {'id': news.id}) }}">edit</a>
+	{{ include('news/_delete_form.html.twig') }}
+	{% endif %}
+</div>
+
+{# end global content #}
+</div>
+
+<div class="col-2"></div>
+
+</div>
 {% endblock %}
