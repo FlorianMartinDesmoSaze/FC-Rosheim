@@ -30,21 +30,21 @@
                                 {{ news.title }}
                             </td>
                             <td>
-                                {% if  news.user|default %}
+                                {% if  news.user is not null %}
                                     {{ news.user }}
                                 {% else %}
                                     N/A
                                 {% endif %}
                             </td>
                             <td>
-                            {% if  news.createdAt|default %}
+                            {% if  news.createdAt is not null %}
                                 {{ news.createdAt|date('d/m/Y H:i') }}
                             {% else %}
                                 N/A
                             {% endif %}
                             </td>
                             <td>
-                            {% if  news.updatedAt|default %}
+                            {% if  news.updatedAt is not null %}
                                 {{ news.updatedAt|date('d/m/Y H:i') }}
                             {% else %}
                                 N/A

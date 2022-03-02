@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GameType extends AbstractType
+class NewGameType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -42,7 +42,10 @@ class GameType extends AbstractType
             ])
             ->add('gameDate', DateTimeType::class, [
                 'label' => 'Date du match',
+                'data' => new \DateTimeImmutable(),
+                'html5' => false,
                 'with_seconds' => false,
+                'format' => DateTimeType::DEFAULT_DATE_FORMAT
             ])
             ->add('home', CheckboxType::class, [
                 'label' => 'À domicile ?',

@@ -49,7 +49,7 @@
                             {% endfor %}
                             </td>
                             <td>
-                            {% if  user.firstName|default %}
+                            {% if  user.firstName is not null %}
                                 {{ user.firstName }}
                             {% else %}
                                 Non renseigné
