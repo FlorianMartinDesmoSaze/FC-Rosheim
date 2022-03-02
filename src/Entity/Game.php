@@ -39,14 +39,12 @@ class Game
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank
-     * @Assert\DateTime
+     * @Assert\Type("\DateTimeInterface")
      */
     private $gameDate;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank
      */
     private $home;
 
