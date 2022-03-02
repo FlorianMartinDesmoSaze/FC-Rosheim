@@ -1,42 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Game{% endblock %}
+{% block title %}Match FC Rosheim {{ game.team.teamName }} - {{ game.opponent }}{% endblock %}
+{% block meta_description %}Détails de la rencontre opposant le FC Rosheim {{ game.team.teamName }} au {{ game.opponent }}{% endblock %}
 
 {% block content %}
-    <h1>Game</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ game.id }}</td>
-            </tr>
-            <tr>
-                <th>Opponent</th>
-                <td>{{ game.opponent }}</td>
-            </tr>
-            <tr>
-                <th>ScoreTeam</th>
-                <td>{{ game.scoreTeam }}</td>
-            </tr>
-            <tr>
-                <th>ScoreOpponent</th>
-                <td>{{ game.scoreOpponent }}</td>
-            </tr>
-            <tr>
-                <th>GameDate</th>
-                <td>{{ game.gameDate ? game.gameDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Home</th>
-                <td>{{ game.home ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('game_index') }}">back to list</a>
-
-    <a href="{{ path('game_edit', {'id': game.id}) }}">edit</a>
-
-    {{ include('game/_delete_form.html.twig') }}
+    <main class="card col-md-6 container">
+        {% if is_granted("ROLE_ADMIN") %}
+                <a class="btn btn-primary" href="{{ path('game_edit', {'id': game.id}) }}">Modifier la rencontre</a>
+            <span class="redline-player"></span>
+        {% endif %}
+{############################################ Matchs à venir ###############################################}
+        {% if game.scoreTeam is not null and game.scoreTeam is defined %}
+            {% if game.scoreTeam < game.scoreOpponent %}
+                <h1><strong><span class="loose">Défaite</span> du FC Rosheim</strong></h1>
+            {% elseif game.scoreTeam == game.scoreOpponent %}
+                <h1><strong><span class="draw">Match nul</span> du FC Rosheim</strong></h1>
+            {% else %}
+                <h1><strong><span class="win">Victoire</span> du FC Rosheim</strong></h1>
+            {% endif %}
+            <a class="link-no-style" href="{{ path('team_show', {'slug': game.team.slug}) }}">
+                <div class="card col-md-12 text-center">
+                    {% if game.home == 1 %}
+                        <h4>{{ game.gameDate ? game.gameDate|date('d/m/Y H:i') : '' }}</h4>
+                        <div class="text-center">
+                            <h3>FC Rosheim {{game.team.teamName}} 
+                                <span class="{{(game.scoreTeam < game.scoreOpponent) ? 'loose' : 'win'}}">{{ game.scoreTeam }} </span> - 
+                                <span class="{{(game.scoreTeam > game.scoreOpponent) ? 'loose' : 'win'}}">{{ game.scoreOpponent }}</span>
+                                {{game.opponent}}
+                            </h3>
+                        </div>
+                    {% else %}
+                        <h4>{{ game.gameDate ? game.gameDate|date('d/m/Y H:i') : '' }}</h4>
+                        <div class="text-center">
+                            <h3>{{game.opponent}}
+                                <span class="{{(game.scoreTeam > game.scoreOpponent) ? 'loose' : 'win'}}">{{ game.scoreOpponent }}</span> - 
+                                <span class="{{(game.scoreTeam < game.scoreOpponent) ? 'loose' : 'win'}}">{{ game.scoreTeam }} </span>
+                                FC Rosheim {{game.team.teamName}} 
+                            </h3>
+                        </div>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="btn btn-primary" href="{{ path('game_edit', {'id': game.id}) }}">Modifier</a>
+                    {% endif %}
+                </div>
+            </a>
+        {% else %}
+            <h1><strong>
+                Le choc entre le <a href="{{ path('team_show', {'slug': game.team.slug}) }}">FC Rosheim {{ game.team.teamName }}</a> et {{ game.opponent }} aura lieu à 
+                {{game.home == 1 ? 'domicile' : 'l\'exterieur'}} le {{ game.gameDate ? game.gameDate|date('d/m/Y à H:i') : '' }}
+            </strong></h1>
+        {% endif %}
+        <a href="{{ path('game_index') }}">Revenir à la liste</a>
+    </main>
 {% endblock %}
