@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Game;
 use App\Entity\News;
 use App\Entity\Player;
 use App\Entity\Staff;
@@ -11,6 +12,7 @@ use App\Entity\Team;
 use App\Entity\User;
 use App\Form\AdminNewsType;
 use App\Form\EventType;
+use App\Form\GameType;
 use App\Form\NewEventType;
 use App\Form\PlayerType;
 use App\Form\StaffType;
@@ -18,6 +20,7 @@ use App\Form\StatsType;
 use App\Form\TeamType;
 use App\Form\UserType;
 use App\Repository\EventRepository;
+use App\Repository\GameRepository;
 use App\Repository\NewsRepository;
 use App\Repository\PlayerRepository;
 use App\Repository\StaffRepository;
@@ -580,12 +583,32 @@ class AdminController extends AbstractController
     /**
      * @Route("/results", name="admin_results")
      */
-    public function results(): Response
+    public function results(GameRepository $gameRepository): Response
     {
         return $this->render('admin/results.html.twig', [
-            'controller_name' => 'AdminController',
+            'gameRepository' => $gameRepository->findAllByLatest(),
         ]);
     }
+    /**
+     * @Route("/results/{id}", name="admin_results_edit", methods={"GET", "POST"})
+     */
+    public function edit_game(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(GameType::class, $game);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_results', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/results_edit.html.twig', [
+            'game' => $game,
+            'form' => $form,
+        ]);
+    }
+
 
                         ///////////////////
                         //     EVENTS    //
