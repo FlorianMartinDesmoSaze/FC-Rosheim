@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 /**
  * @Route("/event")
@@ -30,10 +31,15 @@ class EventController extends AbstractController
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
-    public function index(EventRepository $eventRepository): Response
+    public function index(EventRepository $eventRepository, Breadcrumbs $breadcrumbs): Response
     {
+
+        $breadcrumbs->addItem('home', $this->generateUrl('home'));
+        $breadcrumbs->addItem('event', $this->generateUrl('event_index'));
+
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findAll(),
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -42,11 +48,15 @@ class EventController extends AbstractController
      * @Route("/new", name="event_new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Breadcrumbs $breadcrumbs): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("event", $this->generateUrl("event_index"));
+        $breadcrumbs->addItem("new", $this->generateUrl("event_new"));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($event);
@@ -58,16 +68,24 @@ class EventController extends AbstractController
         return $this->renderForm('event/new.html.twig', [
             'event' => $event,
             'form' => $form,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
     /**
      * @Route("/{id}", name="event_show", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function show(EventRepository $eventRepository, int $id): Response
+    public function show(EventRepository $eventRepository, int $id, Breadcrumbs $breadcrumbs): Response
     {
 
         $event = $eventRepository->find($id);
+
+        $eventId = $event->getId();
+        $eventSlug = $event->getSlug();
+
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("event", $this->generateUrl("event_index"));
+        $breadcrumbs->addItem($eventId, $this->generateUrl("news_index", [], $eventId));
 
         if (!$event) {
             throw $this->createNotFoundException(
@@ -76,6 +94,7 @@ class EventController extends AbstractController
         }
             return $this->render('event/show.html.twig', [
                 'event' => $event,
+                'breadcrumbs' => $breadcrumbs,
             ]);
         
     }

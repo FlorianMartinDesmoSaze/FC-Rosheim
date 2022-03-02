@@ -26,12 +26,12 @@ class PlayerController extends AbstractController
      * @Route("/", name="player_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(PlayerRepository $playerRepository): Response
-    {
-        return $this->render('player/index.html.twig', [
-            'players' => $playerRepository->findAll(),
-        ]);
-    }
+    // public function index(PlayerRepository $playerRepository): Response
+    // {
+    //     return $this->render('player/index.html.twig', [
+    //         'players' => $playerRepository->findAll(),
+    //     ]);
+    // }
 
     /**
      * @Route("/new", name="player_new", methods={"GET", "POST"})

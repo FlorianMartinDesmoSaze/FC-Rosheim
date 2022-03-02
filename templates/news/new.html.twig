@@ -3,9 +3,20 @@
 {% block title %}New News{% endblock %}
 
 {% block content %}
+
+<div class="row">
+	<divclass="col-2"></div>
+	<divclass="col-8">
+
     <h1>Create new News</h1>
 
     {{ include('news/_form.html.twig') }}
 
     <a href="{{ path('news_index') }}">back to list</a>
+    
+	</div>
+</div>
+<divclass="col-2"></div>
+
+
 {% endblock %}

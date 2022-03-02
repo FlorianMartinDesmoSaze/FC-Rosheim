@@ -32,6 +32,7 @@ class NewsController extends AbstractController
 
         return $this->render('news/index.html.twig', [
             'news' => $newsRepository->findAll(),
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
@@ -67,15 +68,22 @@ class NewsController extends AbstractController
         return $this->renderForm('news/new.html.twig', [
             'news' => $news,
             'form' => $form,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
     /**
      * @Route("/{id}", name="news_show", methods={"GET"})
      */
-    public function show(NewsRepository $newsRepository, int $id): Response
+    public function show(NewsRepository $newsRepository, int $id, Breadcrumbs $breadcrumbs): Response
     {
+        
         $news = $newsRepository->find($id);
+        $newsId = $news->getId();
+
+        $breadcrumbs->addItem("home", $this->generateUrl("home"));
+        $breadcrumbs->addItem("news", $this->generateUrl("news_index"));
+        $breadcrumbs->addItem($newsId, $this->generateUrl("news_index", [], $newsId));
 
         if (! $news) {
             throw $this->createNotFoundException('The news '. $id . ' does not exist');
@@ -83,6 +91,7 @@ class NewsController extends AbstractController
 
         return $this->render('news/show.html.twig', [
             'news' => $news,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
