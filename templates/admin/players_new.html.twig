@@ -30,6 +30,7 @@
                                 <th>Numéro</th>
                                 <td>
                                     {{ form_widget(form.number) }}
+                                    {{ form_errors(form.number) }}
                                 </td>
                             </tr>
                             <tr>
@@ -54,6 +55,7 @@
                                 <th>Photo</th>
                                 <td>
                                     {{ form_widget(form.picture) }}
+                                    {{ form_errors(form.picture) }}
                                 </td>
                             </tr>
                         </tbody>

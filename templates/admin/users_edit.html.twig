@@ -22,6 +22,7 @@
                                 <th>E-mail</th>
                                 <td id="user_email">
                                     {{ form_widget(form.email) }}
+                                    {{ form_errors(form.email) }}
                                 </td>
                             </tr>
                             <tr>
@@ -46,6 +47,7 @@
                                 <th>Telephone</th>
                                 <td id="user_phone">
                                     {{ form_widget(form.phone) }}
+                                    {{ form_errors(form.phone) }}
                                 </td>
                             </tr>
                             <tr>
