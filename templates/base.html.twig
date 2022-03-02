@@ -12,16 +12,16 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
-    <body class="">
+    <body class="w-100">
 
         {{ include ("include/_header.html.twig") }}
         <div class="col-md-12">
         <div class="col-md-1">
         {{ include ("include/_externalLinks.html.twig") }}
         </div>
-        {# <div class="row">
+        {# <div class="row"> 
 		<div class="col-2"></div>
-		<div class="col-8"> #}
+		<div class="col-8">  #}
         {% block content %}
         {% endblock %}
         {# </div>
