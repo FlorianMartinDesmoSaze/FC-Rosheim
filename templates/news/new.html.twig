@@ -5,18 +5,19 @@
 {% block content %}
 
 <div class="row">
-	<divclass="col-2"></div>
-	<divclass="col-8">
+	<div class="col-2"></div>
+	<div class="col-8">
 
-    <h1>Create new News</h1>
-
+    <h1>Créer une nouvelle News</h1>
+	<div class="card container-fluid d-flex flex mb-3">
     {{ include('news/_form.html.twig') }}
+	</div>
 
     <a href="{{ path('news_index') }}">back to list</a>
     
 	</div>
 </div>
-<divclass="col-2"></div>
+<div class="col-2"></div>
 
 
 {% endblock %}

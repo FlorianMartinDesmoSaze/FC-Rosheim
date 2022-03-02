@@ -726,16 +726,13 @@ figcaption h3{
 .crud-btn {
     border: solid 1px rgba(180, 0, 0, 0.8);
     background-color: #0c0c0c; 
-    color: white;
+    color: rgba(180, 0, 0, 0.8);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     text-decoration: none !important;
-}
-.crud-btn a {
-    text-decoration: none;
 }
 
 .delete-btn {

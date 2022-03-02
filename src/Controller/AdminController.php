@@ -212,7 +212,7 @@ class AdminController extends AbstractController
     public function news(NewsRepository $newsRepository): Response
     {
         return $this->render('admin/news.html.twig', [
-            'newsRepository' => $newsRepository->findAll(),
+            'newsRepository' => $newsRepository->findAllByLatest(),
         ]);
     }
     /**
@@ -596,7 +596,7 @@ class AdminController extends AbstractController
     public function events(EventRepository $eventRepository): Response
     {
         return $this->render('admin/events.html.twig', [
-            'eventRepository' => $eventRepository->findAll(),
+            'eventRepository' => $eventRepository->findAllByLatest(),
         ]);
     }
     /**
