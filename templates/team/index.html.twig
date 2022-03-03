@@ -12,7 +12,9 @@
                         <a id="teamName" href="{{ path('team_show', {'slug': team.slug}) }}">FC Rosheim {{ team.teamName }} {{ team.season }}</a>
                     </div>
                     <div class="col-md-1">
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('team_edit', {'id': team.id}) }}" class="btn btn-primary btn-team" title="Modifier l'équipe">Modifier</a>
+                        {% endif %}
                     </div>
                 </div>
             {% else %}
@@ -20,8 +22,10 @@
                 <h4>Le club n'a actuellement aucune équipe.</h4>
             </div>
             {% endfor %}
+            {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('team_new') }}" class="btn btn-primary btn-team" title="Nouvelle équipe">Créer une nouvelle équipe</a>
             <a href="{{ path('player_new') }}" class="btn btn-primary btn-team" title="Nouveau joueur">Créer un nouveau joueur</a>
+            {% endif %}
         </div>
     </div>  
     

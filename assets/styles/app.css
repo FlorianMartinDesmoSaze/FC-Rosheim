@@ -739,23 +739,23 @@ figcaption h3{
     color: rgba(180, 0, 0, 0.8);
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
     text-decoration: none !important;
 }
 
 .delete-btn {
+    text-decoration: none;
     background-color: rgba(180, 0, 0, 0.8); 
     border: solid 1px rgba(180, 0, 0, 0.8);
     color: whitesmoke !important;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
 }
 .crud-btn:hover{
+    text-decoration: none;
     color: whitesmoke !important;
     background-color: rgba(90, 0, 0, 0.8); 
     transition: all 0.1s, ease-in-out;
@@ -767,6 +767,11 @@ figcaption h3{
     background-color: rgba(90, 0, 0, 0.8); 
     transition: all 0.1s, ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
+    text-decoration: none;
+}
+
+.crud-btn a, .crud-btn:hover a, .delete-btn a, .delete-btn:hover a {
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 620px) {

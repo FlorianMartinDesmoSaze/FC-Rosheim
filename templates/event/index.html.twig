@@ -55,8 +55,9 @@
 			</div>
 				{% endfor %}
 			{% endif %}
-
-				<a href="{{ path('event_new') }}">Create new</a>
+				{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('event_new') }}">Créer une nouvelle entrée</a>
+				{% endif %}
 			{% endblock %}
 
 			{% block javascripts %}

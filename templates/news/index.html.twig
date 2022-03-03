@@ -13,7 +13,7 @@
 
 			<h1>Liste des articles</h1>
 
-			<a href="{{ path('news_new') }}">Rédiger un article</a>
+			{% if is_granted('ROLE_ADMIN') %}<a href="{{ path('news_new') }}">Rédiger un article</a>{% endif %}
 			{% if news %}
 				{% for news in news %}
 				{# article content #}
@@ -38,18 +38,19 @@
 							{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p>
 						</div> #}
 						</div>
-
+							{% if is_granted('ROLE_ADMIN') %}
     					<div class="redline-player"></div>
-
 						{# button #}
 						<div class="mt-3  col d-flex justify-content-center">
-							<button class="crud-btn mx-3">
-								<a href="{{ path('news_show', {'id': news.id}) }}">Consulter</a>
-							</button>
+							
+							<a href="{{ path('news_show', {'id': news.id}) }}"><button class="crud-btn mx-3">
+								Consulter
+							</button></a>
 							<button class="crud-btn mx-3">
 								<a href="{{ path('news_edit', {'id': news.id}) }}">Modifier</a>
 							</button>
 						</div>
+							{% endif %}
 						{# button end #}
 					</div>
 				{% endfor %}
