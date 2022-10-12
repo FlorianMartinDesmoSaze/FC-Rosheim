@@ -1,50 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Event{% endblock %}
+{% block title %}Event - FC Rosheim
+{% endblock %}
+{% block meta_description %}Présentation d'un évènement du club FC Rosheim
+{% endblock %}
 
 {% block content %}
-    <h1>Event</h1>
+{# start global content #}
+<div class="row">
+<div class="col-2"></div>
+<div class="col-8 card container-fluid d-flex flex">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ event.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.description }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ event.type }}</td>
-            </tr>
-            <tr>
-                <th>StartDate</th>
-                <td>{{ event.startDate ? event.startDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndDate</th>
-                <td>{{ event.endDate ? event.endDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>{{ event.location }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ event.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
+{# content #}
+			<div class="card container-fluid d-flex flex mb-3">
+				<h2 class="mb-3">{{ event.title }}</h2>
+					<p class="mb-3">{{ event.description }}</p>
 
-    <a href="{{ path('event_index') }}">back to list</a>
+				<div class="row event-info flex justify-content-end">
+					<p>Type d'évènement : {{ event.type }}</p>
+				<p>Lieu : {{ event.location }}</p>
+				</div>
 
-    <a href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
 
-    {{ include('event/_delete_form.html.twig') }}
+				<div class="redline-center"></div>
+
+					<p class="justify-content-end flex font-italic date-time">Cet évènement début le
+						{{ event.startDate ? event.startDate|date('d-m-Y') }}
+						à
+						{{ event.startDate ? event.startDate|date('H') : '' }}h</p>
+					<p class="justify-content-end flex font-italic date-time">et fini le
+						{{ event.endDate ? event.endDate|date('d-m-Y') }}
+						à
+						{{ event.endDate ? event.endDate|date('H') : '' }}h</p>
+			</div>
+
+{# buttons #}
+<div class="btn-container d-flex justify-content-between">
+	<a class="crud-btn" href="{{ path('event_index') }}">Retour à la liste</a>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a class="crud-btn" href="{{ path('event_edit', {'id': event.id}) }}">Modifier</a>
+	{{ include('event/_delete_form.html.twig') }}
+	{% endif %}
+</div>
+
+</div>
+
+<div class="col-2"></div>
+
+{# end global content #}
+</div>
 {% endblock %}

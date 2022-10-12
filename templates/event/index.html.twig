@@ -40,13 +40,13 @@
 				<div class="redline-center"></div>
 
 					<p class="justify-content-end flex font-italic date-time">Cet évènement début le
-						{{ event.startDate ? event.startDate|date('Y-m-d') }}
+						{{ event.startDate ? event.startDate|date('d-m-Y') }}
 						à
-						{{ event.startDate ? event.startDate|date('H:i:s') : '' }}</p>
+						{{ event.startDate ? event.startDate|date('H') : '' }}h</p>
 					<p class="justify-content-end flex font-italic date-time">et fini le
-						{{ event.endDate ? event.endDate|date('Y-m-d') }}
+						{{ event.endDate ? event.endDate|date('d-m-Y') }}
 						à
-						{{ event.endDate ? event.endDate|date('H:i:s') : '' }}</p>
+						{{ event.endDate ? event.endDate|date('H') : '' }}h</p>
 			</div>
 			{# end event #}
 				{% else %}

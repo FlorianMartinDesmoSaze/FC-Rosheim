@@ -31,6 +31,9 @@
 							à
 							{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p>
 						</div>
+													<div class="flex-left d-flex flex-row-reverse">
+								<a calss="" href="/news/{{ news.id }}">Lire la suite</a>
+							</div>
 						{# <div class=" my-3 justify-content-end flex d-flex align-items-end">
 						<p>Modifié le
 							{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
