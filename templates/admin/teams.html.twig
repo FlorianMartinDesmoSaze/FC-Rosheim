@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ include('admin/_title.html.twig') }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <div class="full-height flex align-items-center">
+        {{ include ("include/admin/_admin_sidepanel.html.twig") }}
+        <main class="col-md-8 full-height">
+            {{ include('include/admin/_admin_title.html.twig') }}
+                <div class="card admin">
+                <h1 class="display-2">Gestion des Équipes</h1>
+                <table class="table table-striped table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Saison</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                    {% for team in teamRepository %}
+                        <tr>
+                            <td>{{ team.id }}</td>
+                            <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
+                            {% if team.teamName is not null %}
+                                {{ team.teamName }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                            </td>
+                            <td style='cursor: pointer;' onclick="window.location='{{ path('admin_teams_edit', {'id': team.id}) }}'">
+                            {% if team.season is not null %}
+                                {{ team.season }}
+                            {% else %}
+                                Non renseignée
+                            {% endif %}
+                            </td>
+                            <td>
+                            {% if  team.picture is not null %}
+                                <a href="{{ team.picture }}" target="_blank">{{ team.picture }}</a>
+                            {% else %}
+                                Non renseignée
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">Aucune équipe trouvée.
+                                Cliquez sur le bouton ci-dessous pour commencer à en renseigner !</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button class='btn btn-primary clickable' onclick="window.location='{{ path('admin_teams_new') }}'">Créer une nouvelle Équipe</button>
+                </div>
+        </main>
+    </div>
+</div>
+{% endblock content %}

@@ -1,10 +1,11 @@
 
 ###> symfony/framework-bundle ###
+/.env
 /.env.local
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
+/public_html/bundles/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -18,3 +19,16 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public_html/build/
+/public_html/uploads/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+node_modules
+
+###> phpstorm ###
+/.idea
+/.idea/

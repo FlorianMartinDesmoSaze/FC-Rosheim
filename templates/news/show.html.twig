@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News - FC Rosheim
+{% endblock %}
+{% block meta_description %}Contenu d'une news du club FC Rosheim
+{% endblock %}
+
+{% block content %}
+{# start global content #}
+<div class="row">
+<div class="col-2"></div>
+<div class="col-8 card container-fluid d-flex flex">
+
+{# content #}
+<div class="mb-3">
+	<h2>{{ news.title }}</h2>
+
+	<p>{{ news.content }}</p>
+
+	<img>{{ news.picture }}</img>
+
+
+	<p class="justify-content-end flex font-italic date-time">Rédigé le
+		{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
+		à
+		{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p>
+	{# <p>Modifié le
+		{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
+		à
+		{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p> #}
+    <div class="redline-player"></div>
+
+</div>
+
+{# buttons #}
+<div class="btn-container d-flex justify-content-between">
+	<a class="crud-btn" href="{{ path('news_index') }}">Retour à la liste</a>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a class="crud-btn" href="{{ path('news_edit', {'id': news.id}) }}">Modifier</a>
+	{{ include('news/_delete_form.html.twig') }}
+	{% endif %}
+</div>
+
+</div>
+
+<div class="col-2"></div>
+
+{# end global content #}
+</div>
+{% endblock %}

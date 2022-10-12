@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+	{{ parent()}}
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+
+{% endblock %}
+
+{% block title %}Event index
+{% endblock %}
+
+
+
+		{% block content %}
+<div class="row">
+	<div class="col-2"></div>
+	<div class="col-8 ">
+
+			<div id="calendar-holder" class="calendar-padding"></div>
+
+			<h1 class="mb-4">Liste des événements</h1>
+			{% if events is not null %}
+			{% for event in events %}
+
+			{# begining event #}
+			<div class="card container-fluid d-flex flex mb-3">
+				<h2 class="mb-3">{{ event.title }}</h2>
+					<p class="mb-3">{{ event.description }}</p>
+
+				<div class="row event-info flex justify-content-end">
+					<p>Type d'évènement : {{ event.type }}</p>
+				<p>Lieu : {{ event.location }}</p>
+				</div>
+
+
+				<div class="redline-center"></div>
+
+					<p class="justify-content-end flex font-italic date-time">Cet évènement début le
+						{{ event.startDate ? event.startDate|date('d-m-Y') }}
+						à
+						{{ event.startDate ? event.startDate|date('H') : '' }}h</p>
+					<p class="justify-content-end flex font-italic date-time">et fini le
+						{{ event.endDate ? event.endDate|date('d-m-Y') }}
+						à
+						{{ event.endDate ? event.endDate|date('H') : '' }}h</p>
+			</div>
+			{# end event #}
+				{% else %}
+				<div class="card container-fluid d-flex flex">
+					<h2 colspan="9">Il n'y a pas d'évènement prévu pour le moment</h2>
+			</div>
+				{% endfor %}
+			{% endif %}
+				{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('event_new') }}">Créer une nouvelle entrée</a>
+				{% endif %}
+			{% endblock %}
+
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+
+				<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+
+				<script type="text/javascript">
+					document.addEventListener('DOMContentLoaded', () => {
+var calendarEl = document.getElementById('calendar-holder');
+
+var calendar = new FullCalendar.Calendar(calendarEl, {
+defaultView: 'dayGridMonth',
+allDay: true, // hide event time
+editable: true,
+eventSources: [
+{
+url: "{{ path('fc_load_events') }}",
+method: "POST",
+extraParams: {
+filters: JSON.stringify({})
+},
+failure: () => { // alert("There was an error while fetching FullCalendar!");
+}
+},
+],
+header: {
+left: 'prev,next today',
+center: 'title',
+right: 'dayGridMonth,timeGridWeek,timeGridDay'
+},
+plugins: [
+'interaction', 'dayGrid', 'timeGrid'
+], // https://fullcalendar.io/docs/plugin-index
+timeZone: 'UTC'
+});
+
+// var calendarGrid = document.getElementsByClassName('fc-view-container');
+// calendarGrid.classList.add('calendar-bg');
+
+calendar.setOption('locale', 'fr');
+calendar.render();
+});
+				</script>
+		</div>
+		<div class="col-2"></div>
+	</div>
+			{% endblock %}
+

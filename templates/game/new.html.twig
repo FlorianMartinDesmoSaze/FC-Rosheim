@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle équipe - FC Rosheim{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <a href="{{ path('team_index') }}">Revenir en arrière</a>
+        <div class="row justify-content-md-center full-height flex align-items-center">
+            <div class="col-md-4 justify-content-md-center card">
+                <h1 class"h3 mb-3 font-weight-normal">Créer un match</h1>
+                <span class="redline"></span>
+                {{ include('game/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

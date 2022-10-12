@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste news - FC Rosheim
+{% endblock %}
+{% block meta_description %}Liste des news du club FC Rosheim
+{% endblock %}
+
+{% block content %}
+	{# article container #}
+	<div class="row">
+		<div class="col-2"></div>
+		<div class="col-8">
+
+			<h1>Liste des articles</h1>
+
+			{% if is_granted('ROLE_ADMIN') %}<a href="{{ path('news_new') }}">Rédiger un article</a>{% endif %}
+			{% if news %}
+				{% for news in news %}
+				{# article content #}
+					<div class="card container-fluid d-flex flex mb-3">
+					{# title #}
+						<h2 class="text-center mb-3">{{ news.title }}</h2>
+						{# core content #}
+						<p>{{ news.content }}</p>
+						<div>{{ news.picture }}</div>
+						{# date #}
+						<div class="row  justify-content-end flex d-flex align-items-end">
+						<div class=" my-3 justify-content-end flex d-flex align-items-end">
+						<p class="text-right font-italic date-time">Rédigé le
+							{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
+							à
+							{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p>
+						</div>
+													<div class="flex-left d-flex flex-row-reverse">
+								<a calss="" href="/news/{{ news.id }}">Lire la suite</a>
+							</div>
+						{# <div class=" my-3 justify-content-end flex d-flex align-items-end">
+						<p>Modifié le
+							{{ news.createdAt ? news.createdAt|date('Y-m-d') }}
+							à
+							{{ news.createdAt ? news.createdAt|date('H:i:s') : '' }}</p>
+						</div> #}
+						</div>
+							{% if is_granted('ROLE_ADMIN') %}
+    					<div class="redline-player"></div>
+						{# button #}
+						<div class="mt-3  col d-flex justify-content-center">
+							
+							<a href="{{ path('news_show', {'id': news.id}) }}"><button class="crud-btn mx-3">
+								Consulter
+							</button></a>
+							<button class="crud-btn mx-3">
+								<a href="{{ path('news_edit', {'id': news.id}) }}">Modifier</a>
+							</button>
+						</div>
+							{% endif %}
+						{# button end #}
+					</div>
+				{% endfor %}
+			{% else %}
+				<div class="card container-fluid d-flex flex">
+					<h2 class="text-center">Il n'y a pas encore de news sur le site.</h2>
+				</div>
+			{% endif %}
+
+			<a href="{{ path('news_new') }}">Rédiger un article</a>
+
+			{# div col-8 close #}
+		</div>
+
+		<div class="col-2"></div>
+
+		{# entire content close #}
+	</div>
+{% endblock %}

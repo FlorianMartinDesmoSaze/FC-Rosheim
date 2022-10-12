@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit News{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+
+            <h1>Créer un nouvel événement</h1>
+            <div class="card container-fluid d-flex flex mb-3">
+                {{ include('news/_form.html.twig') }}
+                {{ include('news/_delete_form.html.twig') }}
+            </div>
+
+            <a href="{{ path('news_index') }}">back to list</a>
+
+        </div>
+    </div>
+    <div class="col-2"></div>
+
+{% endblock %}

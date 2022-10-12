@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FC Roshem - {{ team.teamName }} {{ team.season }}{% endblock %}
+{% block meta_description %}Liste des joueurs de l'équipe {{ team.teamName }} {{ team.season }} du FC Rosheim{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="flex align-items-center">
+        <main class="col-md-12">
+        {# Since team picture is nullable we should verify if this team has a picture #}
+            {% if team.picture is not null %}
+                <div class="flex justify-content-center">
+                    <figure class="team-picture">
+                        <img src="{{ asset('uploads/' ~ team.picture)}}" alt="Équipe {{ team.teamName ~ ' ' ~ team.season }} du FC Rosheim">
+                        <figcaption>Équipe {{ team.teamName ~ ' ' ~ team.season }} du FC Rosheim</figcaption>
+                    </figure>
+                </div>
+            {% endif %}
+            <div class="card flex flex-column">
+{############################################### Goalkeepers list ###################################################}
+                <h1>Gardien</h1>
+                <div class="flex flex-wrap">
+                    {% for goalKeeper in goalKeepers %} {# we get our gk list #}  
+                        <a href="{{ path('goal_keeper_show', {'id': goalKeeper.id}) }}">
+                            {% if goalKeeper is not null %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('uploads/' ~ goalKeeper.picture)}}" 
+                                        alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
+                                    {{ include('include/player/_goal_keeper_stats.html.twig') }}
+                                </figure>
+                            {% else %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                        alt="{{ goalKeeper.firstName ~ ' ' ~ goalKeeper.lastName }}, gardien du FC Rosheim">
+                                    {{ include('include/player/_goal_keeper_stats.html.twig') }}
+                                </figure>
+                            {% endif %} 
+                        </a>
+                    {% endfor %}
+                </div>
+                <span class="redline-player"></span>
+{############################################### Defenders list ###################################################}
+                <h1>Défenseur</h1>
+                <div class="flex flex-wrap">
+                    {% for defender in defenders %}
+                        <a href="{{ path('field_player_show', {'id': defender.id}) }}">
+                            {% if defender.picture is not null %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('uploads/' ~ defender.picture)}}" 
+                                        alt="{{ defender.firstName ~ ' ' ~ defender.lastName }}, défenseur du FC Rosheim">
+                                    {{ include('include/player/_defender_stats.html.twig') }}
+                                </figure>
+                            {% else %}
+                                <figure class="player-picture">
+                                    <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                        alt="{{ defender.firstName ~ ' ' ~ defender.lastName }}, défenseur du FC Rosheim">
+                                    {{ include('include/player/_defender_stats.html.twig') }}
+                                </figure>
+                            {% endif %} 
+                        </a>
+                    {% endfor %}
+                </div>
+                <span class="redline-player"></span>
+{############################################### Midfielders list ###################################################}
+                <h1>Milieu</h1>
+                <div class="flex flex-wrap">
+                    {% for midfielder in midfielders %}
+                        <a href="{{ path('field_player_show', {'id': midfielder.id}) }}">
+                        {% if midfielder.picture is not null %}
+                            <figure class="player-picture">
+                                <img src="{{ asset('uploads/' ~ midfielder.picture)}}" 
+                                    alt="{{ midfielder.firstName ~ ' ' ~ midfielder.lastName }}, milieu du FC Rosheim">
+                                {{ include('include/player/_midfielder_stats.html.twig') }}
+                            </figure>
+                        {% else %}
+                            <figure class="player-picture">
+                                <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                    alt="{{ midfielder.firstName ~ ' ' ~ midfielder.lastName }}, milieu du FC Rosheim">
+                                {{ include('include/player/_midfielder_stats.html.twig') }}
+                            </figure>
+                        {% endif %} 
+                        </a>
+                    {% endfor %}
+                </div>
+                <span class="redline-player"></span>
+{############################################### Strickers list ###################################################}
+                <h1>Attaquant</h1>
+                <div class="flex flex-wrap">
+                    {% for stricker in strickers %}
+                        <a href="{{ path('field_player_show', {'id': stricker.id}) }}">
+                        {% if stricker.picture is not null %}
+                            <figure class="player-picture">
+                                <img src="{{ asset('uploads/' ~ stricker.picture)}}" 
+                                    alt="{{ stricker.firstName ~ ' ' ~ stricker.lastName }}, attaquant du FC Rosheim">
+                                {{ include('include/player/_stricker_stats.html.twig') }}
+                            </figure>
+                        {% else %}
+                            <figure class="player-picture">
+                                <img src="{{ asset('img/no_player_picture.jpg')}}" 
+                                    alt="{{ stricker.firstName ~ ' ' ~ stricker.lastName }}, attaquant du FC Rosheim">
+                                {{ include('include/player/_stricker_stats.html.twig') }}
+                            </figure>
+                        {% endif %} 
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mt-3">
+                <div class="btn-container d-flex justify-content-between">
+	                <a class="crud-btn" href="{{ path('team_index') }}">back to list</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

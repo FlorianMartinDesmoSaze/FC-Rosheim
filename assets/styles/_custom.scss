@@ -1,0 +1,9 @@
+$primary: #b40000cc;
+$dark: #101010cc;
+
+// Nav
+$nav-link-color: #ffffff;
+
+@mixin container-padding($padding: $container-padding) {
+    padding: 2em;
+}

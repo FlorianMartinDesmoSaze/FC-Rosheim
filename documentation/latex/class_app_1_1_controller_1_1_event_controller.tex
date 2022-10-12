@@ -1,0 +1,62 @@
+\hypertarget{class_app_1_1_controller_1_1_event_controller}{}\doxysection{Event\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_event_controller}\index{EventController@{EventController}}
+Inheritance diagram for Event\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_event_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_event_controller_ab7a174ac78d2bc2dc4887f6b5f960bce}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_event_repository}{Event\+Repository}} \$event\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_event_controller_a84845d75eae95bf4eecc0f49f04c765a}{new}} (Request \$request, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_event_controller_a125f7e7985a7a26ce387a4658a6fa625}{show}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_event_repository}{Event\+Repository}} \$event\+Repository, int \$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_event_controller_a53b3fe1c0dcac4a543f951f65a8ae6b9}{edit}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_event}{Event}} \$event, Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_event_controller_af2edc4240cfc42822902f11e88dc11f4}{delete}} (Request \$request, \mbox{\hyperlink{class_app_1_1_entity_1_1_event}{Event}} \$event, Entity\+Manager\+Interface \$entity\+Manager)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+@\+Route(\char`\"{}/event\char`\"{}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_event_controller_af2edc4240cfc42822902f11e88dc11f4}\label{class_app_1_1_controller_1_1_event_controller_af2edc4240cfc42822902f11e88dc11f4}} 
+\index{EventController@{EventController}!delete@{delete}}
+\index{delete@{delete}!EventController@{EventController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_event}{Event}}}]{\$event,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}event\+\_\+delete\char`\"{}, methods=\{\char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_event_controller_a53b3fe1c0dcac4a543f951f65a8ae6b9}\label{class_app_1_1_controller_1_1_event_controller_a53b3fe1c0dcac4a543f951f65a8ae6b9}} 
+\index{EventController@{EventController}!edit@{edit}}
+\index{edit@{edit}!EventController@{EventController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_event}{Event}}}]{\$event,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}/edit\char`\"{}, name=\char`\"{}event\+\_\+edit\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_event_controller_ab7a174ac78d2bc2dc4887f6b5f960bce}\label{class_app_1_1_controller_1_1_event_controller_ab7a174ac78d2bc2dc4887f6b5f960bce}} 
+\index{EventController@{EventController}!index@{index}}
+\index{index@{index}!EventController@{EventController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_event_repository}{Event\+Repository}}}]{\$event\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\char`\"{}, name=\char`\"{}event\+\_\+index\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_event_controller_a84845d75eae95bf4eecc0f49f04c765a}\label{class_app_1_1_controller_1_1_event_controller_a84845d75eae95bf4eecc0f49f04c765a}} 
+\index{EventController@{EventController}!new@{new}}
+\index{new@{new}!EventController@{EventController}}
+\doxysubsubsection{\texorpdfstring{new()}{new()}}
+{\footnotesize\ttfamily new (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/new\char`\"{}, name=\char`\"{}event\+\_\+new\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}, \char`\"{}\+POST\char`\"{}\}) @\+Is\+Granted(\char`\"{}\+ROLE\+\_\+\+ADMIN\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_event_controller_a125f7e7985a7a26ce387a4658a6fa625}\label{class_app_1_1_controller_1_1_event_controller_a125f7e7985a7a26ce387a4658a6fa625}} 
+\index{EventController@{EventController}!show@{show}}
+\index{show@{show}!EventController@{EventController}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_event_repository}{Event\+Repository}}}]{\$event\+Repository,  }\item[{int}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/\{id\}\char`\"{}, name=\char`\"{}event\+\_\+show\char`\"{}, methods=\{\char`\"{}\+GET\char`\"{}\}, requirements=\{\char`\"{}id\char`\"{}\+:\char`\"{}\textbackslash{}d+\char`\"{}\}) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+FCRosheim/src/\+Controller/Event\+Controller.\+php\end{DoxyCompactItemize}
